@@ -19,7 +19,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
-		print("hit")
+		body.take_damage(15)
+		
 		add_collision_exception_with(body)
 		body.endLag += 0.5
 		body.external_velocity += position.direction_to(body.position) * 1000

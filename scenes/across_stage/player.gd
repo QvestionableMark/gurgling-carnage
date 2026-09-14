@@ -1,5 +1,8 @@
 class_name Player
 extends CharacterBody2D
+
+var game : Game
+
 const JUMP_VELOCITY = -750
 const SPEED = 400
 const ACCELARATION = 800
@@ -42,10 +45,12 @@ func _physics_process(delta):
 	
 	velocity = input_velocity + external_velocity
 	move_and_slide()
-	print(input_velocity,external_velocity)
 	
 	external_velocity = external_velocity.move_toward(Vector2.ZERO,ACCELARATION * delta)
 
+func take_damage(damage):
+	game.persistent_data.health -= damage
+	game.hud_update.emit()
 
 func _on_dash_timer_timeout() -> void:
 	endLag += 0.5

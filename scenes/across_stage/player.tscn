@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c2fxo02db5xnv"]
 
-[ext_resource type="Script" uid="uid://cbn5sgery76v5" path="res://scripts/player.gd" id="1_etwev"]
+[ext_resource type="Script" uid="uid://cbn5sgery76v5" path="res://scenes/across_stage/player.gd" id="1_etwev"]
 [ext_resource type="Texture2D" uid="uid://b7mmedkds64el" path="res://sprites/player_spritesheets/Boss_idleleftmc-Sheet.png" id="2_m77ty"]
 [ext_resource type="Texture2D" uid="uid://nl4j0btcpr8p" path="res://sprites/player_spritesheets/Boss_runleftmc-Sheet.png" id="4_b5iry"]
 

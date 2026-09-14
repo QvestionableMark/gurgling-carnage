@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://daoojfeife58m"]
 
-[ext_resource type="Script" uid="uid://byvi4g4y5sebm" path="res://scripts/main_menu.gd" id="1_sbiqi"]
+[ext_resource type="Script" uid="uid://byvi4g4y5sebm" path="res://scenes/game/main_menu.gd" id="1_sbiqi"]
 
 [node name="main_menu" type="CanvasLayer" unique_id=283012810]
 script = ExtResource("1_sbiqi")
@@ -40,11 +40,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "New Game"
 
-[node name="settings_button" type="Button" parent="button_container" unique_id=810539791]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "Settings"
+[node name="tutorial" type="CheckButton" parent="button_container/new_game_button" unique_id=288149497]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+text = "Tutorial"
 
 [connection signal="pressed" from="button_container/continue_button" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="button_container/new_game_button" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="button_container/settings_button" to="." method="_on_settings_button_pressed"]

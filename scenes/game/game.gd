@@ -1,0 +1,65 @@
+class_name Game
+extends Node2D
+
+var persistent_data = {
+	"checkpoint": -1,
+	"timer": 0,
+	"health": 100,
+	"tutorial": true,
+	"hardmode": false
+}
+signal persistent_data_loaded(new_data)
+signal stage_loaded(stage_number)
+signal hud_update()
+
+@export var stages : Array[String]
+var current_stage : Stage
+var current_player : Player
+var is_paused : bool
+
+func _ready() -> void:
+	load_persistent_data()
+
+func start_new_game(with_tutorial):
+	persistent_data.checkpoint = 0
+	persistent_data.health = 100
+	persistent_data.hardmode = false
+	persistent_data.tutorial = with_tutorial
+	save_persistent_data()
+	
+	continue_old_game()
+	
+
+func continue_old_game():
+	hud_update.emit()
+	load_stage(persistent_data.checkpoint)
+
+func handle_death():
+	pass # kirkuinely to do
+
+func load_stage(stage_number_to_load : int):
+	if current_stage:
+		current_stage.queue_free()
+	if stage_number_to_load == -1:
+		stage_loaded.emit(stage_number_to_load)
+		return
+
+	persistent_data.checkpoint = stage_number_to_load
+	save_persistent_data()
+	var new_stage = load(stages[stage_number_to_load]).instantiate() as Stage
+	add_child(new_stage)
+	current_stage = new_stage
+	stage_loaded.emit(stage_number_to_load)
+
+func load_persistent_data():
+	if not FileAccess.file_exists("user://persistent_data.json"):
+		return
+	var file = FileAccess.open("user://persistent_data.json", FileAccess.READ)
+	var loaded_persistent_data : Dictionary = JSON.parse_string(file.get_as_text())
+	loaded_persistent_data.merge(persistent_data)
+	persistent_data = loaded_persistent_data
+	persistent_data_loaded.emit(persistent_data)
+	
+func save_persistent_data():
+	var file = FileAccess.open("user://persistent_data.json", FileAccess.WRITE)
+	file.store_string(JSON.stringify(persistent_data)) 

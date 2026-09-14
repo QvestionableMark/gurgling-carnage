@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://du2y3bx6q0ktl"]
 
-[ext_resource type="Script" uid="uid://ce06th44ec811" path="res://scripts/projectile.gd" id="1_uibro"]
-[ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://icon.svg" id="2_cpy4o"]
+[ext_resource type="Script" uid="uid://ce06th44ec811" path="res://scenes/stages/stage_1_attacks/projectile.gd" id="1_671ty"]
+[ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="2_kwffg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4jyb"]
 size = Vector2(128, 25)
@@ -11,7 +11,7 @@ radius = 4.0
 height = 25.0
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=784705652]
-script = ExtResource("1_uibro")
+script = ExtResource("1_671ty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488]
 shape = SubResource("RectangleShape2D_k4jyb")
@@ -24,6 +24,6 @@ shape = SubResource("CapsuleShape2D_d7522")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=730174380]
 scale = Vector2(1, 0.2)
-texture = ExtResource("2_cpy4o")
+texture = ExtResource("2_kwffg")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

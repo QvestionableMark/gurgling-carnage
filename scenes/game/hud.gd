@@ -1,0 +1,26 @@
+extends CanvasLayer
+
+
+@onready var game : Game = get_tree().get_first_node_in_group("game")
+
+func _ready() -> void:
+	game.stage_loaded.connect(_on_stage_loaded)
+	game.hud_update.connect(_on_hud_update)
+
+func _on_stage_loaded(stage_number):
+	if stage_number > -1:
+		visible = true
+	else:
+		visible = false
+	if stage_number == 0 and game.persistent_data.tutorial:
+		$KeybindMenu/ToggleMenu.button_pressed = true
+
+
+func _on_toggle_menu_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		$KeybindMenu.position += Vector2(512,0) #512 is "Keybinds" size
+	else:
+		$KeybindMenu.position -= Vector2(512,0)
+
+func _on_hud_update():
+	$Logo/HealthBar.value = game.persistent_data.health

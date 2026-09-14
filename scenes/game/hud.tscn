@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://d2bxpwrj8ljvh"]
+
+[ext_resource type="Script" uid="uid://evpn7qxob7k4" path="res://scenes/game/hud.gd" id="1_snjka"]
+[ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="1_umjp7"]
+
+[node name="game_hud" type="CanvasLayer" unique_id=640819470]
+script = ExtResource("1_snjka")
+
+[node name="Logo" type="TextureRect" parent="." unique_id=840847479]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_umjp7")
+
+[node name="HealthBar" type="TextureProgressBar" parent="Logo" unique_id=22796213]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -50.0
+offset_right = 400.0
+offset_bottom = 50.0
+grow_vertical = 2
+value = 36.0
+nine_patch_stretch = true
+texture_progress = ExtResource("1_umjp7")
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="." unique_id=1440961970]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.85
+anchor_right = 0.75
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("1_umjp7")
+
+[node name="KeybindMenu" type="Control" parent="." unique_id=2070737404]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="Keybinds" type="TextureRect" parent="KeybindMenu" unique_id=139553296]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -512.0
+offset_top = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset_ratio = Vector2(1, 0.5)
+texture = ExtResource("1_umjp7")
+
+[node name="ToggleMenu" type="TextureButton" parent="KeybindMenu" unique_id=483275173]
+layout_mode = 1
+anchors_preset = -1
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset_ratio = Vector2(0, 0.5)
+toggle_mode = true
+texture_normal = ExtResource("1_umjp7")
+
+[connection signal="toggled" from="KeybindMenu/ToggleMenu" to="." method="_on_toggle_menu_toggled"]

@@ -1,28 +1,105 @@
 [gd_scene format=3 uid="uid://b6vv3f78ljqpe"]
 
-[ext_resource type="Script" uid="uid://xoahsgqftmoj" path="res://scripts/stage_0.gd" id="1_shou7"]
+[ext_resource type="Script" uid="uid://bit812rihm5t0" path="res://scenes/stages/stage_0.gd" id="1_shou7"]
+[ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="2_whglb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7522"]
-size = Vector2(1920, 216)
+size = Vector2(1920, 205)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fsjui"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_whglb"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7522"]
+radius = 128.0
+
 [node name="stage_0" type="Node2D" unique_id=599359682]
 script = ExtResource("1_shou7")
-player_start_position = Vector2(960, 540)
+player_start_position = Vector2(960, 700)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1818579065]
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1818579065]
 position = Vector2(960, 972)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=902054735]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=902054735]
 shape = SubResource("RectangleShape2D_d7522")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1804407931]
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=1804407931]
 scale = Vector2(15, 1.6)
 texture = SubResource("CompressedTexture2D_fsjui")
 
-[node name="Timer" type="Timer" parent="." unique_id=2020304755]
-autostart = true
+[node name="Lever" type="Node2D" parent="." unique_id=1633212052]
+position = Vector2(1600, 850)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Stick" type="Node2D" parent="Lever" unique_id=1515148466]
+rotation = -2.3561945
+
+[node name="Sprite2D" type="Sprite2D" parent="Lever/Stick" unique_id=83071821]
+position = Vector2(64, 0)
+scale = Vector2(1, 0.15)
+texture = SubResource("CompressedTexture2D_whglb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lever" unique_id=1990083460]
+scale = Vector2(1, 0.3)
+texture = ExtResource("2_whglb")
+
+[node name="LeverArea" type="Area2D" parent="Lever" unique_id=2134640049]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever/LeverArea" unique_id=1972465564]
+shape = SubResource("CircleShape2D_d7522")
+
+[node name="Sign" type="Node2D" parent="." unique_id=148291684]
+z_index = -1
+position = Vector2(1350, 875)
+rotation = -0.2617994
+
+[node name="Sprite2D" type="Sprite2D" parent="Sign" unique_id=949140338]
+position = Vector2(0, -64)
+scale = Vector2(0.2, 1)
+texture = ExtResource("2_whglb")
+
+[node name="Board" type="Sprite2D" parent="Sign" unique_id=1224911135]
+self_modulate = Color(0.21950102, 0.21950102, 0.21950102, 1)
+position = Vector2(0, -128)
+scale = Vector2(1, 0.6)
+texture = ExtResource("2_whglb")
+
+[node name="Label" type="Label" parent="Sign/Board" unique_id=112477580]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.667)
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 13
+text = "HARD MODE
+(no checkpoints)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Status" type="Label" parent="Sign/Board" unique_id=1567723017]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -80.39661
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 1.667)
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 13
+text = "Status: OFF"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Lever/LeverArea" to="." method="_on_lever_area_body_entered"]
+[connection signal="body_exited" from="Lever/LeverArea" to="." method="_on_lever_area_body_exited"]
