@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://daoojfeife58m"]
 
+[ext_resource type="Script" uid="uid://byvi4g4y5sebm" path="res://scripts/main_menu.gd" id="1_sbiqi"]
+
 [node name="main_menu" type="CanvasLayer" unique_id=283012810]
+script = ExtResource("1_sbiqi")
 
 [node name="title_label" type="Label" parent="." unique_id=1732650067]
 anchors_preset = 5

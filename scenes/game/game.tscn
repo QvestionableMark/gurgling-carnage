@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://daoojfeife58m" path="res://scenes/game/main_menu.tscn" id="1_sul5r"]
 [ext_resource type="Script" uid="uid://d0x7kalp6k5hj" path="res://scripts/debug.gd" id="3_0sr1o"]
 
-[node name="game" type="Node2D" unique_id=554141060]
+[node name="game" type="Node2D" unique_id=554141060 groups=["game"]]
 script = ExtResource("1_7h61r")
 stages = Array[String](["res://scenes/stages/stage_0.tscn", "res://scenes/stages/stage_1.tscn"])
 

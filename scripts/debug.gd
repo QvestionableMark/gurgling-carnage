@@ -1,6 +1,6 @@
 extends Node
 
-@onready var game : Game = get_parent()
+@onready var game : Game = get_tree().get_first_node_in_group("game")
 
 func _process(delta: float) -> void:
 		var current_stage_number
@@ -13,7 +13,10 @@ func _process(delta: float) -> void:
 			game.load_stage(game.stages[clamp(current_stage_number + 1, 0, game.stages.size() - 1)])
 			print("Next stage", current_stage_number)
 		if Input.is_action_just_pressed("debug_previous_stage"):
-			game.load_stage(game.stages[clamp(current_stage_number - 1, 0, game.stages.size() - 1)])
+			if current_stage_number - 1 < 0:
+				game.load_stage(null)
+			else:
+				game.load_stage(game.stages[clamp(current_stage_number - 1, 0, game.stages.size() - 1)])
 			print("Prev stage", current_stage_number)
 			
 		
