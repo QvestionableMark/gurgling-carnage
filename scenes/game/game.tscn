@@ -1,3 +1,14 @@
 [gd_scene format=3 uid="uid://1y40j67h6yus"]
 
+[ext_resource type="Script" uid="uid://bhprl7jnjniyd" path="res://scripts/game.gd" id="1_7h61r"]
+[ext_resource type="PackedScene" uid="uid://daoojfeife58m" path="res://scenes/game/main_menu.tscn" id="1_sul5r"]
+[ext_resource type="Script" uid="uid://d0x7kalp6k5hj" path="res://scripts/debug.gd" id="3_0sr1o"]
+
 [node name="game" type="Node2D" unique_id=554141060]
+script = ExtResource("1_7h61r")
+stages = Array[String](["res://scenes/stages/stage_0.tscn", "res://scenes/stages/stage_1.tscn"])
+
+[node name="main_menu" parent="." unique_id=283012810 instance=ExtResource("1_sul5r")]
+
+[node name="debug" type="Node2D" parent="." unique_id=1435487560]
+script = ExtResource("3_0sr1o")

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dfistqrg0846j"]
+
+[ext_resource type="Script" uid="uid://d3vdf2ha7r6f5" path="res://scripts/stage.gd" id="1_3847s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ts77"]
+size = Vector2(1920, 216)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jvroi"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[node name="stage_1" type="Node2D" unique_id=1822007341]
+script = ExtResource("1_3847s")
+stage_number = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1078271585]
+position = Vector2(960, 972)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1813535161]
+shape = SubResource("RectangleShape2D_7ts77")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=754513026]
+scale = Vector2(15, 1.6)
+texture = SubResource("CompressedTexture2D_jvroi")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=90302401]
+position = Vector2(960, 116)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=233574660]
+shape = SubResource("RectangleShape2D_7ts77")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=780071274]
+scale = Vector2(15, 1.6)
+texture = SubResource("CompressedTexture2D_jvroi")
