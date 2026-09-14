@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfnsmptq00jli" path="res://scenes/in_game/Boss_idlemc-Sheet.png" id="2_sb0hn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxun1"]
-size = Vector2(65, 141.40048)
+size = Vector2(40, 125)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2gqj"]
 atlas = ExtResource("2_sb0hn")
@@ -186,13 +186,12 @@ animations = [{
 script = ExtResource("1_etwev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601666521]
-position = Vector2(468, 831.00006)
+position = Vector2(3, -15)
 scale = Vector2(1, 1.08)
 shape = SubResource("RectangleShape2D_qxun1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440044799]
 texture_filter = 1
-position = Vector2(469, 851)
 scale = Vector2(4, 4.075)
 sprite_frames = SubResource("SpriteFrames_qxun1")
 autoplay = "default"

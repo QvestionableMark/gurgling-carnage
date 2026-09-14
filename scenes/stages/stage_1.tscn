@@ -11,6 +11,7 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [node name="stage_1" type="Node2D" unique_id=1822007341]
 script = ExtResource("1_3847s")
 stage_number = 1
+player_start_position = Vector2(960, 540)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1078271585]
 position = Vector2(960, 972)

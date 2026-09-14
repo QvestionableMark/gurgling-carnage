@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://du2y3bx6q0ktl"]
+
+[ext_resource type="Script" uid="uid://ce06th44ec811" path="res://scripts/projectile.gd" id="1_uibro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7522"]
+size = Vector2(10, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w3iv0"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[node name="Area2D" type="Area2D" unique_id=757811181]
+script = ExtResource("1_uibro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2045289287]
+shape = SubResource("RectangleShape2D_d7522")
+
+[node name="CollisionShape2D_HurtBox" type="CollisionShape2D" parent="." unique_id=1262183453]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_d7522")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1984266049]
+scale = Vector2(0.25, 0.25)
+texture = SubResource("CompressedTexture2D_w3iv0")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

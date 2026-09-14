@@ -19,14 +19,15 @@ theme_override_font_sizes/font_size = 75
 text = "Gurgling Carnage"
 
 [node name="button_container" type="VBoxContainer" parent="." unique_id=281615676]
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.4
 anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
-offset_transform_enabled = true
 offset_transform_position = Vector2(0, 500)
 
 [node name="continue_button" type="Button" parent="button_container" unique_id=1520175093]
@@ -43,3 +44,7 @@ text = "New Game"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Settings"
+
+[connection signal="pressed" from="button_container/continue_button" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="button_container/new_game_button" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="button_container/settings_button" to="." method="_on_settings_button_pressed"]

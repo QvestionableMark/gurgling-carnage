@@ -9,17 +9,28 @@ signal persistent_data_loaded(new_data)
 
 @export var stages : Array[String]
 var current_stage : Stage
+var is_paused : bool
 
 func _ready() -> void:
 	load_persistent_data()
-	#temp until buttons work
-	if persistent_data["checkpoint"] != -1:
-		load_stage(stages[persistent_data["checkpoint"]])
+
+func start_new_game():
+	persistent_data.checkpoint = 0
+	save_persistent_data()
+	
+	continue_old_game()
+	
+
+func continue_old_game():
+	load_stage(stages[persistent_data.checkpoint])
+	load_player()
+	
+
 
 func load_stage(stage_to_load):
 	if current_stage:
 		current_stage.queue_free()
-	persistent_data["checkpoint"] = stages.find(stage_to_load)
+	persistent_data.checkpoint = stages.find(stage_to_load)
 	save_persistent_data()
 	if not stage_to_load:
 		return
@@ -27,6 +38,11 @@ func load_stage(stage_to_load):
 	add_child(new_stage)
 	current_stage = new_stage
 	pass
+
+func load_player():
+	var player = load("res://scenes/in_game/player.tscn").instantiate() as CharacterBody2D
+	add_child(player)
+	player.position = current_stage.player_start_position
 
 func load_persistent_data():
 	if not FileAccess.file_exists("user://persistent_data.json"):
