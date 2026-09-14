@@ -1,18 +1,26 @@
-extends Area2D
+extends AnimatableBody2D
 
+var direction
+const SPEED = 300
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	position = Vector2(1920,1080/2)
-	look_at(Vector2(0,randf() * 1080))
+	sync_to_physics = false
+	await get_tree().physics_frame
+	position = Vector2(1920, 1080/8*5)
+	var target = Vector2(0,(0.5 + randf() / 4) * 1080)
+	look_at(target)
+	direction = position.direction_to(target)
+	sync_to_physics = true
+	await get_tree().physics_frame
+	visible = true
 
+func _physics_process(delta: float) -> void:
+	position += direction * SPEED * delta
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	move_local_x(200 * delta)
-
-
-func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	print(body_rid,body,body_shape_index,local_shape_index)
-	if body_shape_index == 1 and body is Player:
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
 		print("hit")
+		add_collision_exception_with(body)
+		body.endLag += 0.5
+		body.external_velocity += position.direction_to(body.position) * 1000
+		queue_free()
