@@ -401,7 +401,7 @@ shape = SubResource("RectangleShape2D_qxun1")
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_qxun1")
-animation = &"idle"
+animation = &"fall"
 
 [node name="DashTimer" type="Timer" parent="." unique_id=1335042099]
 process_callback = 0

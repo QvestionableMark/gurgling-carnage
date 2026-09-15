@@ -12,6 +12,9 @@ var external_velocity = Vector2.ZERO
 var input_velocity = Vector2.ZERO
 
 func _physics_process(delta):
+	if game.persistent_data.health <= 0:
+		$AnimatedSprite2D.stop()
+		return
 	endLag = clamp(endLag - delta, 0, 1)
 	
 	
@@ -34,16 +37,14 @@ func _physics_process(delta):
 			input_velocity.x += effective_speed
 			$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x)
 	
-	
 	if not is_on_floor():
 		if $AnimatedSprite2D.animation == "jump" and not $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.play("fall")
 		if is_on_ceiling():
 			input_velocity.y *= -1
+			external_velocity.y *= -1
 		input_velocity += get_gravity() * delta
 	else:
-		
-	
 		if endLag == 0 and Input.is_action_just_pressed("jump"):
 			input_velocity.y = JUMP_VELOCITY
 			$AnimatedSprite2D.play("jump")
@@ -56,6 +57,7 @@ func _physics_process(delta):
 	
 	
 	velocity = input_velocity + external_velocity
+	
 	move_and_slide()
 	
 	external_velocity = external_velocity.move_toward(Vector2.ZERO,ACCELARATION * delta)
@@ -63,6 +65,9 @@ func _physics_process(delta):
 func take_damage(damage):
 	game.persistent_data.health -= damage
 	game.hud_update.emit()
+	game.save_persistent_data()
+	if game.persistent_data.health <= 0:
+		game.handle_death()
 
 func _on_dash_timer_timeout() -> void:
 	endLag += 0.5

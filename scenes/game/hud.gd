@@ -6,6 +6,7 @@ extends CanvasLayer
 func _ready() -> void:
 	game.stage_loaded.connect(_on_stage_loaded)
 	game.hud_update.connect(_on_hud_update)
+	game.player_died.connect(_on_player_died)
 
 func _on_stage_loaded(stage_number):
 	if stage_number > -1:
@@ -24,3 +25,8 @@ func _on_toggle_menu_toggled(toggled_on: bool) -> void:
 
 func _on_hud_update():
 	$Logo/HealthBar.value = game.persistent_data.health
+
+func _on_player_died(timer):
+	$death_message.visible = true
+	await timer.timeout
+	$death_message.visible = false

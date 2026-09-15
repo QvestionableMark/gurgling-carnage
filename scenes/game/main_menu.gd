@@ -18,7 +18,8 @@ func _on_stage_loaded(stage_number):
 		visible = false
 
 func initialization():
-	$button_container/continue_button.visible = game.persistent_data.checkpoint != 0
+	$button_container/continue_button.visible = game.persistent_data.checkpoint > 0
+	$button_container/continue_button/CheckpointNumber.text = "Checkpoint: " + String.num(game.persistent_data.checkpoint, 0)
 	$button_container/new_game_button/tutorial.button_pressed = game.persistent_data.tutorial
 
 func _on_continue_button_pressed() -> void:

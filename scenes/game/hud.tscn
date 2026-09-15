@@ -68,4 +68,22 @@ pivot_offset_ratio = Vector2(0, 0.5)
 toggle_mode = true
 texture_normal = ExtResource("1_umjp7")
 
+[node name="death_message" type="Label" parent="." unique_id=1436009545]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -11.5
+offset_right = 38.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9411765, 0, 0, 0.39215687)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7176471)
+theme_override_font_sizes/font_size = 200
+text = "PERISHED"
+
 [connection signal="toggled" from="KeybindMenu/ToggleMenu" to="." method="_on_toggle_menu_toggled"]
