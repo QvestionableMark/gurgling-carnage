@@ -1,32 +1,35 @@
 [gd_scene format=3 uid="uid://b6vv3f78ljqpe"]
 
 [ext_resource type="Script" uid="uid://bit812rihm5t0" path="res://scenes/stages/stage_0.gd" id="1_shou7"]
+[ext_resource type="Texture2D" uid="uid://glwejyygwfnu" path="res://spritesheets/stages/stage_0/BackgroundSpritev3-0004-Sheet.png" id="2_wgon0"]
 [ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="2_whglb"]
-[ext_resource type="Texture2D" uid="uid://c80jt8lwe156u" path="res://spritesheets/stages/stage_0/BackgroundSprite-0004-Sheet.png" id="3_wgon0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yh6g6"]
-atlas = ExtResource("3_wgon0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgon0"]
+atlas = ExtResource("2_wgon0")
 region = Rect2(0, 0, 300, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sditu"]
-atlas = ExtResource("3_wgon0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh6g6"]
+atlas = ExtResource("2_wgon0")
 region = Rect2(300, 0, 300, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_83vdv"]
-atlas = ExtResource("3_wgon0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sditu"]
+atlas = ExtResource("2_wgon0")
 region = Rect2(600, 0, 300, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxp1b"]
-atlas = ExtResource("3_wgon0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_83vdv"]
+atlas = ExtResource("2_wgon0")
 region = Rect2(900, 0, 300, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgtq4"]
-atlas = ExtResource("3_wgon0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxp1b"]
+atlas = ExtResource("2_wgon0")
 region = Rect2(1200, 0, 300, 200)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d7522"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgon0")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yh6g6")
 }, {
@@ -38,9 +41,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rxp1b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rgtq4")
 }],
 "loop": 1,
 "name": &"default",
