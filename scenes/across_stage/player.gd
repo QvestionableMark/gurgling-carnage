@@ -17,6 +17,8 @@ func _physics_process(delta):
 	
 	var effective_speed = SPEED
 	
+	
+	
 	if $DashTimer.time_left + endLag == 0 and Input.is_action_just_pressed("dash"):
 		$DashTimer.start()
 	if $DashTimer.time_left > 0:
@@ -27,20 +29,30 @@ func _physics_process(delta):
 	if endLag == 0:
 		if Input.is_action_pressed("move_left"):
 			input_velocity.x -= effective_speed 
-			$AnimatedSprite2D.scale.x = 4
+			$AnimatedSprite2D.scale.x = -abs($AnimatedSprite2D.scale.x)
 		if Input.is_action_pressed("move_right"):
 			input_velocity.x += effective_speed
-			$AnimatedSprite2D.scale.x = -4
+			$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x)
+	
 	
 	if not is_on_floor():
+		if $AnimatedSprite2D.animation == "jump" and not $AnimatedSprite2D.is_playing():
+			$AnimatedSprite2D.play("fall")
 		if is_on_ceiling():
 			input_velocity.y *= -1
 		input_velocity += get_gravity() * delta
 	else:
+		
+	
 		if endLag == 0 and Input.is_action_just_pressed("jump"):
 			input_velocity.y = JUMP_VELOCITY
+			$AnimatedSprite2D.play("jump")
 		else:
 			input_velocity.y = 0
+			if input_velocity.x != 0:
+				$AnimatedSprite2D.play("run")
+			else:
+				$AnimatedSprite2D.play("idle")
 	
 	
 	velocity = input_velocity + external_velocity

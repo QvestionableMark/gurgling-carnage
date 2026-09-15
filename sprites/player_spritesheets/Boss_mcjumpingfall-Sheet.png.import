@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7mmedkds64el"
-path="res://.godot/imported/Boss_idleleftmc-Sheet.png-5fbea4fb3b8d316f3bb28ebf7530bde6.ctex"
+uid="uid://cdr8wd80divb4"
+path="res://.godot/imported/Boss_mcjumpingfall-Sheet.png-f79550f108cca5344d4f8c3126ef6d0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player_spritesheets/Boss_idleleftmc-Sheet.png"
-dest_files=["res://.godot/imported/Boss_idleleftmc-Sheet.png-5fbea4fb3b8d316f3bb28ebf7530bde6.ctex"]
+source_file="res://sprites/player_spritesheets/Boss_mcjumpingfall-Sheet.png"
+dest_files=["res://.godot/imported/Boss_mcjumpingfall-Sheet.png-f79550f108cca5344d4f8c3126ef6d0e.ctex"]
 
 [params]
 
