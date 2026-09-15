@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://o6g0pp0qjxak" path="res://scenes/stages/stage_2.gd" id="1_sv1x6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxun1"]
-size = Vector2(351, 86)
+size = Vector2(342.9375, 86)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s2qcy"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -31,7 +31,7 @@ texture = SubResource("CompressedTexture2D_s2qcy")
 [node name="FloorBody2" type="StaticBody2D" parent="." unique_id=764436531]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody2" unique_id=1685141764]
-position = Vector2(982, 640)
+position = Vector2(975.53125, 640)
 shape = SubResource("RectangleShape2D_qxun1")
 
 [node name="Sprite2D3" type="Sprite2D" parent="FloorBody2" unique_id=1690507180]
@@ -47,7 +47,7 @@ scale = Vector2(2.7211912, 0.66836)
 texture = SubResource("CompressedTexture2D_s2qcy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody3" unique_id=1007548856]
-position = Vector2(438, 803)
+position = Vector2(436.8125, 803)
 shape = SubResource("RectangleShape2D_qxun1")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

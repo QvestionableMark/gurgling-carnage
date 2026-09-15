@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bie2nofo1jois"]
+
+[ext_resource type="Script" path="res://scenes/stages/stage_1_attacks/projectile.gd" id="1_671ty"]
+[ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="2_kwffg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4jyb"]
+size = Vector2(128, 25)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7522"]
+radius = 4.0
+height = 25.0
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=784705652]
+script = ExtResource("1_671ty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488]
+shape = SubResource("RectangleShape2D_k4jyb")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=762369763]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1210065424]
+position = Vector2(64, 0)
+shape = SubResource("CapsuleShape2D_d7522")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=730174380]
+scale = Vector2(1, 0.2)
+texture = ExtResource("2_kwffg")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_area_2d_body_entered"]
