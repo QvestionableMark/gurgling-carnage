@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i1eemgiskoca"
-path="res://.godot/imported/Boss_mcjumping-Sheet.png-d2c3c6eae9e82dcd4c0ed1da860eefa3.ctex"
+uid="uid://2yydoegkwoi3"
+path="res://.godot/imported/Tooth_projectile-Sheet.png-221d5cfc474a1ce67cbb6c5f4c170eea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player_spritesheets/Boss_mcjumping-Sheet.png"
-dest_files=["res://.godot/imported/Boss_mcjumping-Sheet.png-d2c3c6eae9e82dcd4c0ed1da860eefa3.ctex"]
+source_file="res://spritesheets/stages/stage_1/Tooth_projectile-Sheet.png"
+dest_files=["res://.godot/imported/Tooth_projectile-Sheet.png-221d5cfc474a1ce67cbb6c5f4c170eea.ctex"]
 
 [params]
 

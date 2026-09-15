@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c2fxo02db5xnv"]
 
 [ext_resource type="Script" uid="uid://cbn5sgery76v5" path="res://scenes/across_stage/player.gd" id="1_etwev"]
-[ext_resource type="Texture2D" uid="uid://cdr8wd80divb4" path="res://sprites/player_spritesheets/Boss_mcjumpingfall-Sheet.png" id="2_161at"]
-[ext_resource type="Texture2D" uid="uid://bxooyigyl12p" path="res://sprites/player_spritesheets/Boss_idlemc-Sheet.png" id="3_h5tfo"]
-[ext_resource type="Texture2D" uid="uid://i1eemgiskoca" path="res://sprites/player_spritesheets/Boss_mcjumping-Sheet.png" id="4_nfay6"]
-[ext_resource type="Texture2D" uid="uid://u8dojc085oi6" path="res://sprites/player_spritesheets/Boss_rollmc-Sheet.png" id="5_h5tfo"]
-[ext_resource type="Texture2D" uid="uid://co746yjyy5cp4" path="res://sprites/player_spritesheets/Boss_runmc-Sheet.png" id="5_wdca0"]
+[ext_resource type="Texture2D" uid="uid://cdr8wd80divb4" path="res://spritesheets/player/Boss_mcjumpingfall-Sheet.png" id="2_161at"]
+[ext_resource type="Texture2D" uid="uid://bxooyigyl12p" path="res://spritesheets/player/Boss_idlemc-Sheet.png" id="3_h5tfo"]
+[ext_resource type="Texture2D" uid="uid://i1eemgiskoca" path="res://spritesheets/player/Boss_mcjumping-Sheet.png" id="4_nfay6"]
+[ext_resource type="Texture2D" uid="uid://u8dojc085oi6" path="res://spritesheets/player/Boss_rollmc-Sheet.png" id="5_h5tfo"]
+[ext_resource type="Texture2D" uid="uid://co746yjyy5cp4" path="res://spritesheets/player/Boss_runmc-Sheet.png" id="5_wdca0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5tfo"]
 size = Vector2(40, 40)
@@ -518,17 +518,16 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=655524190]
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_etwev")
 
 [node name="RollingCollision" type="CollisionShape2D" parent="." unique_id=601666521]
-position = Vector2(3, 30)
-scale = Vector2(1, 1.08)
+position = Vector2(3, 27.5)
 shape = SubResource("RectangleShape2D_h5tfo")
 disabled = true
 
 [node name="NonRollingCollision" type="CollisionShape2D" parent="." unique_id=1719260646]
 position = Vector2(3, -15)
-scale = Vector2(1, 1.08)
 shape = SubResource("RectangleShape2D_qxun1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440044799]

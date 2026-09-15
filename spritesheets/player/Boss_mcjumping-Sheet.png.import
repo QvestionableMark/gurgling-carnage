@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdr8wd80divb4"
-path="res://.godot/imported/Boss_mcjumpingfall-Sheet.png-f79550f108cca5344d4f8c3126ef6d0e.ctex"
+uid="uid://i1eemgiskoca"
+path="res://.godot/imported/Boss_mcjumping-Sheet.png-909283460f0b9e682e2846e281964c21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player_spritesheets/Boss_mcjumpingfall-Sheet.png"
-dest_files=["res://.godot/imported/Boss_mcjumpingfall-Sheet.png-f79550f108cca5344d4f8c3126ef6d0e.ctex"]
+source_file="res://spritesheets/player/Boss_mcjumping-Sheet.png"
+dest_files=["res://.godot/imported/Boss_mcjumping-Sheet.png-909283460f0b9e682e2846e281964c21.ctex"]
 
 [params]
 

@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://du2y3bx6q0ktl"]
+
+[ext_resource type="Script" uid="uid://ce06th44ec811" path="res://scenes/stages/stage_1_attacks/tooth.gd" id="1_epucm"]
+[ext_resource type="Texture2D" uid="uid://2yydoegkwoi3" path="res://spritesheets/stages/stage_1/Tooth_projectile-Sheet.png" id="2_k005k"]
+[ext_resource type="Texture2D" uid="uid://bidytugk3xjxs" path="res://spritesheets/stages/stage_1/Tooth_projectile_hit-Sheet.png" id="3_xcycx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4jyb"]
+size = Vector2(40, 25)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7522"]
+radius = 4.0
+height = 25.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwffg"]
+atlas = ExtResource("2_k005k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1846"]
+atlas = ExtResource("2_k005k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtkad"]
+atlas = ExtResource("2_k005k")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu6x4"]
+atlas = ExtResource("2_k005k")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0g1e"]
+atlas = ExtResource("2_k005k")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyk7a"]
+atlas = ExtResource("2_k005k")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ulo3"]
+atlas = ExtResource("2_k005k")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d15ur"]
+atlas = ExtResource("2_k005k")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1qpj"]
+atlas = ExtResource("3_xcycx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1g2h"]
+atlas = ExtResource("3_xcycx")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tow4"]
+atlas = ExtResource("3_xcycx")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj1hr"]
+atlas = ExtResource("3_xcycx")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pois"]
+atlas = ExtResource("3_xcycx")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7522"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwffg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1846")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtkad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu6x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0g1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyk7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ulo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d15ur")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1qpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1g2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tow4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj1hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pois")
+}],
+"loop": 0,
+"name": &"hit",
+"speed": 20.0
+}]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=784705652]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_epucm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488]
+shape = SubResource("RectangleShape2D_k4jyb")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=762369763]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1210065424]
+position = Vector2(20, 0)
+shape = SubResource("CapsuleShape2D_d7522")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035384083]
+texture_filter = 1
+scale = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_d7522")
+animation = &"hit"
+autoplay = "default"
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_area_2d_body_entered"]

@@ -1,7 +1,6 @@
 extends AnimatableBody2D
 
-const SPEED = 300
-
+var speed = 750
 var direction
 
 func _ready() -> void:
@@ -16,13 +15,15 @@ func _ready() -> void:
 	visible = true
 
 func _physics_process(delta: float) -> void:
-	position += direction * SPEED * delta
+	position += direction * speed * delta
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.take_damage(60)
-		
+		body.take_damage(9)
+		speed = 0
 		add_collision_exception_with(body)
 		body.end_lag += 0.5
 		body.external_velocity += position.direction_to(body.position) * 1000
+		$AnimatedSprite2D.play("hit")
+		await $AnimatedSprite2D.animation_finished
 		queue_free()

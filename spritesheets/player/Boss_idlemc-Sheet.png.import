@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co746yjyy5cp4"
-path="res://.godot/imported/Boss_runmc-Sheet.png-597aea8b9c39d2f38ed85fc286123ee1.ctex"
+uid="uid://bxooyigyl12p"
+path="res://.godot/imported/Boss_idlemc-Sheet.png-2ce14c5dfb430701d8c0893d32e185d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player_spritesheets/Boss_runmc-Sheet.png"
-dest_files=["res://.godot/imported/Boss_runmc-Sheet.png-597aea8b9c39d2f38ed85fc286123ee1.ctex"]
+source_file="res://spritesheets/player/Boss_idlemc-Sheet.png"
+dest_files=["res://.godot/imported/Boss_idlemc-Sheet.png-2ce14c5dfb430701d8c0893d32e185d1.ctex"]
 
 [params]
 

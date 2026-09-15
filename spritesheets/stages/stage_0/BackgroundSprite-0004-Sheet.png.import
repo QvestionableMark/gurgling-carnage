@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u8dojc085oi6"
-path="res://.godot/imported/Boss_rollmc-Sheet.png-248dab2e0136690258876609442b48b3.ctex"
+uid="uid://c80jt8lwe156u"
+path="res://.godot/imported/BackgroundSprite-0004-Sheet.png-2cbe3488bfa7457b65653ea71d0256b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player_spritesheets/Boss_rollmc-Sheet.png"
-dest_files=["res://.godot/imported/Boss_rollmc-Sheet.png-248dab2e0136690258876609442b48b3.ctex"]
+source_file="res://spritesheets/stages/stage_0/BackgroundSprite-0004-Sheet.png"
+dest_files=["res://.godot/imported/BackgroundSprite-0004-Sheet.png-2cbe3488bfa7457b65653ea71d0256b8.ctex"]
 
 [params]
 

@@ -2,12 +2,56 @@
 
 [ext_resource type="Script" uid="uid://bit812rihm5t0" path="res://scenes/stages/stage_0.gd" id="1_shou7"]
 [ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="2_whglb"]
+[ext_resource type="Texture2D" uid="uid://c80jt8lwe156u" path="res://spritesheets/stages/stage_0/BackgroundSprite-0004-Sheet.png" id="3_wgon0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh6g6"]
+atlas = ExtResource("3_wgon0")
+region = Rect2(0, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sditu"]
+atlas = ExtResource("3_wgon0")
+region = Rect2(300, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83vdv"]
+atlas = ExtResource("3_wgon0")
+region = Rect2(600, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxp1b"]
+atlas = ExtResource("3_wgon0")
+region = Rect2(900, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgtq4"]
+atlas = ExtResource("3_wgon0")
+region = Rect2(1200, 0, 300, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7522"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh6g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sditu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83vdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxp1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgtq4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7522"]
-size = Vector2(1920, 205)
+size = Vector2(1920, 250)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fsjui"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgon0"]
+size = Vector2(250, 1080)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_whglb"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -19,15 +63,25 @@ radius = 128.0
 script = ExtResource("1_shou7")
 player_start_position = Vector2(960, 700)
 
-[node name="FloorBody" type="StaticBody2D" parent="." unique_id=1818579065]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1896696312]
+z_index = -2
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(6.4, 6.4)
+sprite_frames = SubResource("SpriteFrames_d7522")
+autoplay = "default"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1818579065]
 position = Vector2(960, 972)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody" unique_id=902054735]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=902054735]
 shape = SubResource("RectangleShape2D_d7522")
 
-[node name="Sprite2D" type="Sprite2D" parent="FloorBody" unique_id=1804407931]
-scale = Vector2(15, 1.6)
-texture = SubResource("CompressedTexture2D_fsjui")
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1821690389]
+position = Vector2(0, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1961466361]
+shape = SubResource("RectangleShape2D_wgon0")
 
 [node name="Lever" type="Node2D" parent="." unique_id=1633212052]
 position = Vector2(1600, 850)

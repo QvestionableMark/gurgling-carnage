@@ -30,6 +30,7 @@ func _physics_process(delta):
 	if $DashTimer.time_left + end_lag == 0 and Input.is_action_just_pressed("dash"):
 		$DashTimer.start()
 		is_dashing = true
+		is_jumping = false
 		input_velocity.y = 0
 		$RollingCollision.disabled = false
 		$NonRollingCollision.disabled = true

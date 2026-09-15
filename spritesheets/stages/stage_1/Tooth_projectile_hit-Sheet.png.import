@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxooyigyl12p"
-path="res://.godot/imported/Boss_idlemc-Sheet.png-28dfb9cec4f47f25397b9146137c526b.ctex"
+uid="uid://bidytugk3xjxs"
+path="res://.godot/imported/Tooth_projectile_hit-Sheet.png-c8a38b1b36ca4936c7e9b4436c56d54f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player_spritesheets/Boss_idlemc-Sheet.png"
-dest_files=["res://.godot/imported/Boss_idlemc-Sheet.png-28dfb9cec4f47f25397b9146137c526b.ctex"]
+source_file="res://spritesheets/stages/stage_1/Tooth_projectile_hit-Sheet.png"
+dest_files=["res://.godot/imported/Tooth_projectile_hit-Sheet.png-c8a38b1b36ca4936c7e9b4436c56d54f.ctex"]
 
 [params]
 
