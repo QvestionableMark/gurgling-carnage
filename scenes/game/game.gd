@@ -11,6 +11,7 @@ var persistent_data = {
 signal persistent_data_loaded(new_data)
 signal stage_loaded(stage_number)
 signal hud_update()
+signal player_died(timer)
 
 @export var stages : Array[String]
 var current_stage : Stage
@@ -31,25 +32,33 @@ func start_new_game(with_tutorial):
 	
 
 func continue_old_game():
+	if not persistent_data.hardmode:
+		persistent_data.health = 100
 	hud_update.emit()
 	load_stage(persistent_data.checkpoint)
 
 func handle_death():
-	pass # kirkuinely to do
+	if persistent_data.hardmode:
+		persistent_data.checkpoint = -1
+	$death_timer.start()
+	player_died.emit($death_timer)
+	await $death_timer.timeout 
+	persistent_data.health = 100
+	load_stage(-1)
+	save_persistent_data()
 
 func load_stage(stage_number_to_load : int):
+	print(persistent_data)
 	if current_stage:
 		current_stage.queue_free()
 	if stage_number_to_load == -1:
 		stage_loaded.emit(stage_number_to_load)
 		return
-
-	persistent_data.checkpoint = stage_number_to_load
-	save_persistent_data()
 	var new_stage = load(stages[stage_number_to_load]).instantiate() as Stage
 	add_child(new_stage)
 	current_stage = new_stage
 	stage_loaded.emit(stage_number_to_load)
+	save_persistent_data()
 
 func load_persistent_data():
 	if not FileAccess.file_exists("user://persistent_data.json"):
@@ -59,6 +68,7 @@ func load_persistent_data():
 	loaded_persistent_data.merge(persistent_data)
 	persistent_data = loaded_persistent_data
 	persistent_data_loaded.emit(persistent_data)
+	print(persistent_data)
 	
 func save_persistent_data():
 	var file = FileAccess.open("user://persistent_data.json", FileAccess.WRITE)

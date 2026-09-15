@@ -12,3 +12,4 @@ func _ready() -> void:
 	player.position = player_start_position
 	game.current_player = player
 	player.game = game
+	game.persistent_data.checkpoint = stage_number

@@ -16,3 +16,7 @@ script = ExtResource("3_0sr1o")
 
 [node name="game_hud" parent="." unique_id=640819470 instance=ExtResource("4_kelw5")]
 visible = false
+
+[node name="death_timer" type="Timer" parent="." unique_id=1425438235]
+wait_time = 2.0
+one_shot = true
