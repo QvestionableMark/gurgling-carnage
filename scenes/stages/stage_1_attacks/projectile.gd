@@ -7,7 +7,7 @@ func _ready() -> void:
 	sync_to_physics = false
 	await get_tree().physics_frame
 	position = Vector2(1920, 1080/8*5)
-	var target = Vector2(0,(0.5 + randf() / 4) * 1080)
+	var target = Vector2(0,(0.25 + randf() / 2) * 1080)
 	look_at(target)
 	direction = position.direction_to(target)
 	sync_to_physics = true
