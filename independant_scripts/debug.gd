@@ -2,7 +2,7 @@ extends Node
 
 @onready var game : Game = get_tree().get_first_node_in_group("game")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 		var current_stage_number
 		if (game.current_stage):
 			current_stage_number = game.current_stage.stage_number

@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-
 @onready var game : Game = get_tree().get_first_node_in_group("game")
 
 func _ready() -> void:
@@ -16,7 +15,6 @@ func _on_stage_loaded(stage_number):
 	if stage_number == 0 and game.persistent_data.tutorial:
 		$KeybindMenu/ToggleMenu.button_pressed = true
 
-
 func _on_toggle_menu_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		$KeybindMenu.position += Vector2(512,0) #512 is "Keybinds" size
@@ -27,6 +25,6 @@ func _on_hud_update():
 	$Logo/HealthBar.value = game.persistent_data.health
 
 func _on_player_died(timer):
-	$death_message.visible = true
+	$DeathLabel.visible = true
 	await timer.timeout
-	$death_message.visible = false
+	$DeathLabel.visible = false

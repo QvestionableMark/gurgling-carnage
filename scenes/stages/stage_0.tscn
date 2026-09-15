@@ -19,13 +19,13 @@ radius = 128.0
 script = ExtResource("1_shou7")
 player_start_position = Vector2(960, 700)
 
-[node name="Floor" type="StaticBody2D" parent="." unique_id=1818579065]
+[node name="FloorBody" type="StaticBody2D" parent="." unique_id=1818579065]
 position = Vector2(960, 972)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=902054735]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody" unique_id=902054735]
 shape = SubResource("RectangleShape2D_d7522")
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=1804407931]
+[node name="Sprite2D" type="Sprite2D" parent="FloorBody" unique_id=1804407931]
 scale = Vector2(15, 1.6)
 texture = SubResource("CompressedTexture2D_fsjui")
 
@@ -59,13 +59,13 @@ position = Vector2(0, -64)
 scale = Vector2(0.2, 1)
 texture = ExtResource("2_whglb")
 
-[node name="Board" type="Sprite2D" parent="Sign" unique_id=1224911135]
+[node name="BoardSprite" type="Sprite2D" parent="Sign" unique_id=1224911135]
 self_modulate = Color(0.21950102, 0.21950102, 0.21950102, 1)
 position = Vector2(0, -128)
 scale = Vector2(1, 0.6)
 texture = ExtResource("2_whglb")
 
-[node name="Label" type="Label" parent="Sign/Board" unique_id=112477580]
+[node name="SignLabel" type="Label" parent="Sign/BoardSprite" unique_id=112477580]
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -83,7 +83,7 @@ text = "HARD MODE
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Status" type="Label" parent="Sign/Board" unique_id=1567723017]
+[node name="StatusLabel" type="Label" parent="Sign/BoardSprite" unique_id=1567723017]
 anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0

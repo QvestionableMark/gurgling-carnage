@@ -11,12 +11,13 @@ stages = Array[String](["res://scenes/stages/stage_0.tscn", "res://scenes/stages
 
 [node name="main_menu" parent="." unique_id=283012810 instance=ExtResource("1_sul5r")]
 
-[node name="debug" type="Node2D" parent="." unique_id=1435487560]
+[node name="Debug" type="Node2D" parent="." unique_id=1435487560]
 script = ExtResource("3_0sr1o")
 
 [node name="game_hud" parent="." unique_id=640819470 instance=ExtResource("4_kelw5")]
 visible = false
 
-[node name="death_timer" type="Timer" parent="." unique_id=1425438235]
+[node name="DeathTimer" type="Timer" parent="." unique_id=1425438235]
 wait_time = 2.0
 one_shot = true
+ignore_time_scale = true

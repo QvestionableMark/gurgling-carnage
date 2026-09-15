@@ -68,7 +68,7 @@ pivot_offset_ratio = Vector2(0, 0.5)
 toggle_mode = true
 texture_normal = ExtResource("1_umjp7")
 
-[node name="death_message" type="Label" parent="." unique_id=1436009545]
+[node name="DeathLabel" type="Label" parent="." unique_id=1436009545]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5

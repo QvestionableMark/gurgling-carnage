@@ -5,7 +5,7 @@
 [node name="main_menu" type="CanvasLayer" unique_id=283012810]
 script = ExtResource("1_sbiqi")
 
-[node name="title_label" type="Label" parent="." unique_id=1732650067]
+[node name="TitleLabel" type="Label" parent="." unique_id=1732650067]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -18,7 +18,7 @@ offset_transform_position = Vector2(0, 200)
 theme_override_font_sizes/font_size = 75
 text = "Gurgling Carnage"
 
-[node name="button_container" type="VBoxContainer" parent="." unique_id=281615676]
+[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=281615676]
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.4
@@ -30,12 +30,12 @@ offset_bottom = 40.0
 grow_horizontal = 2
 offset_transform_position = Vector2(0, 500)
 
-[node name="continue_button" type="Button" parent="button_container" unique_id=1520175093]
+[node name="ContinueButton" type="Button" parent="ButtonContainer" unique_id=1520175093]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Continue"
 
-[node name="CheckpointNumber" type="Label" parent="button_container/continue_button" unique_id=1188646833]
+[node name="CheckpointLabel" type="Label" parent="ButtonContainer/ContinueButton" unique_id=1188646833]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -49,12 +49,12 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "(Checkpoint: 1)"
 
-[node name="new_game_button" type="Button" parent="button_container" unique_id=976159662]
+[node name="NewGameButton" type="Button" parent="ButtonContainer" unique_id=976159662]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "New Game"
 
-[node name="tutorial" type="CheckButton" parent="button_container/new_game_button" unique_id=288149497]
+[node name="TutorialToggle" type="CheckButton" parent="ButtonContainer/NewGameButton" unique_id=288149497]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -64,5 +64,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 text = "Tutorial"
 
-[connection signal="pressed" from="button_container/continue_button" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="button_container/new_game_button" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

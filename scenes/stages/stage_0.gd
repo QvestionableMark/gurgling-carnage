@@ -6,10 +6,10 @@ func _process(_delta: float) -> void:
 	if is_lever_interactable and Input.is_action_just_pressed("interact"):
 		if game.persistent_data.hardmode:
 			$Lever/Stick.rotate(-PI/2)
-			$Sign/Board/Status.text = "Status: OFF"
+			$Sign/BoardSprite/StatusLabel.text = "Status: OFF"
 		else:
 			$Lever/Stick.rotate(PI/2)
-			$Sign/Board/Status.text = "Status: ON"
+			$Sign/BoardSprite/StatusLabel.text = "Status: ON"
 		game.persistent_data.hardmode = not game.persistent_data.hardmode
 	# win condition:
 	if player.position.x > 1800:

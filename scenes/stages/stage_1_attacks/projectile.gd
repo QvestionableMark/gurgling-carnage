@@ -1,7 +1,8 @@
 extends AnimatableBody2D
 
-var direction
 const SPEED = 300
+
+var direction
 
 func _ready() -> void:
 	sync_to_physics = false
@@ -19,9 +20,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.take_damage(15)
+		body.take_damage(60)
 		
 		add_collision_exception_with(body)
-		body.endLag += 0.5
+		body.end_lag += 0.5
 		body.external_velocity += position.direction_to(body.position) * 1000
 		queue_free()

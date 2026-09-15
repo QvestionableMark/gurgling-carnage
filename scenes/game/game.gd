@@ -8,7 +8,7 @@ var persistent_data = {
 	"tutorial": true,
 	"hardmode": false
 }
-signal persistent_data_loaded(new_data)
+signal persistent_data_loaded()
 signal stage_loaded(stage_number)
 signal hud_update()
 signal player_died(timer)
@@ -40,15 +40,16 @@ func continue_old_game():
 func handle_death():
 	if persistent_data.hardmode:
 		persistent_data.checkpoint = -1
-	$death_timer.start()
-	player_died.emit($death_timer)
-	await $death_timer.timeout 
+	Engine.time_scale = 0
+	$DeathTimer.start()
+	player_died.emit($DeathTimer)
+	await $DeathTimer.timeout 
+	Engine.time_scale = 1
 	persistent_data.health = 100
 	load_stage(-1)
 	save_persistent_data()
 
-func load_stage(stage_number_to_load : int):
-	print(persistent_data)
+func load_stage(stage_number_to_load):
 	if current_stage:
 		current_stage.queue_free()
 	if stage_number_to_load == -1:
@@ -67,8 +68,8 @@ func load_persistent_data():
 	var loaded_persistent_data : Dictionary = JSON.parse_string(file.get_as_text())
 	loaded_persistent_data.merge(persistent_data)
 	persistent_data = loaded_persistent_data
-	persistent_data_loaded.emit(persistent_data)
-	print(persistent_data)
+	persistent_data_loaded.emit()
+	#print(persistent_data)
 	
 func save_persistent_data():
 	var file = FileAccess.open("user://persistent_data.json", FileAccess.WRITE)

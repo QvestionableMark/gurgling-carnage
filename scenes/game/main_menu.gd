@@ -6,9 +6,8 @@ func _ready() -> void:
 	game.persistent_data_loaded.connect(_on_persistent_data_loaded)
 	game.stage_loaded.connect(_on_stage_loaded)
 
-func _on_persistent_data_loaded(persistent_data):
+func _on_persistent_data_loaded():
 	initialization()
-	
 
 func _on_stage_loaded(stage_number):
 	if stage_number == -1:
@@ -18,9 +17,9 @@ func _on_stage_loaded(stage_number):
 		visible = false
 
 func initialization():
-	$button_container/continue_button.visible = game.persistent_data.checkpoint > 0
-	$button_container/continue_button/CheckpointNumber.text = "Checkpoint: " + String.num(game.persistent_data.checkpoint, 0)
-	$button_container/new_game_button/tutorial.button_pressed = game.persistent_data.tutorial
+	$ButtonContainer/ContinueButton.visible = game.persistent_data.checkpoint > 0
+	$ButtonContainer/ContinueButton/CheckpointLabel.text = "Checkpoint: " + String.num(game.persistent_data.checkpoint, 0)
+	$ButtonContainer/NewGameButton/TutorialToggle.button_pressed = game.persistent_data.tutorial
 
 func _on_continue_button_pressed() -> void:
 	self.visible = false
@@ -29,4 +28,4 @@ func _on_continue_button_pressed() -> void:
 
 func _on_new_game_button_pressed() -> void:
 	self.visible = false
-	game.start_new_game($button_container/new_game_button/tutorial.button_pressed)
+	game.start_new_game($ButtonContainer/NewGameButton/TutorialToggle.button_pressed)
