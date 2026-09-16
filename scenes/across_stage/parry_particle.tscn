@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://di3i7an5qakkd"]
+
+[ext_resource type="Script" uid="uid://c1q8tqunyldvu" path="res://scenes/across_stage/parry_particle.gd" id="1_ghiih"]
+
+[sub_resource type="Gradient" id="Gradient_n686w"]
+colors = PackedColorArray(1, 1, 0.5568628, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_se5xv"]
+gradient = SubResource("Gradient_n686w")
+
+[sub_resource type="Curve" id="Curve_ghiih"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.4774775, 1), 0.0, 0.0, 0, 0, Vector2(0.7027027, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_k4jyb"]
+curve = SubResource("Curve_ghiih")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d7522"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 75.0
+initial_velocity_min = 40.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -1.0000023
+linear_accel_max = -1.0000023
+scale_curve = SubResource("CurveTexture_k4jyb")
+color_ramp = SubResource("GradientTexture1D_se5xv")
+turbulence_noise_strength = 0.5
+
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=96537895]
+scale = Vector2(5, 5)
+emitting = false
+amount = 6
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+local_coords = true
+trail_enabled = true
+trail_lifetime = 0.2
+trail_sections = 16
+process_material = SubResource("ParticleProcessMaterial_d7522")
+script = ExtResource("1_ghiih")

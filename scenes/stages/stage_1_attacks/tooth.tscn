@@ -118,8 +118,10 @@ animations = [{
 [node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=784705652]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_epucm")
+is_parryable = true
+hit_damage = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488 groups=["parryable"]]
 shape = SubResource("RectangleShape2D_k4jyb")
 
 [node name="HitArea" type="Area2D" parent="." unique_id=762369763]
@@ -135,4 +137,4 @@ sprite_frames = SubResource("SpriteFrames_d7522")
 animation = &"hit"
 autoplay = "default"
 
-[connection signal="body_entered" from="HitArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

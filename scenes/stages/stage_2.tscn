@@ -14,7 +14,7 @@ stage_number = 2
 player_start_position = Vector2(300, 600)
 
 [node name="Timer" type="Timer" parent="." unique_id=880254379]
-wait_time = 0.5
+wait_time = 0.1
 autostart = true
 
 [node name="FloorBody" type="StaticBody2D" parent="." unique_id=1684267889]

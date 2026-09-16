@@ -2,6 +2,8 @@ class_name Player
 extends CharacterBody2D
 
 var game : Game
+@onready var PARRY_PARTICLE : PackedScene = preload("res://scenes/across_stage/parry_particle.tscn")
+var potential_parryable_attacks : Array[Node2D] = []
 
 const JUMP_VELOCITY = -750
 const GRAVITY_FALL_MULTIPLER = 2
@@ -17,6 +19,7 @@ var is_running = false
 var is_falling = false
 var is_jumping = false
 var is_dashing = false
+var is_parrying = false
 
 func _physics_process(delta):
 	end_lag = clamp(end_lag - delta, 0, 1)
@@ -37,6 +40,18 @@ func _physics_process(delta):
 	if $DashTimer.time_left > 0:
 		effective_speed *= 2.5
 
+	if $ParryTimer.time_left + end_lag == 0 and Input.is_action_just_pressed("parry"):
+		$ParryTimer.start()
+		is_parrying = true
+		is_jumping = false
+		for attack in potential_parryable_attacks:
+			if not is_instance_valid(attack) or not attack.is_parryable or not $AnimatedSprite2D/ParryableArea.overlaps_body(attack):
+				continue
+			var parry_particle_instance : GPUParticles2D = PARRY_PARTICLE.instantiate()
+			attack.handle_parry(self)
+			parry_particle_instance.position = $AnimatedSprite2D/ParryableArea.global_position + (attack.global_position - global_position)/2
+			game.add_child(parry_particle_instance)
+		potential_parryable_attacks.clear()
 	
 	input_velocity.x = 0
 	if end_lag == 0:
@@ -73,7 +88,9 @@ func _physics_process(delta):
 	external_velocity = external_velocity.move_toward(Vector2.ZERO,ACCELARATION * delta)
 	
 func resolve_animation():
-	if is_dashing:
+	if is_parrying:
+		$AnimatedSprite2D.play("parry")
+	elif is_dashing:
 		$AnimatedSprite2D.play("dash")
 	elif is_jumping:
 		$AnimatedSprite2D.play("jump")
@@ -99,9 +116,22 @@ func _on_dash_timer_timeout() -> void:
 	$RollingCollision.disabled = true
 	$NonRollingCollision.disabled = false
 
+func _on_parry_timer_timeout() -> void:
+	end_lag += 0.3
+
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if $AnimatedSprite2D.animation == "jump":
 		is_jumping = false
 	elif $AnimatedSprite2D.animation == "dash":
 		is_dashing = false
+	elif $AnimatedSprite2D.animation == "parry":
+		is_parrying = false
+
+
+func _on_parryable_area_body_shape_entered(_body_rid: RID, body: Node2D, body_shape_index: int, _local_shape_index: int) -> void:
+	var body_shape_owner = body.shape_find_owner(body_shape_index)
+	var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
+
+	if body_shape_node.is_in_group("parryable"):
+		potential_parryable_attacks.append(body)
