@@ -5,8 +5,11 @@ extends Node2D
 var player : Player
 @export var stage_number : int
 @export var player_start_position : Vector2
+@export var boss_health : int
+var boss_current_health
 
 func _ready() -> void:
+	boss_current_health = boss_health
 	player = load("res://scenes/across_stage/player.tscn").instantiate() as Player
 	add_child(player)
 	player.position = player_start_position

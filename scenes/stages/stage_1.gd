@@ -1,16 +1,46 @@
 extends Stage
 
-@onready var PROJECTILE : PackedScene = preload("res://scenes/stages/stage_1_attacks/tooth.tscn")
+@onready var TOOTH : PackedScene = preload("res://scenes/stages/stage_1_attacks/tooth.tscn")
+
+const COLLISION_DAMAGE = 35
 
 var is_ready = false
+var is_spitting = false
+var is_stabbing = false
 
 func  _ready() -> void:
 	super()
-	await $AnimatedSprite2D.animation_finished
-	$AnimatedSprite2D.play("default")
+	await $Background.animation_finished
+	$Background.play("default")
 	is_ready = true
 
+func take_damage(damage):
+	boss_current_health -= damage
+	game.hud_update.emit()
+	
+	if boss_current_health <= 0:
+		game.load_stage(stage_number + 1)
+
 func _on_timer_timeout() -> void:
-	if is_ready and randf() < 1.0/3.0:
-		var projectile = PROJECTILE.instantiate() as AnimatableBody2D
-		add_child(projectile)
+	if not is_ready:
+		return
+	
+	if  randf() < 1.0/2.0:
+		var rng = randf()
+		if not is_spitting and rng < 1.0/3.0:
+			is_spitting = true
+			$BossBody/AnimatedSprite2D.play("spit")
+			while $BossBody/AnimatedSprite2D.frame != 5:
+				await $BossBody/AnimatedSprite2D.frame_changed
+			var tooth = TOOTH.instantiate() as Attack
+			tooth.global_position = $BossBody/MouthPosition.global_position
+			add_child(tooth)
+			await $BossBody/AnimatedSprite2D.animation_finished
+			$BossBody/AnimatedSprite2D.play("default")
+			is_spitting = false
+
+func _on_knockback_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.take_damage(COLLISION_DAMAGE)
+		body.end_lag += 0.5
+		body.external_velocity += Vector2(-1,-1).normalized() * 1500

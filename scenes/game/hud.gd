@@ -27,6 +27,7 @@ func _on_toggle_menu_toggled(toggled_on: bool) -> void:
 
 func _on_hud_update():
 	$HealthBarContainer/HealthBar.value = game.persistent_data.health
+	$BossBarContainer/BossHealthBar.value = float(game.current_stage.boss_current_health) / game.current_stage.boss_health
 
 func _on_player_died(timer):
 	$DeathLabel.visible = true

@@ -34,7 +34,6 @@ func start_new_game(with_tutorial):
 func continue_old_game():
 	if not persistent_data.hardmode:
 		persistent_data.health = 100
-	hud_update.emit()
 	load_stage(persistent_data.checkpoint)
 
 func handle_death():
@@ -59,6 +58,7 @@ func load_stage(stage_number_to_load):
 	add_child(new_stage)
 	current_stage = new_stage
 	stage_loaded.emit(stage_number_to_load)
+	hud_update.emit()
 	save_persistent_data()
 
 func load_persistent_data():

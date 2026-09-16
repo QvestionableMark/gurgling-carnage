@@ -5,5 +5,8 @@ extends AnimatableBody2D
 var been_parried = false
 @export var hit_damage = 0
 
+func initialize():
+	pass
+
 func handle_parry(_player):
 	print("No parry handling was added, is this a mistake?")

@@ -116,7 +116,9 @@ animations = [{
 }]
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=784705652]
-scale = Vector2(1.5, 1.5)
+z_index = 1
+scale = Vector2(2.25, 2.25)
+sync_to_physics = false
 script = ExtResource("1_epucm")
 is_parryable = true
 hit_damage = 15
