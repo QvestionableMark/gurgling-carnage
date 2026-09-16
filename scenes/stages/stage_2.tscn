@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cxc74odmgtfg8"]
+[gd_scene format=3 uid="uid://bb8837ltboo8a"]
 
 [ext_resource type="Script" uid="uid://o6g0pp0qjxak" path="res://scenes/stages/stage_2.gd" id="1_sv1x6"]
 
@@ -11,43 +11,21 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [node name="Stage2" type="Node2D" unique_id=997022766]
 script = ExtResource("1_sv1x6")
 stage_number = 2
-player_start_position = Vector2(300, 600)
+player_start_position = Vector2(970, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=880254379]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
 
 [node name="FloorBody" type="StaticBody2D" parent="." unique_id=1684267889]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody" unique_id=1854870994]
-position = Vector2(1499, 794)
+position = Vector2(976, 640)
 shape = SubResource("RectangleShape2D_qxun1")
 
 [node name="Sprite2D2" type="Sprite2D" parent="FloorBody" unique_id=558869072]
 position = Vector2(976, 641)
 scale = Vector2(2.6547854, 0.66836)
 texture = SubResource("CompressedTexture2D_s2qcy")
-
-[node name="FloorBody2" type="StaticBody2D" parent="." unique_id=764436531]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody2" unique_id=1685141764]
-position = Vector2(975.53125, 640)
-shape = SubResource("RectangleShape2D_qxun1")
-
-[node name="Sprite2D3" type="Sprite2D" parent="FloorBody2" unique_id=1690507180]
-position = Vector2(1501, 793.00006)
-scale = Vector2(2.7446296, 0.66836)
-texture = SubResource("CompressedTexture2D_s2qcy")
-
-[node name="FloorBody3" type="StaticBody2D" parent="." unique_id=1996442456]
-
-[node name="Sprite2D2" type="Sprite2D" parent="FloorBody3" unique_id=1413017807]
-position = Vector2(437.00003, 802)
-scale = Vector2(2.7211912, 0.66836)
-texture = SubResource("CompressedTexture2D_s2qcy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody3" unique_id=1007548856]
-position = Vector2(436.8125, 803)
-shape = SubResource("RectangleShape2D_qxun1")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
