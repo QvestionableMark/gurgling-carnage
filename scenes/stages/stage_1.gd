@@ -19,7 +19,7 @@ func take_damage(damage):
 	game.hud_update.emit()
 	
 	if boss_current_health <= 0:
-		game.load_stage(stage_number + 1)
+		game.load_stage.call_deferred(stage_number + 1)
 
 func _on_timer_timeout() -> void:
 	if not is_ready:

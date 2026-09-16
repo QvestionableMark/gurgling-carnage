@@ -121,7 +121,7 @@ scale = Vector2(2.25, 2.25)
 sync_to_physics = false
 script = ExtResource("1_epucm")
 is_parryable = true
-hit_damage = 15
+hit_damage = 55
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488 groups=["parryable"]]
 shape = SubResource("RectangleShape2D_k4jyb")

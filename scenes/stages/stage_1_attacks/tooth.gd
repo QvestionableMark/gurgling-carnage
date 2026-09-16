@@ -22,7 +22,6 @@ func handle_parry(player : Player):
 	been_parried = true
 
 func _on_hit_area_body_entered(body: Node2D) -> void:
-	print(body)
 	var hit_something = false
 	if not been_parried and body is Player:
 		body.take_damage(hit_damage)
