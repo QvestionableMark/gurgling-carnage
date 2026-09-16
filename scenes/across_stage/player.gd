@@ -44,6 +44,7 @@ func _physics_process(delta):
 		$ParryTimer.start()
 		is_parrying = true
 		is_jumping = false
+		is_dashing = false
 		for attack in potential_parryable_attacks:
 			if not is_instance_valid(attack) or not attack.is_parryable or not $AnimatedSprite2D/ParryableArea.overlaps_body(attack):
 				continue

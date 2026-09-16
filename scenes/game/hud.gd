@@ -15,9 +15,9 @@ func _on_stage_loaded(stage_number):
 	if stage_number == 0:
 		if game.persistent_data.tutorial:
 			$KeybindMenu/ToggleMenu.button_pressed = true
-		$BossHealthBar.visible = false
+		$BossBarContainer.visible = false
 	else:
-		$BossHealthBar.visible = true
+		$BossBarContainer.visible = true
 
 func _on_toggle_menu_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -26,7 +26,7 @@ func _on_toggle_menu_toggled(toggled_on: bool) -> void:
 		$KeybindMenu.position -= Vector2(512,0)
 
 func _on_hud_update():
-	$Logo/HealthBar.value = game.persistent_data.health
+	$HealthBarContainer/HealthBar.value = game.persistent_data.health
 
 func _on_player_died(timer):
 	$DeathLabel.visible = true
