@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://wjta0oq8pwtj"]
 
-[ext_resource type="Script" path="res://scenes/stages/stage_3.gd" id="1_djy2v"]
+[ext_resource type="Script" uid="uid://d1gfd5x3yd75a" path="res://scenes/stages/stage_3.gd" id="1_djy2v"]
 [ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="2_k7kex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71ke2"]
@@ -8,7 +8,6 @@ size = Vector2(691, 113)
 
 [node name="Stage3" type="Node2D" unique_id=1498283267]
 script = ExtResource("1_djy2v")
-player_start_position = Vector2(970, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1903234587]
 position = Vector2(-74, 0)
