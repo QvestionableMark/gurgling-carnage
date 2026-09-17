@@ -1,12 +1,12 @@
 extends Attack
 
-const SPEED = 1250
+const SPEED = 1000
 
 var velocity
 var is_finished = false
 
 func _ready() -> void:
-	var target = Vector2(0,(-0.25 + randf() / 2) * 1080)
+	var target = Vector2(0,(-0.75 + randf()) * 1080)
 	look_at(target)
 	velocity = position.direction_to(target) * SPEED
 	visible = true
@@ -31,10 +31,7 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 		hit_something = true
 		
 	if hit_something:
-		if rotation > 1.25 * PI:
-			rotation = PI * 1.5
-		else:
-			rotation = PI
+		rotation = round((rotation - PI / 8) / (PI / 2)) * (PI / 2)
 		is_finished = true
 		add_collision_exception_with(body)
 		$AnimatedSprite2D.play("hit")
