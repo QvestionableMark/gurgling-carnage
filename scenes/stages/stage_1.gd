@@ -1,6 +1,7 @@
 extends Stage
 
 @onready var TOOTH : PackedScene = preload("res://scenes/stages/stage_1_attacks/tooth.tscn")
+@onready var ACID : PackedScene = preload("res://scenes/stages/stage_1_attacks/acid.tscn")
 
 const COLLISION_DAMAGE = 35
 
@@ -35,6 +36,17 @@ func _on_timer_timeout() -> void:
 			var tooth = TOOTH.instantiate() as Attack
 			tooth.global_position = $BossBody/MouthPosition.global_position
 			add_child(tooth)
+			await $BossBody/AnimatedSprite2D.animation_finished
+			$BossBody/AnimatedSprite2D.play("default")
+			is_spitting = false
+		if not is_spitting and rng < 2.0/3.0:
+			is_spitting = true
+			$BossBody/AnimatedSprite2D.play("spit")
+			while $BossBody/AnimatedSprite2D.frame != 5:
+				await $BossBody/AnimatedSprite2D.frame_changed
+			var acid = ACID.instantiate() as Attack
+			acid.global_position = $BossBody/MouthPosition.global_position
+			add_child(acid)
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false
