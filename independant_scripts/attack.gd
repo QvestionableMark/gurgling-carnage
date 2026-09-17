@@ -3,6 +3,7 @@ extends AnimatableBody2D
 
 @export var is_parryable = false
 var been_parried = false
+var has_parry_indicator
 @export var hit_damage = 0
 
 func initialize():

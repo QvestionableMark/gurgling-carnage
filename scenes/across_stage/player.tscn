@@ -651,6 +651,7 @@ animation = &"fast_fall"
 [node name="ParryableArea" type="Area2D" parent="AnimatedSprite2D" unique_id=1956245707]
 position = Vector2(12.5, -1.25)
 scale = Vector2(0.25, 0.25)
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/ParryableArea" unique_id=901133347]
 position = Vector2(23.600008, 0.19999963)

@@ -4,6 +4,8 @@ var speed = 750
 var direction
 
 func _ready() -> void:
+	if not has_parry_indicator:
+		$parry_indicator_sprite.queue_free()
 	var target = Vector2(0,(0.45 + randf() / 5) * 1080)
 	look_at(target)
 	direction = position.direction_to(target)

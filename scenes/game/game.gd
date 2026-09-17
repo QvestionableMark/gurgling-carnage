@@ -3,7 +3,6 @@ extends Node2D
 
 var persistent_data = {
 	"checkpoint": -1,
-	"timer": 0,
 	"health": 100,
 	"tutorial": true,
 	"hardmode": false
@@ -45,6 +44,10 @@ func handle_death():
 	await $DeathTimer.timeout 
 	Engine.time_scale = 1
 	persistent_data.health = 100
+	load_stage(-1)
+	save_persistent_data()
+	
+func handle_win():
 	load_stage(-1)
 	save_persistent_data()
 

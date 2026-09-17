@@ -1,14 +1,15 @@
 extends Attack
 
-const SPEED = 1300
+const SPEED = 1500
 
 var velocity
 var is_finished = false
 
 func _ready() -> void:
-	var target = Vector2(0,(-0.25 + randf() / 2) * 1080)
+	var rng = randf()
+	var target = Vector2(0,(-0.75 + rng * 1.5) * 1080)
 	look_at(target)
-	velocity = position.direction_to(target) * SPEED
+	velocity = position.direction_to(target) * SPEED * (rng / 2 + 0.5)
 	visible = true
 
 func _physics_process(delta: float) -> void:

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://c4yhjl14srqd5"]
+
+[ext_resource type="Texture2D" uid="uid://v2okly500f50" path="res://spritesheets/other/parry_indicator.png" id="1_ykj80"]
+
+[sub_resource type="Animation" id="Animation_k005k"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.25, 1.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xcycx"]
+resource_name = "idle"
+length = 2.5000000000000004
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.35, 1.35), Vector2(1.75, 1.75), Vector2(1.35, 1.35)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.141592653589793]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2hx0"]
+_data = {
+&"RESET": SubResource("Animation_k005k"),
+&"idle": SubResource("Animation_xcycx")
+}
+
+[node name="parry_indicator_sprite" type="Sprite2D" unique_id=454821429]
+z_index = 5
+texture_filter = 1
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_ykj80")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=730561029]
+libraries/ = SubResource("AnimationLibrary_g2hx0")
+autoplay = &"idle"

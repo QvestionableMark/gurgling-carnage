@@ -113,6 +113,8 @@ func resolve_animation():
 		$AnimatedSprite2D.play("idle")
 
 func take_damage(damage):
+	if game.persistent_data.hardmode:
+		damage *= 2
 	game.persistent_data.health -= damage
 	game.hud_update.emit()
 	modulate = Color.RED

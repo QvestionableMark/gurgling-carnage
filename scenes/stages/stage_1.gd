@@ -6,7 +6,6 @@ extends Stage
 
 const COLLISION_DAMAGE = 35
 
-var is_ready = false
 var is_spitting = false
 var is_stabbing = false
 
@@ -14,47 +13,55 @@ func  _ready() -> void:
 	super()
 	await $Background.animation_finished
 	$Background.play("default")
-	is_ready = true
+	is_active = true
 
 func take_damage(damage):
 	boss_current_health -= damage
 	game.hud_update.emit()
 	
 	if boss_current_health <= 0:
+		is_active = false
 		var fade = STAGE_FADE.instantiate() as StageFade
+		fade.fade_time = 5
 		add_child(fade)
 		await fade.fade_done
 		game.load_stage.call_deferred(stage_number + 1)
 
 func _on_timer_timeout() -> void:
-	if not is_ready:
+	if not is_active:
 		return
 	
 	if  randf() < 1.0/3.0:
 		var rng = randf()
-		if not is_spitting and rng < 1.0/3.0:
+		if not is_spitting and rng < 0.3:
 			is_spitting = true
 			$BossBody/AnimatedSprite2D.play("spit")
 			while $BossBody/AnimatedSprite2D.frame != 5:
 				await $BossBody/AnimatedSprite2D.frame_changed
 			var tooth = TOOTH.instantiate() as Attack
 			tooth.global_position = $BossBody/MouthPosition.global_position
+			tooth.has_parry_indicator = game.persistent_data.tutorial
 			add_child(tooth)
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false
-		elif not is_spitting and rng < 2.0/3.0:
+		elif not is_spitting and rng < 0.7:
 			is_spitting = true
 			$BossBody/AnimatedSprite2D.play("spit")
 			while $BossBody/AnimatedSprite2D.frame != 5:
 				await $BossBody/AnimatedSprite2D.frame_changed
-			var acid = ACID.instantiate() as Attack
-			acid.global_position = $BossBody/MouthPosition.global_position
-			add_child(acid)
+			$BossBody/AnimatedSprite2D.pause()
+			for num in range(1, 2+round(randf())):
+				if num != 1:
+					await get_tree().create_timer(0.75).timeout
+				var acid = ACID.instantiate() as Attack
+				acid.global_position = $BossBody/MouthPosition.global_position
+				add_child(acid)
+			$BossBody/AnimatedSprite2D.play()
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false
-		elif not is_stabbing and rng < 3.0/3.0:
+		elif not is_stabbing and rng < 1.0:
 			is_stabbing = true
 			var tentacle = TENTACLE.instantiate() as Attack
 			add_child(tentacle)

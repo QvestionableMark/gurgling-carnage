@@ -6,7 +6,8 @@
 [node name="stage_fade" type="Node2D" unique_id=922424929]
 script = ExtResource("1_bu5to")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1016155482]
+[node name="FadeSprite" type="Sprite2D" parent="." unique_id=1016155482]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 z_index = 99
 position = Vector2(960, 540)

@@ -8,10 +8,10 @@ func _ready() -> void:
 	game.player_died.connect(_on_player_died)
 
 func _on_stage_loaded(stage_number):
-	if stage_number > -1:
-		visible = true
-	else:
+	if stage_number == -1 or stage_number == game.stages.size() - 1:
 		visible = false
+	else:
+		visible = true
 	if stage_number == 0:
 		if game.persistent_data.tutorial:
 			$KeybindMenu/ToggleMenu.button_pressed = true
@@ -21,9 +21,9 @@ func _on_stage_loaded(stage_number):
 
 func _on_toggle_menu_toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		$KeybindMenu.position += Vector2(512,0) #512 is "Keybinds" size
+		$KeybindMenu.position += Vector2(400,0) #400 is "Keybinds" size
 	else:
-		$KeybindMenu.position -= Vector2(512,0)
+		$KeybindMenu.position -= Vector2(400,0)
 
 func _on_hud_update():
 	$HealthBarContainer/HealthBar.value = game.persistent_data.health

@@ -102,7 +102,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"hit",
-"speed": 20.0
+"speed": 30.0
 }]
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=784705652]
@@ -114,7 +114,7 @@ script = ExtResource("1_yk5pe")
 hit_damage = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1210065424]
-position = Vector2(11.18, 0)
+position = Vector2(5, 0)
 shape = SubResource("CapsuleShape2D_d7522")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035384083]
@@ -122,4 +122,5 @@ texture_filter = 1
 position = Vector2(5, 5)
 scale = Vector2(-2, 2)
 sprite_frames = SubResource("SpriteFrames_d7522")
+animation = &"hit"
 autoplay = "default"

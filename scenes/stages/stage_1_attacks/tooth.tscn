@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://ce06th44ec811" path="res://scenes/stages/stage_1_attacks/tooth.gd" id="1_epucm"]
 [ext_resource type="Texture2D" uid="uid://2yydoegkwoi3" path="res://spritesheets/stages/stage_1/Tooth_projectile-Sheet.png" id="2_k005k"]
 [ext_resource type="Texture2D" uid="uid://bidytugk3xjxs" path="res://spritesheets/stages/stage_1/Tooth_projectile_hit-Sheet.png" id="3_xcycx"]
+[ext_resource type="PackedScene" uid="uid://c4yhjl14srqd5" path="res://scenes/across_stage/parry_indicator_sprite.tscn" id="4_k005k"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4jyb"]
-size = Vector2(40, 25)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yk5pe"]
+radius = 12.0
+height = 40.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7522"]
-radius = 4.0
-height = 25.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_pb34x"]
+radius = 7.5555553
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kwffg"]
 atlas = ExtResource("2_k005k")
@@ -118,19 +119,21 @@ animations = [{
 [node name="AnimatableBody2D2" type="AnimatableBody2D" unique_id=784705652]
 z_index = 1
 scale = Vector2(2.25, 2.25)
+collision_layer = 2
 sync_to_physics = false
 script = ExtResource("1_epucm")
 is_parryable = true
 hit_damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488 groups=["parryable"]]
-shape = SubResource("RectangleShape2D_k4jyb")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_yk5pe")
 
 [node name="HitArea" type="Area2D" parent="." unique_id=762369763]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1210065424]
 position = Vector2(20, 0)
-shape = SubResource("CapsuleShape2D_d7522")
+shape = SubResource("CircleShape2D_pb34x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035384083]
 texture_filter = 1
@@ -138,5 +141,8 @@ scale = Vector2(-2, 2)
 sprite_frames = SubResource("SpriteFrames_d7522")
 animation = &"hit"
 autoplay = "default"
+
+[node name="parry_indicator_sprite" parent="." unique_id=454821429 instance=ExtResource("4_k005k")]
+position = Vector2(17.73, 0)
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

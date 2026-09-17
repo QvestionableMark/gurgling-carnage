@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c6mca2hncub3a"]
+
+[ext_resource type="Script" uid="uid://c4vechp0pv5fa" path="res://scenes/stages/stage_4.gd" id="1_t8527"]
+[ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="2_t8527"]
+
+[node name="stage_4" type="Node2D" unique_id=1498283267]
+script = ExtResource("1_t8527")
+stage_number = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=840369868]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=18510693]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(960, 540)
+scale = Vector2(192, 108)
+texture = ExtResource("2_t8527")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1288117726]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -471.0
+offset_top = -136.5
+offset_right = 471.0
+offset_bottom = 136.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6665767, 0.45521098, 0, 0.39215687)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7176471)
+theme_override_font_sizes/font_size = 200
+text = "THE END?"
