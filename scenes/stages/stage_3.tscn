@@ -8,6 +8,7 @@ size = Vector2(691, 113)
 
 [node name="Stage3" type="Node2D" unique_id=1498283267]
 script = ExtResource("1_djy2v")
+player_start_position = Vector2(970, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1903234587]
 position = Vector2(-74, 0)
@@ -20,3 +21,8 @@ shape = SubResource("RectangleShape2D_71ke2")
 position = Vector2(1056, 529)
 scale = Vector2(5.484375, 1)
 texture = ExtResource("2_k7kex")
+
+[node name="Timer" type="Timer" parent="." unique_id=1048387906]
+wait_time = 0.451
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
