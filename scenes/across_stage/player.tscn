@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdr8wd80divb4" path="res://spritesheets/player/Boss_mcjumpingfall-Sheet.png" id="2_161at"]
 [ext_resource type="Texture2D" uid="uid://bxooyigyl12p" path="res://spritesheets/player/Boss_idlemc-Sheet.png" id="3_h5tfo"]
 [ext_resource type="Texture2D" uid="uid://i1eemgiskoca" path="res://spritesheets/player/Boss_mcjumping-Sheet.png" id="4_nfay6"]
+[ext_resource type="Texture2D" uid="uid://cjc6fplcspdla" path="res://spritesheets/player/Boss_mc_fast_falling-Sheet.png" id="4_wdca0"]
 [ext_resource type="Texture2D" uid="uid://u8dojc085oi6" path="res://spritesheets/player/Boss_rollmc-Sheet.png" id="5_h5tfo"]
 [ext_resource type="Texture2D" uid="uid://co746yjyy5cp4" path="res://spritesheets/player/Boss_runmc-Sheet.png" id="5_wdca0"]
 [ext_resource type="Texture2D" uid="uid://cvvomgaxchcpp" path="res://spritesheets/player/Boss_parryv1mc-Sheet.png" id="6_nfay6"]
@@ -86,6 +87,18 @@ region = Rect2(50, 0, 50, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5f1xk"]
 atlas = ExtResource("2_161at")
+region = Rect2(100, 0, 50, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qqv5"]
+atlas = ExtResource("4_wdca0")
+region = Rect2(0, 0, 50, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsn8j"]
+atlas = ExtResource("4_wdca0")
+region = Rect2(50, 0, 50, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xfqs"]
+atlas = ExtResource("4_wdca0")
 region = Rect2(100, 0, 50, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3svau"]
@@ -402,6 +415,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8qqv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsn8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xfqs")
+}],
+"loop": 1,
+"name": &"fast_fall",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3svau")
 }, {
 "duration": 1.0,
@@ -619,7 +646,7 @@ script = ExtResource("1_etwev")
 texture_filter = 1
 scale = Vector2(3.9999998, 3.9999998)
 sprite_frames = SubResource("SpriteFrames_qxun1")
-animation = &"parry"
+animation = &"fast_fall"
 
 [node name="ParryableArea" type="Area2D" parent="AnimatedSprite2D" unique_id=1956245707]
 position = Vector2(12.5, -1.25)

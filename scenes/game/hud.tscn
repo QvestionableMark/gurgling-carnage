@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="3_xu0sl"]
 [ext_resource type="Texture2D" uid="uid://f0ynutvujoo2" path="res://spritesheets/player/Healthbaross.png" id="4_8m1vl"]
 [ext_resource type="Texture2D" uid="uid://cdsh1svl6ydwo" path="res://spritesheets/player/Portraitv2Sprite-0010.png" id="5_3k67c"]
+[ext_resource type="Texture2D" uid="uid://bkgbal08segec" path="res://spritesheets/other/arrow_right.png" id="7_pla3n"]
+[ext_resource type="Texture2D" uid="uid://b6jfbct1dfkdl" path="res://spritesheets/other/arrow_left.png" id="8_ma2ai"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5645d"]
 load_path = "res://.godot/imported/WhiteSprite-0009.png-069d4e7b8b1876784e6ce1e2b5fe437a.ctex"
@@ -102,6 +104,7 @@ pivot_offset_ratio = Vector2(1, 0.5)
 texture = ExtResource("1_umjp7")
 
 [node name="ToggleMenu" type="TextureButton" parent="KeybindMenu" unique_id=483275173]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 offset_top = -64.0
@@ -111,7 +114,9 @@ grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 pivot_offset_ratio = Vector2(0, 0.5)
 toggle_mode = true
-texture_normal = ExtResource("1_umjp7")
+texture_normal = ExtResource("7_pla3n")
+texture_pressed = ExtResource("8_ma2ai")
+stretch_mode = 0
 
 [node name="DeathLabel" type="Label" parent="." unique_id=1436009545]
 visible = false

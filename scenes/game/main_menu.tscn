@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://chrg43rfffe0b" path="res://spritesheets/other/TitleSprite-0011.png" id="2_ngy02"]
 [ext_resource type="Texture2D" uid="uid://cqiejm57a1yqy" path="res://spritesheets/other/ContinueSprite-0012-Sheet.png" id="3_3r4tm"]
 [ext_resource type="Texture2D" uid="uid://xax0me1gau5k" path="res://spritesheets/other/NewgameSprite-0012-Sheet.png" id="4_gfgjs"]
+[ext_resource type="Texture2D" uid="uid://isl3fbfret0w" path="res://spritesheets/other/tutorial_tekst.png" id="5_bto60"]
 [ext_resource type="Texture2D" uid="uid://glwejyygwfnu" path="res://spritesheets/stages/stage_0/BackgroundSpritev3-0004-Sheet.png" id="5_gfgjs"]
+[ext_resource type="Texture2D" uid="uid://dtuxmjhff7u2i" path="res://spritesheets/other/hard_mode_tekst.png" id="6_16onh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgon0"]
 atlas = ExtResource("5_gfgjs")
@@ -89,20 +91,6 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="CheckpointLabel" type="Label" parent="ButtonContainer/ContinueButton" unique_id=1188646833]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -58.0
-offset_top = -23.0
-offset_right = 58.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "(Checkpoint: 1)"
-
 [node name="NewGameButton" type="Button" parent="ButtonContainer" unique_id=1917911906]
 custom_minimum_size = Vector2(360, 120)
 layout_mode = 2
@@ -121,23 +109,26 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -111.0
-offset_right = 111.0
-offset_bottom = 31.0
 grow_horizontal = 2
-grow_vertical = 0
 focus_mode = 2
 mouse_filter = 0
 alignment = 1
 
 [node name="TutorialToggle" type="CheckButton" parent="ButtonContainer/NewGameButton/HBoxContainer" unique_id=288149497]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-text = "Tutorial"
+tooltip_text = "(Initial keybinds, parry indicators)"
+icon = ExtResource("5_bto60")
+icon_alignment = 1
+expand_icon = true
 
 [node name="HardmodeToggle" type="CheckButton" parent="ButtonContainer/NewGameButton/HBoxContainer" unique_id=851566834]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-tooltip_text = "(no checkpoints)"
-text = "Hard mode"
+tooltip_text = "(no checkpoints, 2x Boss Damage, 2x Boss Health)"
+icon = ExtResource("6_16onh")
+icon_alignment = 1
+expand_icon = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1680512357]
 z_index = -2

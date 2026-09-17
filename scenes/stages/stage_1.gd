@@ -21,6 +21,9 @@ func take_damage(damage):
 	game.hud_update.emit()
 	
 	if boss_current_health <= 0:
+		var fade = STAGE_FADE.instantiate() as StageFade
+		add_child(fade)
+		await fade.fade_done
 		game.load_stage.call_deferred(stage_number + 1)
 
 func _on_timer_timeout() -> void:

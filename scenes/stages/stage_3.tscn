@@ -8,6 +8,8 @@ size = Vector2(691, 113)
 
 [node name="Stage3" type="Node2D" unique_id=1498283267]
 script = ExtResource("1_djy2v")
+stage_number = 3
+player_start_position = Vector2(960, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1903234587]
 position = Vector2(-74, 0)
