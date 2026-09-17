@@ -1,24 +1,72 @@
 [gd_scene format=3 uid="uid://daoojfeife58m"]
 
 [ext_resource type="Script" uid="uid://byvi4g4y5sebm" path="res://scenes/game/main_menu.gd" id="1_sbiqi"]
+[ext_resource type="Texture2D" uid="uid://chrg43rfffe0b" path="res://spritesheets/other/TitleSprite-0011.png" id="2_ngy02"]
+[ext_resource type="Texture2D" uid="uid://cqiejm57a1yqy" path="res://spritesheets/other/ContinueSprite-0012-Sheet.png" id="3_3r4tm"]
+[ext_resource type="Texture2D" uid="uid://xax0me1gau5k" path="res://spritesheets/other/NewgameSprite-0012-Sheet.png" id="4_gfgjs"]
+[ext_resource type="Texture2D" uid="uid://glwejyygwfnu" path="res://spritesheets/stages/stage_0/BackgroundSpritev3-0004-Sheet.png" id="5_gfgjs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgon0"]
+atlas = ExtResource("5_gfgjs")
+region = Rect2(0, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh6g6"]
+atlas = ExtResource("5_gfgjs")
+region = Rect2(300, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sditu"]
+atlas = ExtResource("5_gfgjs")
+region = Rect2(600, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83vdv"]
+atlas = ExtResource("5_gfgjs")
+region = Rect2(900, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxp1b"]
+atlas = ExtResource("5_gfgjs")
+region = Rect2(1200, 0, 300, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fpthd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgon0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh6g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sditu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83vdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxp1b")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 1.0
+}]
 
 [node name="main_menu" type="CanvasLayer" unique_id=283012810]
 script = ExtResource("1_sbiqi")
 
-[node name="TitleLabel" type="Label" parent="." unique_id=1732650067]
-anchors_preset = 5
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1265703687]
+texture_filter = 1
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.1
 anchor_right = 0.5
-offset_left = -313.0
-offset_right = 313.0
-offset_bottom = 103.0
+anchor_bottom = 0.1
+offset_left = -700.0
+offset_right = 700.0
+offset_bottom = 200.0
 grow_horizontal = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, 200)
-theme_override_font_sizes/font_size = 75
-text = "Gurgling Carnage"
+texture = ExtResource("2_ngy02")
 
 [node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=281615676]
+texture_filter = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.4
@@ -30,10 +78,16 @@ offset_bottom = 40.0
 grow_horizontal = 2
 offset_transform_position = Vector2(0, 500)
 
-[node name="ContinueButton" type="Button" parent="ButtonContainer" unique_id=1520175093]
+[node name="ContinueButton" type="Button" parent="ButtonContainer" unique_id=1561576702]
+texture_filter = 1
+custom_minimum_size = Vector2(360, 120)
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "Continue"
+theme_override_colors/icon_pressed_color = Color(0.5689727, 0.56897277, 0.56897265, 1)
+theme_override_colors/icon_hover_color = Color(0.76943237, 0.7694324, 0.76943237, 1)
+icon = ExtResource("3_3r4tm")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="CheckpointLabel" type="Label" parent="ButtonContainer/ContinueButton" unique_id=1188646833]
 layout_mode = 1
@@ -49,20 +103,49 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "(Checkpoint: 1)"
 
-[node name="NewGameButton" type="Button" parent="ButtonContainer" unique_id=976159662]
+[node name="NewGameButton" type="Button" parent="ButtonContainer" unique_id=1917911906]
+custom_minimum_size = Vector2(360, 120)
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "New Game"
+theme_override_colors/icon_pressed_color = Color(0.5689727, 0.56897277, 0.56897265, 1)
+theme_override_colors/icon_hover_color = Color(0.76943237, 0.7694324, 0.76943237, 1)
+icon = ExtResource("4_gfgjs")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="TutorialToggle" type="CheckButton" parent="ButtonContainer/NewGameButton" unique_id=288149497]
+[node name="HBoxContainer" type="HBoxContainer" parent="ButtonContainer/NewGameButton" unique_id=1154892843]
+propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -111.0
+offset_right = 111.0
+offset_bottom = 31.0
 grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 2
+mouse_filter = 0
+alignment = 1
+
+[node name="TutorialToggle" type="CheckButton" parent="ButtonContainer/NewGameButton/HBoxContainer" unique_id=288149497]
+layout_mode = 2
 text = "Tutorial"
+
+[node name="HardmodeToggle" type="CheckButton" parent="ButtonContainer/NewGameButton/HBoxContainer" unique_id=851566834]
+layout_mode = 2
+tooltip_text = "(no checkpoints)"
+text = "Hard mode"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1680512357]
+z_index = -2
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(6.4, 6.4)
+sprite_frames = SubResource("SpriteFrames_fpthd")
+autoplay = "default"
 
 [connection signal="pressed" from="ButtonContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="ButtonContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

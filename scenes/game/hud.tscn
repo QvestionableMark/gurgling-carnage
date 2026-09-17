@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://evpn7qxob7k4" path="res://scenes/game/hud.gd" id="1_snjka"]
 [ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="1_umjp7"]
 [ext_resource type="Texture2D" uid="uid://cuo6ac0frvi8g" path="res://spritesheets/player/HealthSprite-0007.png" id="3_5645d"]
-[ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/base/WhiteSprite-0009.png" id="3_xu0sl"]
+[ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="3_xu0sl"]
 [ext_resource type="Texture2D" uid="uid://f0ynutvujoo2" path="res://spritesheets/player/Healthbaross.png" id="4_8m1vl"]
+[ext_resource type="Texture2D" uid="uid://cdsh1svl6ydwo" path="res://spritesheets/player/Portraitv2Sprite-0010.png" id="5_3k67c"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5645d"]
 load_path = "res://.godot/imported/WhiteSprite-0009.png-069d4e7b8b1876784e6ce1e2b5fe437a.ctex"
@@ -76,9 +77,11 @@ layout_mode = 2
 texture = ExtResource("4_8m1vl")
 
 [node name="Logo" type="TextureRect" parent="." unique_id=840847479]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_umjp7")
+texture_filter = 1
+offset_right = 175.0
+offset_bottom = 175.0
+texture = ExtResource("5_3k67c")
+expand_mode = 1
 
 [node name="KeybindMenu" type="Control" parent="." unique_id=2070737404]
 layout_mode = 3

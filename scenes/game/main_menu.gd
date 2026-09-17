@@ -19,7 +19,8 @@ func _on_stage_loaded(stage_number):
 func initialization():
 	$ButtonContainer/ContinueButton.visible = game.persistent_data.checkpoint > 0
 	$ButtonContainer/ContinueButton/CheckpointLabel.text = "Checkpoint: " + String.num(game.persistent_data.checkpoint, 0)
-	$ButtonContainer/NewGameButton/TutorialToggle.button_pressed = game.persistent_data.tutorial
+	$ButtonContainer/NewGameButton/HBoxContainer/TutorialToggle.button_pressed = game.persistent_data.tutorial
+	$ButtonContainer/NewGameButton/HBoxContainer/HardmodeToggle.button_pressed = game.persistent_data.hardmode
 
 func _on_continue_button_pressed() -> void:
 	self.visible = false
@@ -28,4 +29,4 @@ func _on_continue_button_pressed() -> void:
 
 func _on_new_game_button_pressed() -> void:
 	self.visible = false
-	game.start_new_game($ButtonContainer/NewGameButton/TutorialToggle.button_pressed)
+	game.start_new_game($ButtonContainer/NewGameButton/HBoxContainer/TutorialToggle.button_pressed, $ButtonContainer/NewGameButton/HBoxContainer/HardmodeToggle.button_pressed)

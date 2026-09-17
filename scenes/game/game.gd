@@ -21,10 +21,10 @@ var is_paused : bool
 func _ready() -> void:
 	load_persistent_data()
 
-func start_new_game(with_tutorial):
+func start_new_game(with_tutorial, with_hardmode):
 	persistent_data.checkpoint = 0
 	persistent_data.health = 100
-	persistent_data.hardmode = false
+	persistent_data.hardmode = with_hardmode
 	persistent_data.tutorial = with_tutorial
 	save_persistent_data()
 	
