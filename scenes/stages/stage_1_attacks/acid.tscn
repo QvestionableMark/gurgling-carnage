@@ -108,13 +108,12 @@ animations = [{
 [node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=784705652]
 z_index = 1
 scale = Vector2(2.25, 2.25)
+collision_layer = 2
 sync_to_physics = false
 script = ExtResource("1_yk5pe")
 hit_damage = 30
 
-[node name="HitArea" type="Area2D" parent="." unique_id=762369763]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1210065424]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1210065424]
 position = Vector2(11.18, 0)
 shape = SubResource("CapsuleShape2D_d7522")
 
@@ -124,5 +123,3 @@ position = Vector2(5, 5)
 scale = Vector2(-2, 2)
 sprite_frames = SubResource("SpriteFrames_d7522")
 autoplay = "default"
-
-[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

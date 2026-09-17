@@ -23,7 +23,7 @@ var is_parrying = false
 
 func _physics_process(delta):
 	end_lag = clamp(end_lag - delta, 0, 1)
-	
+	modulate = Color(clamp(modulate.r + delta,0,1), clamp(modulate.g + delta,0,1), clamp(modulate.b + delta,0,1))
 	
 	var effective_speed = SPEED
 	
@@ -105,7 +105,7 @@ func resolve_animation():
 func take_damage(damage):
 	game.persistent_data.health -= damage
 	game.hud_update.emit()
-	
+	modulate = Color.RED
 	if game.persistent_data.health <= 0:
 		game.handle_death()
 	else:

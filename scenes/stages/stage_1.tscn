@@ -483,7 +483,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"spit",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ncvry"]
@@ -525,7 +525,8 @@ position = Vector2(100, 540)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody2" unique_id=233574660]
 shape = SubResource("RectangleShape2D_7ts77")
 
-[node name="Timer" type="Timer" parent="." unique_id=54532396]
+[node name="AttackTimer" type="Timer" parent="." unique_id=54532396]
+wait_time = 0.33
 autostart = true
 
 [node name="BossBody" type="StaticBody2D" parent="." unique_id=830070856 groups=["boss"]]
@@ -537,6 +538,7 @@ texture_filter = 1
 scale = Vector2(7.5, 7.5)
 sprite_frames = SubResource("SpriteFrames_k4jyb")
 autoplay = "default"
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBody" unique_id=1334562815]
 shape = SubResource("CapsuleShape2D_ncvry")
@@ -549,5 +551,5 @@ position = Vector2(-300.79504, -13.424988)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBody/KnockbackArea" unique_id=954799767]
 shape = SubResource("CapsuleShape2D_l1pay")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="BossBody/KnockbackArea" to="." method="_on_knockback_area_body_entered"]

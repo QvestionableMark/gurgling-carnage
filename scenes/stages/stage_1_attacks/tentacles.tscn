@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://b0ksrqtnnskmo"]
+
+[ext_resource type="Texture2D" uid="uid://bf65j6fr7s7gw" path="res://spritesheets/stages/stage_1/tentacle_attack-Sheet.png" id="1_k512q"]
+[ext_resource type="Script" uid="uid://bahq441digubs" path="res://scenes/stages/stage_1_attacks/tentacles.gd" id="1_sygtk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sygtk"]
+atlas = ExtResource("1_k512q")
+region = Rect2(0, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8osxa"]
+atlas = ExtResource("1_k512q")
+region = Rect2(300, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ckg2"]
+atlas = ExtResource("1_k512q")
+region = Rect2(600, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e57nh"]
+atlas = ExtResource("1_k512q")
+region = Rect2(900, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdrue"]
+atlas = ExtResource("1_k512q")
+region = Rect2(1200, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2k6p"]
+atlas = ExtResource("1_k512q")
+region = Rect2(1500, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yiqy"]
+atlas = ExtResource("1_k512q")
+region = Rect2(1800, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v824t"]
+atlas = ExtResource("1_k512q")
+region = Rect2(2100, 0, 300, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3gxf"]
+atlas = ExtResource("1_k512q")
+region = Rect2(2400, 0, 300, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7522"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sygtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8osxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ckg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e57nh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdrue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2k6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yiqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v824t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3gxf")
+}],
+"loop": 2,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_04ci1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitArea/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1410, 210)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitArea/CollisionShape2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1310, 250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitArea/CollisionShape2D3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1230, 320)]
+}
+
+[sub_resource type="Animation" id="Animation_ks2r4"]
+resource_name = "attack_collision"
+length = 8.000011170715839
+loop_mode = 2
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitArea/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1410, 210), Vector2(1327, 180), Vector2(1276, 167), Vector2(1089, 167), Vector2(972, 198), Vector2(802, 295), Vector2(708, 363), Vector2(602, 421), Vector2(459, 486)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitArea/CollisionShape2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1310, 250), Vector2(1276, 231), Vector2(1207, 221), Vector2(1094, 251), Vector2(1004, 302), Vector2(911, 396), Vector2(821, 482), Vector2(731, 595), Vector2(702, 664)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitArea/CollisionShape2D3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1230, 320), Vector2(1187, 310), Vector2(1158, 329), Vector2(1128, 393), Vector2(1108, 450), Vector2(1095, 529), Vector2(1095, 575), Vector2(1095, 706), Vector2(1095, 755)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_41yhw"]
+_data = {
+&"RESET": SubResource("Animation_04ci1"),
+&"attack_collision": SubResource("Animation_ks2r4")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7522"]
+radius = 82.006096
+
+[node name="tentacle" type="AnimatableBody2D" unique_id=2058276820]
+sync_to_physics = false
+script = ExtResource("1_sygtk")
+hit_damage = 55
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2017520917]
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(6.4, 6.4)
+sprite_frames = SubResource("SpriteFrames_d7522")
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1026268757]
+libraries/ = SubResource("AnimationLibrary_41yhw")
+autoplay = &"attack_collision"
+speed_scale = 10.0
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1706202158]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=94954118]
+position = Vector2(1410, 210)
+shape = SubResource("CircleShape2D_d7522")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitArea" unique_id=199675918]
+position = Vector2(1310, 250)
+shape = SubResource("CircleShape2D_d7522")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="HitArea" unique_id=391186003]
+position = Vector2(1230, 320)
+shape = SubResource("CircleShape2D_d7522")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

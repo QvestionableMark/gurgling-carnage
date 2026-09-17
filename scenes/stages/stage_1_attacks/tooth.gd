@@ -4,7 +4,7 @@ var speed = 750
 var direction
 
 func _ready() -> void:
-	var target = Vector2(0,(0.25 + randf() / 2) * 1080)
+	var target = Vector2(0,(0.45 + randf() / 5) * 1080)
 	look_at(target)
 	direction = position.direction_to(target)
 	sync_to_physics = true

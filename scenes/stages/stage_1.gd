@@ -2,6 +2,7 @@ extends Stage
 
 @onready var TOOTH : PackedScene = preload("res://scenes/stages/stage_1_attacks/tooth.tscn")
 @onready var ACID : PackedScene = preload("res://scenes/stages/stage_1_attacks/acid.tscn")
+@onready var TENTACLE : PackedScene = preload("res://scenes/stages/stage_1_attacks/tentacles.tscn")
 
 const COLLISION_DAMAGE = 35
 
@@ -26,7 +27,7 @@ func _on_timer_timeout() -> void:
 	if not is_ready:
 		return
 	
-	if  randf() < 1.0/2.0:
+	if  randf() < 1.0/3.0:
 		var rng = randf()
 		if not is_spitting and rng < 1.0/3.0:
 			is_spitting = true
@@ -39,7 +40,7 @@ func _on_timer_timeout() -> void:
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false
-		if not is_spitting and rng < 2.0/3.0:
+		elif not is_spitting and rng < 2.0/3.0:
 			is_spitting = true
 			$BossBody/AnimatedSprite2D.play("spit")
 			while $BossBody/AnimatedSprite2D.frame != 5:
@@ -50,6 +51,12 @@ func _on_timer_timeout() -> void:
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false
+		elif not is_stabbing and rng < 3.0/3.0:
+			is_stabbing = true
+			var tentacle = TENTACLE.instantiate() as Attack
+			add_child(tentacle)
+			await tentacle.finished
+			is_stabbing = false
 
 func _on_knockback_area_body_entered(body: Node2D) -> void:
 	if body is Player:
