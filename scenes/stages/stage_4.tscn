@@ -16,6 +16,7 @@ scale = Vector2(192, 108)
 texture = ExtResource("2_t8527")
 
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=1288117726]
+process_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

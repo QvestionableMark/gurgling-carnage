@@ -11,6 +11,7 @@ signal persistent_data_loaded()
 signal stage_loaded(stage_number)
 signal hud_update()
 signal player_died(timer)
+signal game_paused(newState)
 
 @export var stages : Array[String]
 var current_stage : Stage
@@ -20,7 +21,16 @@ var is_paused : bool
 func _ready() -> void:
 	load_persistent_data()
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause") and current_stage:
+		pause_game(not get_tree().paused)
+
+func pause_game(newState):
+	get_tree().paused = newState
+	game_paused.emit(newState)
+
 func start_new_game(with_tutorial, with_hardmode):
+	pause_game(false)
 	persistent_data.checkpoint = 0
 	persistent_data.health = 100
 	persistent_data.hardmode = with_hardmode
@@ -38,11 +48,11 @@ func continue_old_game():
 func handle_death():
 	if persistent_data.hardmode:
 		persistent_data.checkpoint = -1
-	Engine.time_scale = 0
+	get_tree().paused = true
 	$DeathTimer.start()
 	player_died.emit($DeathTimer)
 	await $DeathTimer.timeout 
-	Engine.time_scale = 1
+	get_tree().paused = false
 	persistent_data.health = 100
 	load_stage(-1)
 	save_persistent_data()
@@ -52,6 +62,8 @@ func handle_win():
 	save_persistent_data()
 
 func load_stage(stage_number_to_load):
+	if stage_number_to_load == -1:
+		pause_game(false)
 	if current_stage:
 		current_stage.queue_free()
 	if stage_number_to_load == -1:

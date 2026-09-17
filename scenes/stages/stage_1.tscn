@@ -495,6 +495,7 @@ radius = 350.0
 height = 1300.0
 
 [node name="stage_1" type="Node2D" unique_id=1822007341]
+process_mode = 1
 script = ExtResource("1_3847s")
 stage_number = 1
 player_start_position = Vector2(300, 700)

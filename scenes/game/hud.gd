@@ -13,8 +13,7 @@ func _on_stage_loaded(stage_number):
 	else:
 		visible = true
 	if stage_number == 0:
-		if game.persistent_data.tutorial:
-			$KeybindMenu/ToggleMenu.button_pressed = true
+		$KeybindMenu/ToggleMenu.button_pressed = game.persistent_data.tutorial
 		$BossBarContainer.visible = false
 	else:
 		$BossBarContainer.visible = true

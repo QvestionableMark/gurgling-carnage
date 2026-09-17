@@ -53,6 +53,7 @@ size = Vector2(1920, 250)
 size = Vector2(250, 1080)
 
 [node name="stage_0" type="Node2D" unique_id=599359682]
+process_mode = 1
 script = ExtResource("1_shou7")
 player_start_position = Vector2(960, 700)
 

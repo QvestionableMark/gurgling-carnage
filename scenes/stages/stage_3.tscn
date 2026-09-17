@@ -115,6 +115,7 @@ size = Vector2(480, 1080)
 size = Vector2(520, 1080)
 
 [node name="Stage3" type="Node2D" unique_id=1498283267]
+process_mode = 1
 script = ExtResource("1_djy2v")
 stage_number = 3
 player_start_position = Vector2(990, 100)

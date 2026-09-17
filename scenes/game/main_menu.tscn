@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://byvi4g4y5sebm" path="res://scenes/game/main_menu.gd" id="1_sbiqi"]
 [ext_resource type="Texture2D" uid="uid://chrg43rfffe0b" path="res://spritesheets/other/TitleSprite-0011.png" id="2_ngy02"]
 [ext_resource type="Texture2D" uid="uid://cqiejm57a1yqy" path="res://spritesheets/other/ContinueSprite-0012-Sheet.png" id="3_3r4tm"]
+[ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="3_16onh"]
 [ext_resource type="Texture2D" uid="uid://xax0me1gau5k" path="res://spritesheets/other/NewgameSprite-0012-Sheet.png" id="4_gfgjs"]
 [ext_resource type="Texture2D" uid="uid://isl3fbfret0w" path="res://spritesheets/other/tutorial_tekst.png" id="5_bto60"]
 [ext_resource type="Texture2D" uid="uid://glwejyygwfnu" path="res://spritesheets/stages/stage_0/BackgroundSpritev3-0004-Sheet.png" id="5_gfgjs"]
@@ -52,7 +53,42 @@ animations = [{
 }]
 
 [node name="main_menu" type="CanvasLayer" unique_id=283012810]
+process_mode = 3
 script = ExtResource("1_sbiqi")
+
+[node name="PauseBackgroundSprite" type="Sprite2D" parent="." unique_id=1205231762]
+self_modulate = Color(0, 0, 0, 0.23921569)
+z_index = -2
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(192, 108)
+texture = ExtResource("3_16onh")
+
+[node name="DeathLabel" type="Label" parent="." unique_id=1225528225]
+z_index = -2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -471.0
+offset_top = -273.0
+offset_right = 471.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.756923, 0.73627245, 0.7029156, 0.39215687)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7176471)
+theme_override_font_sizes/font_size = 200
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="BackgroundSprite" type="AnimatedSprite2D" parent="." unique_id=1680512357]
+z_index = -2
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(6.4, 6.4)
+sprite_frames = SubResource("SpriteFrames_fpthd")
+autoplay = "default"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1265703687]
 texture_filter = 1
@@ -129,14 +165,6 @@ tooltip_text = "(no checkpoints, 2x Boss Damage, 2x Boss Health)"
 icon = ExtResource("6_16onh")
 icon_alignment = 1
 expand_icon = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1680512357]
-z_index = -2
-texture_filter = 1
-position = Vector2(960, 540)
-scale = Vector2(6.4, 6.4)
-sprite_frames = SubResource("SpriteFrames_fpthd")
-autoplay = "default"
 
 [connection signal="pressed" from="ButtonContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="ButtonContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
