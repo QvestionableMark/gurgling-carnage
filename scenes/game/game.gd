@@ -1,6 +1,6 @@
 class_name Game
 extends Node2D
-
+ 
 var persistent_data = {
 	"checkpoint": -1,
 	"health": 100,
@@ -51,6 +51,7 @@ func handle_death():
 	get_tree().paused = true
 	$DeathTimer.start()
 	player_died.emit($DeathTimer)
+	
 	await $DeathTimer.timeout 
 	get_tree().paused = false
 	persistent_data.health = 100

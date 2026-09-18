@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 var game : Game
 @onready var PARRY_PARTICLE : PackedScene = preload("res://scenes/across_stage/parry_particle.tscn")
+@onready var on_hit_sound = $on_hit_sound
+@onready var death_sound =$death_sound
 var potential_parryable_attacks : Array[Node2D] = []
 
 const JUMP_VELOCITY = -750
@@ -118,8 +120,12 @@ func take_damage(damage):
 	game.persistent_data.health -= damage
 	game.hud_update.emit()
 	modulate = Color.RED
+	on_hit_sound.play()
 	if game.persistent_data.health <= 0:
+		death_sound.play()
+		await death_sound.finished
 		game.handle_death()
+		
 	else:
 		game.save_persistent_data()
 
