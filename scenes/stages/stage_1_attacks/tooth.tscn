@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://c4yhjl14srqd5" path="res://scenes/across_stage/parry_indicator_sprite.tscn" id="4_k005k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yk5pe"]
-radius = 12.0
-height = 40.0
+radius = 30.0
+height = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pb34x"]
-radius = 7.5555553
+radius = 25.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kwffg"]
 atlas = ExtResource("2_k005k")
@@ -116,9 +116,8 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="AnimatableBody2D2" type="AnimatableBody2D" unique_id=784705652]
+[node name="tooth" type="AnimatableBody2D" unique_id=784705652]
 z_index = 1
-scale = Vector2(2.25, 2.25)
 collision_layer = 2
 sync_to_physics = false
 script = ExtResource("1_epucm")
@@ -132,17 +131,16 @@ shape = SubResource("CapsuleShape2D_yk5pe")
 [node name="HitArea" type="Area2D" parent="." unique_id=762369763]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1210065424]
-position = Vector2(20, 0)
+position = Vector2(40, 0)
 shape = SubResource("CircleShape2D_pb34x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035384083]
 texture_filter = 1
-scale = Vector2(-2, 2)
+scale = Vector2(-5, 5)
 sprite_frames = SubResource("SpriteFrames_d7522")
-animation = &"hit"
 autoplay = "default"
 
 [node name="parry_indicator_sprite" parent="." unique_id=454821429 instance=ExtResource("4_k005k")]
-position = Vector2(17.73, 0)
+position = Vector2(40, 0)
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

@@ -2,9 +2,13 @@ extends Stage
 
 @onready var ROCK : PackedScene = preload ("res://scenes/stages/stage_3_attacks/rock.tscn")
 
-const COLLISION_DAMAGE = 35
+const COLLISION_DAMAGE = 1
+
+var top_mouth_start_position
+var bottom_mouth_start_position
 
 func _ready() -> void:
+	
 	super()
 	var fade = STAGE_FADE.instantiate() as StageFade
 	fade.fade_into_black = false
@@ -28,15 +32,11 @@ func _on_attack_timer_timeout() -> void:
 	if not is_active:
 		return
 	
-	if randf() < .33:
-		
+	if randf() < 0.5:
 		var rock = ROCK.instantiate() 
-		
 		var random_x = randf_range(200, 1720) 
-		
-		
+		rock.has_parry_indicator = game.persistent_data.tutorial
 		rock.global_position = Vector2(random_x, -100) 
-		
 		add_child(rock)
 
 
@@ -44,4 +44,5 @@ func _on_knockback_area_body_entered(body: Node2D) -> void:
 	if body is Player and boss_current_health > 0:
 		body.take_damage(COLLISION_DAMAGE)
 		body.end_lag += 0.5
-		body.external_velocity += player.position.direction_to(Vector2(1920/2,1080/4)) * 500
+		body.input_velocity = Vector2.ZERO
+		body.external_velocity += (Vector2(1920/2.0,0) - player.global_position) * 1.5

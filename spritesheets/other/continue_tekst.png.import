@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xax0me1gau5k"
-path="res://.godot/imported/NewgameSprite-0012-Sheet.png-8d813ed713cd7f9cbb5144cce250024d.ctex"
+uid="uid://bceup60k3brgi"
+path="res://.godot/imported/continue_tekst.png-85204242bccba02baf0a8572367222d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/other/NewgameSprite-0012-Sheet.png"
-dest_files=["res://.godot/imported/NewgameSprite-0012-Sheet.png-8d813ed713cd7f9cbb5144cce250024d.ctex"]
+source_file="res://spritesheets/other/continue_tekst.png"
+dest_files=["res://.godot/imported/continue_tekst.png-85204242bccba02baf0a8572367222d1.ctex"]
 
 [params]
 
