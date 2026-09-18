@@ -5,6 +5,10 @@ var game : Game
 @onready var PARRY_PARTICLE : PackedScene = preload("res://scenes/across_stage/parry_particle.tscn")
 @onready var on_hit_sound = $on_hit_sound
 @onready var death_sound =$death_sound
+@onready var run_sound = $run_sound
+@onready var jump_sound = $jump_sound
+@onready var dash_sound = $dash_sound
+@onready var parry_sound = $parry_sound
 var potential_parryable_attacks : Array[Node2D] = []
 
 const JUMP_VELOCITY = -750
@@ -43,6 +47,7 @@ func _physics_process(delta):
 		input_velocity.y = 0
 		$RollingCollision.disabled = false
 		$NonRollingCollision.disabled = true
+		dash_sound.play()
 	if $DashTimer.time_left > 0:
 		effective_speed *= 2.5
 
@@ -51,10 +56,12 @@ func _physics_process(delta):
 		is_parrying = true
 		is_jumping = false
 		is_dashing = false
+		
 		for attack in potential_parryable_attacks:
 			if not is_instance_valid(attack) or not attack.is_parryable or not $AnimatedSprite2D/ParryableArea.overlaps_body(attack):
 				continue
 			end_lag += 0.3
+			parry_sound.play()
 			var parry_particle_instance : GPUParticles2D = PARRY_PARTICLE.instantiate()
 			attack.handle_parry(self)
 			parry_particle_instance.position = $AnimatedSprite2D/ParryableArea.global_position + (attack.global_position - global_position)/2
@@ -68,9 +75,11 @@ func _physics_process(delta):
 		if Input.is_action_pressed("move_left"):
 			input_velocity.x -= effective_speed 
 			$AnimatedSprite2D.scale.x = -abs($AnimatedSprite2D.scale.x)
+			run_sound.play()
 		if Input.is_action_pressed("move_right"):
 			input_velocity.x += effective_speed
 			$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x)
+			run_sound.play()
 	if input_velocity.x != 0:
 		is_running = true
 	if not is_on_floor() or game.current_stage.is_free_fall:
@@ -88,6 +97,7 @@ func _physics_process(delta):
 		if end_lag == 0 and Input.is_action_just_pressed("jump"):
 			input_velocity.y = JUMP_VELOCITY
 			is_jumping = true
+			jump_sound.play()
 		else:
 			input_velocity.y = 0
 	
