@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgu8hj855exnj"
-path="res://.godot/imported/CaveSprite-0006-Sheet.png-cd3bd5e3572ebd301b10f00cc68f7a33.ctex"
+uid="uid://txkbwvy2i1mq"
+path="res://.godot/imported/trophy.png-ca249dd2f3ae5e44c8f31bf4207312c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/stages/stage_1/CaveSprite-0006-Sheet.png"
-dest_files=["res://.godot/imported/CaveSprite-0006-Sheet.png-cd3bd5e3572ebd301b10f00cc68f7a33.ctex"]
+source_file="res://spritesheets/other/trophy.png"
+dest_files=["res://.godot/imported/trophy.png-ca249dd2f3ae5e44c8f31bf4207312c2.ctex"]
 
 [params]
 

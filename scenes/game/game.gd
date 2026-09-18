@@ -8,7 +8,8 @@ var persistent_data = {
 	"hardmode": false,
 	"beat_normal": false,
 	"beat_hard": false,
-	"beat_hard_hitless": false
+	"beat_hard_hitless": false,
+	"volume": 0.75
 }
 signal persistent_data_loaded()
 signal stage_loaded(stage_number)

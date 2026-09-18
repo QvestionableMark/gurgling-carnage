@@ -8,7 +8,7 @@ var player : Player
 @export var stage_number : int
 @export var player_start_position : Vector2
 @export var is_free_fall : bool
-@export var boss_health : int
+@export var boss_health : float
 var boss_current_health
 var is_active = false
 

@@ -44,12 +44,14 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 		hit_something = true
 	
 	if body.is_in_group("boss"):
-		if been_parried:
-			hit_damage *= 6
+		if not been_parried:
+			hit_damage /= 6
 		body.get_parent().get_parent().take_damage(hit_damage)
 		hit_something = true
 	
 	if hit_something:
 		is_finished = true
 		add_collision_exception_with(body)
+		$AnimatedSprite2D.play("hit")
+		await $AnimatedSprite2D.animation_finished
 		queue_free()

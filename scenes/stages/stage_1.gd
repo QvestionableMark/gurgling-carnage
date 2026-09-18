@@ -50,14 +50,9 @@ func _on_attack_timer_timeout() -> void:
 			$BossBody/AnimatedSprite2D.play("spit")
 			while $BossBody/AnimatedSprite2D.frame != 5:
 				await $BossBody/AnimatedSprite2D.frame_changed
-			$BossBody/AnimatedSprite2D.pause()
-			for num in range(1, 2+round(randf())):
-				if num != 1:
-					await get_tree().create_timer(0.75).timeout
-				var acid = ACID.instantiate() as Attack
-				acid.global_position = $BossBody/MouthPosition.global_position
-				add_child(acid)
-			$BossBody/AnimatedSprite2D.play()
+			var acid = ACID.instantiate() as Attack
+			acid.global_position = $BossBody/MouthPosition.global_position
+			add_child(acid)
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false

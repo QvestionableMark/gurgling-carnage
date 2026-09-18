@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://isl3fbfret0w" path="res://spritesheets/other/tutorial_tekst.png" id="5_bto60"]
 [ext_resource type="Texture2D" uid="uid://glwejyygwfnu" path="res://spritesheets/stages/stage_0/BackgroundSpritev3-0004-Sheet.png" id="5_gfgjs"]
 [ext_resource type="Texture2D" uid="uid://dtuxmjhff7u2i" path="res://spritesheets/other/hard_mode_tekst.png" id="6_16onh"]
-[ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="7_bto60"]
+[ext_resource type="Texture2D" uid="uid://txkbwvy2i1mq" path="res://spritesheets/other/trophy.png" id="7_16onh"]
+[ext_resource type="Texture2D" uid="uid://d23w42bbajjm8" path="res://spritesheets/other/speaker.png" id="8_16onh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgon0"]
 atlas = ExtResource("5_gfgjs")
@@ -56,6 +57,34 @@ load_path = "res://.godot/imported/continue_tekst.png-85204242bccba02baf0a857236
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bto60"]
 load_path = "res://.godot/imported/new_game_tekst.png-5bb0c90089c71d045c14bceb2d1f5f01.ctex"
+
+[sub_resource type="DPITexture" id="DPITexture_bto60"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
+"
+base_scale = 1.75
+
+[sub_resource type="DPITexture" id="DPITexture_16onh"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+base_scale = 1.75
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16onh"]
+bg_color = Color(0.2123048, 0.21230489, 0.21230471, 1)
+border_color = Color(0.89641374, 0.79949766, 0.39612916, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bto60"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
 
 [node name="main_menu" type="CanvasLayer" unique_id=283012810]
 process_mode = 3
@@ -184,7 +213,7 @@ texture_filter = 1
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 tooltip_text = "(beat normal mode)"
-texture = ExtResource("7_bto60")
+texture = ExtResource("7_16onh")
 expand_mode = 1
 
 [node name="BeatHardTrophyTexture" type="TextureRect" parent="TrophyContainer" unique_id=156367045]
@@ -192,7 +221,7 @@ texture_filter = 1
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 tooltip_text = "(beat hard mode)"
-texture = ExtResource("7_bto60")
+texture = ExtResource("7_16onh")
 expand_mode = 1
 
 [node name="BeatHardHitlessTrophyTexture" type="TextureRect" parent="TrophyContainer" unique_id=1298423632]
@@ -200,8 +229,43 @@ texture_filter = 1
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 tooltip_text = "(beat hard mode while taking no damage)"
-texture = ExtResource("7_bto60")
+texture = ExtResource("7_16onh")
+expand_mode = 1
+
+[node name="VolumeSlider" type="HSlider" parent="." unique_id=711694599]
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.9
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = -8.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_icons/grabber = SubResource("DPITexture_bto60")
+theme_override_icons/grabber_highlight = SubResource("DPITexture_16onh")
+theme_override_styles/slider = SubResource("StyleBoxFlat_16onh")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_bto60")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_bto60")
+max_value = 1.0
+step = 0.01
+value = 0.75
+scrollable = false
+
+[node name="TextureRect" type="TextureRect" parent="VolumeSlider" unique_id=2030319094]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1
+anchor_top = 0.5
+anchor_right = -0.05
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_16onh")
 expand_mode = 1
 
 [connection signal="pressed" from="ButtonContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="ButtonContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="value_changed" from="VolumeSlider" to="." method="_on_volume_slider_value_changed"]

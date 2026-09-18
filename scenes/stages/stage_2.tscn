@@ -124,7 +124,7 @@ script = ExtResource("1_sv1x6")
 stage_number = 2
 player_start_position = Vector2(960, 540)
 is_free_fall = true
-boss_health = 20
+boss_health = 20.0
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=750435354]
 texture_filter = 1

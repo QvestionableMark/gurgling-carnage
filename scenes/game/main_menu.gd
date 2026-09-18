@@ -26,6 +26,7 @@ func initialization():
 	$TrophyContainer/BeatNormalTrophyTexture.visible = game.persistent_data.beat_normal
 	$TrophyContainer/BeatHardTrophyTexture.visible = game.persistent_data.beat_hard
 	$TrophyContainer/BeatHardHitlessTrophyTexture.visible = game.persistent_data.beat_hard_hitless
+	$VolumeSlider.value = game.persistent_data.volume
 	
 
 func _on_game_paused(newState) -> void:
@@ -43,3 +44,10 @@ func _on_continue_button_pressed() -> void:
 func _on_new_game_button_pressed() -> void:
 	self.visible = false
 	game.start_new_game($ButtonContainer/NewGameButton/HBoxContainer/TutorialToggle.button_pressed, $ButtonContainer/NewGameButton/HBoxContainer/HardmodeToggle.button_pressed)
+
+
+func _on_volume_slider_value_changed(value: float) -> void:
+	var bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_linear(bus_index, value)
+	game.persistent_data.volume = value
+	game.save_persistent_data()

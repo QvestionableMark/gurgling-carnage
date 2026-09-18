@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y8x1hm2wjidf"
-path="res://.godot/imported/Cutscene-0006-Sheet.png-de44efa661a5a4d0b38071690e521b37.ctex"
+uid="uid://cojtjlnakmc1q"
+path="res://.godot/imported/Rock-Sheet.png-99db08742dc6cfd2c33f8b49cc85e7eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/stages/stage_1/Cutscene-0006-Sheet.png"
-dest_files=["res://.godot/imported/Cutscene-0006-Sheet.png-de44efa661a5a4d0b38071690e521b37.ctex"]
+source_file="res://spritesheets/stages/stage_3/Rock-Sheet.png"
+dest_files=["res://.godot/imported/Rock-Sheet.png-99db08742dc6cfd2c33f8b49cc85e7eb.ctex"]
 
 [params]
 
