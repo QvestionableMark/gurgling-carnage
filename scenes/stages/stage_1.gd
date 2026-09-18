@@ -45,7 +45,7 @@ func _on_attack_timer_timeout() -> void:
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false
-		elif not is_spitting and rng < 0.7:
+		elif not is_spitting and rng < 0.5:
 			is_spitting = true
 			$BossBody/AnimatedSprite2D.play("spit")
 			while $BossBody/AnimatedSprite2D.frame != 5:
@@ -56,7 +56,7 @@ func _on_attack_timer_timeout() -> void:
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false
-		elif not is_stabbing and rng < 1.0:
+		elif not is_stabbing and rng < 0.6:
 			is_stabbing = true
 			var tentacle = TENTACLE.instantiate() as Attack
 			add_child(tentacle)

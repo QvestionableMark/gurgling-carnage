@@ -10,7 +10,7 @@ var bottom_mouth_start_position
 func _ready() -> void:
 	super()
 	if not game.persistent_data.hardmode:
-		$AttackTimer.wait_time *= 1.5
+		$AttackTimer.wait_time *= 2
 	var fade = STAGE_FADE.instantiate() as StageFade
 	fade.fade_into_black = false
 	add_child(fade)

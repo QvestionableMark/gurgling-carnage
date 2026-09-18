@@ -108,21 +108,25 @@ func _physics_process(delta):
 	
 	external_velocity = external_velocity.move_toward(Vector2.ZERO,ACCELARATION * delta)
 	
+func set_animation(animation: StringName):
+	if $AnimatedSprite2D.animation != animation:
+		$AnimatedSprite2D.play(animation)
+
 func resolve_animation():
 	if is_parrying:
-		$AnimatedSprite2D.play("parry")
+		set_animation("parry")
 	elif is_dashing:
-		$AnimatedSprite2D.play("dash")
+		set_animation("dash")
 	elif is_jumping:
-		$AnimatedSprite2D.play("jump")
+		set_animation("jump")
 	elif is_fast_falling:
-		$AnimatedSprite2D.play("fast_fall")
+		set_animation("fast_fall")
 	elif is_falling:
-		$AnimatedSprite2D.play("fall")
+		set_animation("fall")
 	elif is_running:
-		$AnimatedSprite2D.play("run")
+		set_animation("run")
 	else:
-		$AnimatedSprite2D.play("idle")
+		set_animation("idle")
 
 func take_damage(damage):
 	if game.persistent_data.hardmode:
@@ -133,7 +137,6 @@ func take_damage(damage):
 	on_hit_sound.play()
 	if game.persistent_data.health <= 0:
 		death_sound.play()
-		death_sound.finished
 		game.handle_death()
 		
 	else:
@@ -146,12 +149,14 @@ func _on_dash_timer_timeout() -> void:
 	$NonRollingCollision.disabled = false
 
 func _on_animated_sprite_2d_animation_finished() -> void:
+	print("FINISHED SIGNAL. Current animation: ", $AnimatedSprite2D.animation)
 	if $AnimatedSprite2D.animation == "jump":
 		is_jumping = false
 	elif $AnimatedSprite2D.animation == "dash":
 		is_dashing = false
 	elif $AnimatedSprite2D.animation == "parry":
 		is_parrying = false
+	resolve_animation()
 
 
 func _on_parryable_area_body_shape_entered(_body_rid: RID, body: Node2D, body_shape_index: int, _local_shape_index: int) -> void:

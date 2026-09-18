@@ -31,7 +31,7 @@ turbulence_noise_strength = 0.5
 [node name="GPUParticles2D" type="GPUParticles2D" unique_id=96537895]
 scale = Vector2(5, 5)
 emitting = false
-amount = 6
+amount = 10
 one_shot = true
 speed_scale = 1.5
 explosiveness = 1.0

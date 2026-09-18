@@ -106,17 +106,16 @@ texture = ExtResource("6_pla3n")
 
 [node name="ToggleMenu" type="TextureButton" parent="KeybindMenu" unique_id=483275173]
 texture_filter = 1
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 1
 anchors_preset = -1
-offset_top = -64.0
-offset_right = 128.0
-offset_bottom = 64.0
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 pivot_offset_ratio = Vector2(0, 0.5)
 toggle_mode = true
 texture_normal = ExtResource("7_pla3n")
 texture_pressed = ExtResource("8_ma2ai")
+ignore_texture_size = true
 stretch_mode = 0
 
 [node name="DeathLabel" type="Label" parent="." unique_id=1436009545]

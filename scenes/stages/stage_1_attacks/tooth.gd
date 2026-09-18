@@ -1,7 +1,8 @@
 extends Attack
 
-var speed = 750
+var speed = 550
 var direction
+var is_finished = false
 
 func _ready() -> void:
 	if not has_parry_indicator:
@@ -14,9 +15,13 @@ func _ready() -> void:
 	visible = true
 
 func _physics_process(delta: float) -> void:
+	if is_finished:
+		return
 	position += direction * speed * delta
 
 func handle_parry(player : Player):
+	if is_finished:
+		return
 	sync_to_physics = false
 	direction = player.global_position.direction_to(global_position)
 	look_at(global_position + direction)
@@ -39,7 +44,7 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 		hit_something = true
 		
 	if hit_something:
-		speed = 0
+		is_finished = true
 		add_collision_exception_with(body)
 		$AnimatedSprite2D.play("hit")
 		await $AnimatedSprite2D.animation_finished

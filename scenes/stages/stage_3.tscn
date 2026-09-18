@@ -780,7 +780,7 @@ rotation = 0.7853982
 shape = SubResource("RectangleShape2D_7ldjl")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=1893100602]
-wait_time = 0.66
+wait_time = 0.5
 autostart = true
 
 [node name="TopMouth" type="Node2D" parent="." unique_id=1652452482]

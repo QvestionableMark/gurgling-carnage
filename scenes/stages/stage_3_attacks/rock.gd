@@ -22,6 +22,8 @@ func _physics_process(delta: float) -> void:
 		position += direction * speed * delta
 
 func handle_parry(player : Player):
+	if is_finished:
+		return
 	sync_to_physics = false
 	direction.x = (-global_position.direction_to(player.global_position)).x
 	rotation = direction.angle()

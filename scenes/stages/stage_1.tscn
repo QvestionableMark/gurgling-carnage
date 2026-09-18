@@ -542,7 +542,7 @@ position = Vector2(100, 540)
 shape = SubResource("RectangleShape2D_7ts77")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=54532396]
-wait_time = 0.33
+wait_time = 0.66
 autostart = true
 
 [node name="BossBody" type="StaticBody2D" parent="." unique_id=830070856 groups=["boss"]]
