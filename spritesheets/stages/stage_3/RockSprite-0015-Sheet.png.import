@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqiejm57a1yqy"
-path="res://.godot/imported/ContinueSprite-0012-Sheet.png-55e0f1f961e6ebe14c1575c83c02cd92.ctex"
+uid="uid://hpl7mhpd6l1h"
+path="res://.godot/imported/RockSprite-0015-Sheet.png-91f655d6fd08bb69c4384d00a9e794fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/other/ContinueSprite-0012-Sheet.png"
-dest_files=["res://.godot/imported/ContinueSprite-0012-Sheet.png-55e0f1f961e6ebe14c1575c83c02cd92.ctex"]
+source_file="res://spritesheets/stages/stage_3/RockSprite-0015-Sheet.png"
+dest_files=["res://.godot/imported/RockSprite-0015-Sheet.png-91f655d6fd08bb69c4384d00a9e794fd.ctex"]
 
 [params]
 

@@ -13,3 +13,9 @@ func _process(_delta: float) -> void:
 			game.load_stage(clamp(current_stage_number + 1, -1, game.stages.size() - 1))
 		if Input.is_action_just_pressed("debug_previous_stage"):
 			game.load_stage(clamp(current_stage_number - 1, -1, game.stages.size() - 1))
+		if Input.is_action_just_pressed("debug_clear_wins"):
+			game.persistent_data.beat_normal = false
+			game.persistent_data.beat_hard = false
+			game.persistent_data.beat_hard_hitless = false
+			game.load_stage(-1)
+			game.save_persistent_data()

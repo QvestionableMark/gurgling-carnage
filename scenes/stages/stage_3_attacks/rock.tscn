@@ -1,32 +1,102 @@
 [gd_scene format=3 uid="uid://cxy5vyxe83eqy"]
 
 [ext_resource type="Script" uid="uid://jk0uqqvftmg4" path="res://scenes/stages/stage_3_attacks/rock.gd" id="1_nr814"]
-[ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="1_ymovo"]
+[ext_resource type="Texture2D" uid="uid://hpl7mhpd6l1h" path="res://spritesheets/stages/stage_3/RockSprite-0015-Sheet.png" id="2_dx4ek"]
+[ext_resource type="PackedScene" uid="uid://c4yhjl14srqd5" path="res://scenes/across_stage/parry_indicator_sprite.tscn" id="3_yakqc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3t2u"]
-size = Vector2(120, 120)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dx4ek"]
+radius = 55.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_71ke2"]
-size = Vector2(23, 110)
+[sub_resource type="CircleShape2D" id="CircleShape2D_yakqc"]
+radius = 43.03
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yakqc"]
+atlas = ExtResource("2_dx4ek")
+region = Rect2(0, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpoik"]
+atlas = ExtResource("2_dx4ek")
+region = Rect2(70, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mutg1"]
+atlas = ExtResource("2_dx4ek")
+region = Rect2(140, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpn8n"]
+atlas = ExtResource("2_dx4ek")
+region = Rect2(210, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7n4e"]
+atlas = ExtResource("2_dx4ek")
+region = Rect2(280, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6gqq"]
+atlas = ExtResource("2_dx4ek")
+region = Rect2(350, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wgdd"]
+atlas = ExtResource("2_dx4ek")
+region = Rect2(420, 0, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7ywr"]
+atlas = ExtResource("2_dx4ek")
+region = Rect2(490, 0, 70, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7522"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yakqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpoik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mutg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpn8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7n4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6gqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wgdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7ywr")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
 
 [node name="rock" type="AnimatableBody2D" unique_id=1432498080]
 sync_to_physics = false
 script = ExtResource("1_nr814")
 is_parryable = true
-hit_damage = 30
+hit_damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2047718603 groups=["parryable"]]
-shape = SubResource("RectangleShape2D_b3t2u")
+position = Vector2(4.65, 0)
+shape = SubResource("CircleShape2D_dx4ek")
 
 [node name="HitArea" type="Area2D" parent="." unique_id=399776764]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=789587286]
-position = Vector2(54.5, 0.5)
-shape = SubResource("RectangleShape2D_71ke2")
+position = Vector2(26.69, 0)
+shape = SubResource("CircleShape2D_yakqc")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=61587021]
-position = Vector2(-1, 1)
-rotation = 1.5707964
-texture = ExtResource("1_ymovo")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1208025794]
+texture_filter = 1
+scale = Vector2(2.35, 2.35)
+sprite_frames = SubResource("SpriteFrames_d7522")
+autoplay = "default"
+
+[node name="parry_indicator_sprite" parent="." unique_id=454821429 instance=ExtResource("3_yakqc")]
+position = Vector2(49, 0)
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

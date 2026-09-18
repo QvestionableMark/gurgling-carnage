@@ -5,7 +5,10 @@ var persistent_data = {
 	"checkpoint": -1,
 	"health": 100,
 	"tutorial": true,
-	"hardmode": false
+	"hardmode": false,
+	"beat_normal": false,
+	"beat_hard": false,
+	"beat_hard_hitless": false
 }
 signal persistent_data_loaded()
 signal stage_loaded(stage_number)
@@ -58,6 +61,12 @@ func handle_death():
 	save_persistent_data()
 	
 func handle_win():
+	persistent_data.beat_normal = true
+	if persistent_data.hardmode:
+		persistent_data.beat_hard = true
+		if persistent_data.health == 100:
+			persistent_data.beat_hard_hitless = true
+	
 	load_stage(-1)
 	save_persistent_data()
 

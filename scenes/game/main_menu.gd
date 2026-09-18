@@ -23,6 +23,10 @@ func initialization():
 	$ButtonContainer/ContinueButton.visible = game.persistent_data.checkpoint > -1
 	$ButtonContainer/NewGameButton/HBoxContainer/TutorialToggle.button_pressed = game.persistent_data.tutorial
 	$ButtonContainer/NewGameButton/HBoxContainer/HardmodeToggle.button_pressed = game.persistent_data.hardmode
+	$TrophyContainer/BeatNormalTrophyTexture.visible = game.persistent_data.beat_normal
+	$TrophyContainer/BeatHardTrophyTexture.visible = game.persistent_data.beat_hard
+	$TrophyContainer/BeatHardHitlessTrophyTexture.visible = game.persistent_data.beat_hard_hitless
+	
 
 func _on_game_paused(newState) -> void:
 	$BackgroundSprite.visible = not newState
