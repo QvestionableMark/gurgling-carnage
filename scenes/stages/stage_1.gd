@@ -27,7 +27,7 @@ func take_damage(damage):
 		await fade.fade_done
 		game.load_stage.call_deferred(stage_number + 1)
 
-func _on_timer_timeout() -> void:
+func _on_attack_timer_timeout() -> void:
 	if not is_active:
 		return
 	
@@ -69,7 +69,7 @@ func _on_timer_timeout() -> void:
 			is_stabbing = false
 
 func _on_knockback_area_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and boss_current_health > 0:
 		body.take_damage(COLLISION_DAMAGE)
 		body.end_lag += 0.5
 		body.external_velocity += Vector2(-1,-1).normalized() * 1500

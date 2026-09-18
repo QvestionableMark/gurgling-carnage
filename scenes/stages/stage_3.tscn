@@ -114,11 +114,19 @@ size = Vector2(480, 1080)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ykyq"]
 size = Vector2(520, 1080)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k7kex"]
+radius = 350.0
+height = 1300.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33m27"]
+size = Vector2(300, 750)
+
 [node name="Stage3" type="Node2D" unique_id=1498283267]
 process_mode = 1
 script = ExtResource("1_djy2v")
 stage_number = 3
 player_start_position = Vector2(990, 100)
+boss_health = 200
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=1401468236]
 texture_filter = 1
@@ -127,10 +135,10 @@ scale = Vector2(6.4, 6.4)
 sprite_frames = SubResource("SpriteFrames_e481a")
 autoplay = "default"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1903234587]
+[node name="FloorBody" type="StaticBody2D" parent="." unique_id=1903234587 groups=["solid"]]
 position = Vector2(990, 700)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2127308480]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody" unique_id=2127308480]
 shape = SubResource("RectangleShape2D_71ke2")
 
 [node name="FloorBody2" type="StaticBody2D" parent="." unique_id=479483472]
@@ -139,14 +147,49 @@ position = Vector2(960, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody2" unique_id=473203036]
 shape = SubResource("RectangleShape2D_k7kex")
 
-[node name="FloorBody3" type="StaticBody2D" parent="." unique_id=1822615144]
+[node name="FloorBody3" type="StaticBody2D" parent="." unique_id=1822615144 groups=["solid"]]
 position = Vector2(0, 540)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody3" unique_id=332004679]
 shape = SubResource("RectangleShape2D_sl44i")
 
-[node name="FloorBody4" type="StaticBody2D" parent="." unique_id=1509315865]
+[node name="FloorBody4" type="StaticBody2D" parent="." unique_id=1509315865 groups=["solid"]]
 position = Vector2(1920, 540)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody4" unique_id=433524024]
 shape = SubResource("RectangleShape2D_8ykyq")
+
+[node name="KnockbackArea" type="Area2D" parent="." unique_id=790420966]
+position = Vector2(990, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KnockbackArea" unique_id=896583810]
+position = Vector2(-524, 533.99994)
+rotation = -0.17453292
+shape = SubResource("CapsuleShape2D_k7kex")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="KnockbackArea" unique_id=586603430]
+position = Vector2(578, 545)
+rotation = 0.17453292
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_k7kex")
+
+[node name="BossBody" type="StaticBody2D" parent="." unique_id=53939281 groups=["boss"]]
+position = Vector2(400, 700)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBody" unique_id=178800761]
+position = Vector2(-2, 112)
+shape = SubResource("RectangleShape2D_33m27")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1893100602]
+wait_time = 0.5
+autostart = true
+
+[node name="BossBody2" type="StaticBody2D" parent="." unique_id=1014193105 groups=["boss"]]
+position = Vector2(1600, 700)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBody2" unique_id=328782443]
+position = Vector2(-7, 110)
+shape = SubResource("RectangleShape2D_33m27")
+
+[connection signal="body_entered" from="KnockbackArea" to="." method="_on_knockback_area_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

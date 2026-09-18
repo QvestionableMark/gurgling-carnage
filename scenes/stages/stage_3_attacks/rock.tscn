@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cxy5vyxe83eqy"]
+
+[ext_resource type="Script" uid="uid://jk0uqqvftmg4" path="res://scenes/stages/stage_3_attacks/rock.gd" id="1_nr814"]
+[ext_resource type="Texture2D" uid="uid://ctxfvo2l6rhhw" path="res://whodoesthisguythinkheis.svg" id="1_ymovo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3t2u"]
+size = Vector2(120, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71ke2"]
+size = Vector2(23, 110)
+
+[node name="rock" type="AnimatableBody2D" unique_id=1432498080]
+sync_to_physics = false
+script = ExtResource("1_nr814")
+is_parryable = true
+hit_damage = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2047718603 groups=["parryable"]]
+shape = SubResource("RectangleShape2D_b3t2u")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=399776764]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=789587286]
+position = Vector2(54.5, 0.5)
+shape = SubResource("RectangleShape2D_71ke2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=61587021]
+position = Vector2(-1, 1)
+rotation = 1.5707964
+texture = ExtResource("1_ymovo")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

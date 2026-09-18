@@ -552,5 +552,5 @@ position = Vector2(-300.79504, -13.424988)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBody/KnockbackArea" unique_id=954799767]
 shape = SubResource("CapsuleShape2D_l1pay")
 
-[connection signal="timeout" from="AttackTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="BossBody/KnockbackArea" to="." method="_on_knockback_area_body_entered"]
