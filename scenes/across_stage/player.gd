@@ -75,11 +75,9 @@ func _physics_process(delta):
 		if Input.is_action_pressed("move_left"):
 			input_velocity.x -= effective_speed 
 			$AnimatedSprite2D.scale.x = -abs($AnimatedSprite2D.scale.x)
-			run_sound.play()
 		if Input.is_action_pressed("move_right"):
 			input_velocity.x += effective_speed
 			$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x)
-			run_sound.play()
 	if input_velocity.x != 0:
 		is_running = true
 	if not is_on_floor() or game.current_stage.is_free_fall:
@@ -100,6 +98,8 @@ func _physics_process(delta):
 			jump_sound.play()
 		else:
 			input_velocity.y = 0
+			if not $run_sound.playing and input_velocity.x != 0:
+				$run_sound.play()
 	
 	velocity = input_velocity + external_velocity
 	
@@ -133,7 +133,7 @@ func take_damage(damage):
 	on_hit_sound.play()
 	if game.persistent_data.health <= 0:
 		death_sound.play()
-		await death_sound.finished
+		death_sound.finished
 		game.handle_death()
 		
 	else:
