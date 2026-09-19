@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bhprl7jnjniyd" path="res://scenes/game/game.gd" id="1_7h61r"]
 [ext_resource type="PackedScene" uid="uid://daoojfeife58m" path="res://scenes/game/main_menu.tscn" id="1_sul5r"]
-[ext_resource type="Script" uid="uid://d0x7kalp6k5hj" path="res://independant_scripts/debug.gd" id="3_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://d2bxpwrj8ljvh" path="res://scenes/game/hud.tscn" id="4_kelw5"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_kelw5"]
@@ -20,9 +19,6 @@ stages = Array[String](["res://scenes/stages/stage_0.tscn", "res://scenes/stages
 [node name="main_menu" parent="." unique_id=283012810 instance=ExtResource("1_sul5r")]
 process_mode = 0
 
-[node name="Debug" type="Node2D" parent="." unique_id=1435487560]
-script = ExtResource("3_0sr1o")
-
 [node name="game_hud" parent="." unique_id=640819470 instance=ExtResource("4_kelw5")]
 visible = false
 
@@ -30,6 +26,7 @@ visible = false
 stream = SubResource("AudioStreamWAV_kelw5")
 volume_db = -28.0
 autoplay = true
+playback_type = 1
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1582989141]
 wait_time = 2.0

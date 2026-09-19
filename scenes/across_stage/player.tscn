@@ -693,38 +693,45 @@ one_shot = true
 process_mode = 3
 stream = ExtResource("9_pdoji")
 volume_db = -2.0
+playback_type = 1
 
 [node name="DeathAudio" type="AudioStreamPlayer2D" parent="." unique_id=324811649]
 process_mode = 3
 stream = ExtResource("10_0j4an")
 pitch_scale = 1.2
+playback_type = 1
 
 [node name="JumpAudio" type="AudioStreamPlayer2D" parent="." unique_id=378018998]
 process_mode = 3
 scale = Vector2(0.99999994, 0.99999994)
 stream = ExtResource("11_0j4an")
 volume_db = -1.0
+playback_type = 1
 
 [node name="RunAudio" type="AudioStreamPlayer2D" parent="." unique_id=1604405581]
 process_mode = 3
 stream = ExtResource("12_or45o")
 volume_db = -24.299
+playback_type = 1
 
 [node name="DashAudio" type="AudioStreamPlayer2D" parent="." unique_id=602010592]
 process_mode = 3
 stream = SubResource("AudioStreamWAV_or45o")
 volume_db = -3.0
+playback_type = 1
 
 [node name="ParryAudio" type="AudioStreamPlayer2D" parent="." unique_id=1277462089]
 process_mode = 3
 stream = ExtResource("14_0j4an")
 volume_db = -3.0
+playback_type = 1
 
 [node name="WhifParryAudio" type="AudioStreamPlayer2D" parent="." unique_id=2018514077]
 process_mode = 3
 stream = ExtResource("11_0j4an")
 volume_db = -10.0
 pitch_scale = 1.5
+playback_type = 1
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_shape_entered" from="AnimatedSprite2D/ParryableArea" to="." method="_on_parryable_area_body_shape_entered"]
