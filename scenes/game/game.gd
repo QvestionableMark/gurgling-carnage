@@ -89,6 +89,7 @@ func load_stage(stage_number_to_load):
 
 func load_persistent_data():
 	if not FileAccess.file_exists("user://persistent_data.json"):
+		persistent_data_loaded.emit()
 		return
 	var file = FileAccess.open("user://persistent_data.json", FileAccess.READ)
 	var loaded_persistent_data : Dictionary = JSON.parse_string(file.get_as_text())
