@@ -57,7 +57,7 @@ func _physics_process(delta):
 			parried_anything = true
 			end_lag += 0.3
 			$ParryAudio.play()
-			var parry_particle_instance : GPUParticles2D = PARRY_PARTICLE.instantiate()
+			var parry_particle_instance : CPUParticles2D = PARRY_PARTICLE.instantiate()
 			attack.handle_parry(self)
 			parry_particle_instance.position = $AnimatedSprite2D/ParryableArea.global_position + (attack.global_position - global_position)/2
 			game.add_child(parry_particle_instance)
