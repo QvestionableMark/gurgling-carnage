@@ -817,6 +817,7 @@ libraries/ = SubResource("AnimationLibrary_8ykyq")
 
 [node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1735836067]
 process_mode = 3
+position = Vector2(1000, 1100)
 stream = ExtResource("3_sl44i")
 volume_db = 6.0
 
