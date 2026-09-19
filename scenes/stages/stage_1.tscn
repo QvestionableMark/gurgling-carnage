@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cdyd4y706mo70" path="res://spritesheets/stages/stage_1/Cavev22Sprite-0016-Sheet.png" id="3_ncvry"]
 [ext_resource type="Texture2D" uid="uid://bg4jdvicwlcp7" path="res://spritesheets/stages/stage_1/Bossv2Sprite-0002-Sheet.png" id="4_k45mu"]
 [ext_resource type="Texture2D" uid="uid://ij46lr63ejw4" path="res://spritesheets/stages/stage_1/BossSpitSprite-0002-Sheet.png" id="5_ncvry"]
+[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Dash.wav" id="6_l1pay"]
+[ext_resource type="AudioStream" uid="uid://f05ixxor3yyv" path="res://audios/Spit.wav" id="7_1tge3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ncvry"]
 atlas = ExtResource("2_k45mu")
@@ -566,6 +568,16 @@ position = Vector2(-300.79504, -13.424988)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBody/KnockbackArea" unique_id=954799767]
 shape = SubResource("CapsuleShape2D_l1pay")
+
+[node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1366051043]
+process_mode = 3
+stream = ExtResource("6_l1pay")
+volume_db = 6.0
+
+[node name="SpitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1485702800]
+process_mode = 3
+stream = ExtResource("7_1tge3")
+volume_db = 12.0
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="BossBody/KnockbackArea" to="." method="_on_knockback_area_body_entered"]

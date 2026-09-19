@@ -18,6 +18,7 @@ func  _ready() -> void:
 func take_damage(damage):
 	boss_current_health -= damage
 	game.hud_update.emit()
+	$OnHitAudio.play()
 	
 	if boss_current_health <= 0:
 		is_active = false
@@ -31,32 +32,27 @@ func _on_attack_timer_timeout() -> void:
 	if not is_active:
 		return
 	
-	if  randf() < 1.0/3.0:
+	if  randf() < 0.66:
 		var rng = randf()
-		if not is_spitting and rng < 0.3:
+		if not is_spitting and rng < 0.6:
 			is_spitting = true
 			$BossBody/AnimatedSprite2D.play("spit")
+			$SpitAudio.play()
 			while $BossBody/AnimatedSprite2D.frame != 5:
 				await $BossBody/AnimatedSprite2D.frame_changed
-			var tooth = TOOTH.instantiate() as Attack
-			tooth.global_position = $BossBody/MouthPosition.global_position
-			tooth.has_parry_indicator = game.persistent_data.tutorial
-			add_child(tooth)
+			if rng < 0.3:
+				var tooth = TOOTH.instantiate() as Attack
+				tooth.global_position = $BossBody/MouthPosition.global_position
+				tooth.has_parry_indicator = game.persistent_data.tutorial
+				add_child(tooth)
+			else:
+				var acid = ACID.instantiate() as Attack
+				acid.global_position = $BossBody/MouthPosition.global_position
+				add_child(acid)
 			await $BossBody/AnimatedSprite2D.animation_finished
 			$BossBody/AnimatedSprite2D.play("default")
 			is_spitting = false
-		elif not is_spitting and rng < 0.5:
-			is_spitting = true
-			$BossBody/AnimatedSprite2D.play("spit")
-			while $BossBody/AnimatedSprite2D.frame != 5:
-				await $BossBody/AnimatedSprite2D.frame_changed
-			var acid = ACID.instantiate() as Attack
-			acid.global_position = $BossBody/MouthPosition.global_position
-			add_child(acid)
-			await $BossBody/AnimatedSprite2D.animation_finished
-			$BossBody/AnimatedSprite2D.play("default")
-			is_spitting = false
-		elif not is_stabbing and rng < 0.6:
+		elif not is_stabbing and rng < 0.7:
 			is_stabbing = true
 			var tentacle = TENTACLE.instantiate() as Attack
 			add_child(tentacle)

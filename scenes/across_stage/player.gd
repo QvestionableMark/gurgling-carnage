@@ -3,12 +3,6 @@ extends CharacterBody2D
 
 var game : Game
 @onready var PARRY_PARTICLE : PackedScene = preload("res://scenes/across_stage/parry_particle.tscn")
-@onready var on_hit_sound = $on_hit_sound
-@onready var death_sound =$death_sound
-@onready var run_sound = $run_sound
-@onready var jump_sound = $jump_sound
-@onready var dash_sound = $dash_sound
-@onready var parry_sound = $parry_sound
 var potential_parryable_attacks : Array[Node2D] = []
 
 const JUMP_VELOCITY = -750
@@ -47,25 +41,28 @@ func _physics_process(delta):
 		input_velocity.y = 0
 		$RollingCollision.disabled = false
 		$NonRollingCollision.disabled = true
-		dash_sound.play()
+		$DashAudio.play()
 	if $DashTimer.time_left > 0:
 		effective_speed *= 2.5
 
 	if $ParryTimer.time_left + end_lag == 0 and Input.is_action_just_pressed("parry"):
-		$ParryTimer.start()
+		$ParryTimer.start(0.6)
 		is_parrying = true
 		is_jumping = false
 		is_dashing = false
-		
+		var parried_any = false
 		for attack in potential_parryable_attacks:
 			if not is_instance_valid(attack) or not attack.is_parryable or not $AnimatedSprite2D/ParryableArea.overlaps_body(attack):
 				continue
+			parried_any = true
 			end_lag += 0.3
-			parry_sound.play()
+			$ParryAudio.play()
 			var parry_particle_instance : GPUParticles2D = PARRY_PARTICLE.instantiate()
 			attack.handle_parry(self)
 			parry_particle_instance.position = $AnimatedSprite2D/ParryableArea.global_position + (attack.global_position - global_position)/2
 			game.add_child(parry_particle_instance)
+		if not parried_any:
+			$WhifParryAudio.play()
 		potential_parryable_attacks.clear()
 	
 	input_velocity.x = 0
@@ -95,11 +92,11 @@ func _physics_process(delta):
 		if end_lag == 0 and Input.is_action_just_pressed("jump"):
 			input_velocity.y = JUMP_VELOCITY
 			is_jumping = true
-			jump_sound.play()
+			$JumpAudio.play()
 		else:
 			input_velocity.y = 0
-			if not $run_sound.playing and input_velocity.x != 0:
-				$run_sound.play()
+			if not $RunAudio.playing and input_velocity.x != 0:
+				$RunAudio.play()
 	
 	velocity = input_velocity + external_velocity
 	
@@ -134,9 +131,9 @@ func take_damage(damage):
 	game.persistent_data.health -= damage
 	game.hud_update.emit()
 	modulate = Color.RED
-	on_hit_sound.play()
+	$OnHitAudio.play()
 	if game.persistent_data.health <= 0:
-		death_sound.play()
+		$DeathAudio.play()
 		game.handle_death()
 		
 	else:
@@ -149,7 +146,6 @@ func _on_dash_timer_timeout() -> void:
 	$NonRollingCollision.disabled = false
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	print("FINISHED SIGNAL. Current animation: ", $AnimatedSprite2D.animation)
 	if $AnimatedSprite2D.animation == "jump":
 		is_jumping = false
 	elif $AnimatedSprite2D.animation == "dash":

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1gfd5x3yd75a" path="res://scenes/stages/stage_3.gd" id="1_djy2v"]
 [ext_resource type="Texture2D" uid="uid://ccpyia7ml20up" path="res://spritesheets/stages/stage_3/Squarescene3.png" id="2_k7kex"]
+[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Dash.wav" id="3_sl44i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sl44i"]
 atlas = ExtResource("2_k7kex")
@@ -813,6 +814,11 @@ shape = SubResource("CapsuleShape2D_sl44i")
 
 [node name="MouthAnimation" type="AnimationPlayer" parent="." unique_id=715718817]
 libraries/ = SubResource("AnimationLibrary_8ykyq")
+
+[node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1735836067]
+process_mode = 3
+stream = ExtResource("3_sl44i")
+volume_db = 6.0
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="TopMouth/KnockbackArea" to="." method="_on_knockback_area_body_entered"]

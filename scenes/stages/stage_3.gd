@@ -22,7 +22,8 @@ func _ready() -> void:
 func take_damage(damage):
 	boss_current_health -= damage
 	game.hud_update.emit()
-	
+	$OnHitAudio.play()
+
 	if boss_current_health <= 0:
 		is_active = false
 		$Background.pause()

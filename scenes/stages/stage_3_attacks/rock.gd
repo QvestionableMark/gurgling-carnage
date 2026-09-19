@@ -1,6 +1,6 @@
 extends Attack
 
-var speed = 300 
+var speed = 400 
 var direction
 var is_finished = false
 

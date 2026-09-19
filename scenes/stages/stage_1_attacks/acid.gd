@@ -9,7 +9,7 @@ func _ready() -> void:
 	var rng = randf()
 	var target = Vector2(0,(-0.75 + rng * 1.5) * 1080)
 	look_at(target)
-	velocity = position.direction_to(target) * SPEED * (rng / 2 + 0.5)
+	velocity = position.direction_to(target) * SPEED * (rng / 2 + 0.3)
 	visible = true
 
 func _physics_process(delta: float) -> void:

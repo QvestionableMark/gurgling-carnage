@@ -28,9 +28,13 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if pre_fired:
 		queue_free()
 		return
+	
+	
 	pre_fired = true
 	$HitArea.monitoring = true
+	$LaserAudio.play()
 	$AnimatedSprite2D.self_modulate = Color.WHITE
-	$AnimatedSprite2D.speed_scale = 10
+	$AnimatedSprite2D.speed_scale *= 10
 	$AnimatedSprite2D.play("default")
+	
 	
