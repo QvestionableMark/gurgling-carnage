@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqwoggkklfqwl" path="res://scenes/stages/stage_2_attacks/piercing.gd" id="1_fxh60"]
 [ext_resource type="Texture2D" uid="uid://cn1gxeos5n6fc" path="res://spritesheets/stages/stage_2/piercing_blood-Sheet.png" id="2_ky5rc"]
-[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Dash.wav" id="3_fxh60"]
+[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Hit.wav" id="3_fxh60"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ky5rc"]
 size = Vector2(1920, 20)

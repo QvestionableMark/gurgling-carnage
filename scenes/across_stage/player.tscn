@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://u8dojc085oi6" path="res://spritesheets/player/Boss_rollmc-Sheet.png" id="5_h5tfo"]
 [ext_resource type="Texture2D" uid="uid://co746yjyy5cp4" path="res://spritesheets/player/Boss_runmc-Sheet.png" id="5_wdca0"]
 [ext_resource type="Texture2D" uid="uid://lojs1svy2vyp" path="res://spritesheets/player/parrymc-Sheet.png" id="7_0j4an"]
-[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Dash.wav" id="9_pdoji"]
+[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Hit.wav" id="9_pdoji"]
 [ext_resource type="AudioStream" uid="uid://7p86jsl4q31v" path="res://audios/Death.wav" id="10_0j4an"]
-[ext_resource type="AudioStream" uid="uid://236cvvkw2ae5" path="res://audios/Grunt2.mp3" id="11_0j4an"]
+[ext_resource type="AudioStream" uid="uid://236cvvkw2ae5" path="res://audios/Grunt.mp3" id="11_0j4an"]
 [ext_resource type="AudioStream" uid="uid://cfrpyxty0tklh" path="res://audios/Footstep.wav" id="12_or45o"]
 [ext_resource type="AudioStream" uid="uid://lfvddl6874b5" path="res://audios/Parry.wav" id="14_0j4an"]
 
@@ -722,9 +722,9 @@ volume_db = -3.0
 
 [node name="WhifParryAudio" type="AudioStreamPlayer2D" parent="." unique_id=2018514077]
 process_mode = 3
-stream = ExtResource("14_0j4an")
-volume_db = -6.0
-pitch_scale = 3.0
+stream = ExtResource("11_0j4an")
+volume_db = -10.0
+pitch_scale = 1.5
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_shape_entered" from="AnimatedSprite2D/ParryableArea" to="." method="_on_parryable_area_body_shape_entered"]

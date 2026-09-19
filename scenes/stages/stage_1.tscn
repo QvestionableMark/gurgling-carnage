@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cdyd4y706mo70" path="res://spritesheets/stages/stage_1/Cavev22Sprite-0016-Sheet.png" id="3_ncvry"]
 [ext_resource type="Texture2D" uid="uid://bg4jdvicwlcp7" path="res://spritesheets/stages/stage_1/Bossv2Sprite-0002-Sheet.png" id="4_k45mu"]
 [ext_resource type="Texture2D" uid="uid://ij46lr63ejw4" path="res://spritesheets/stages/stage_1/BossSpitSprite-0002-Sheet.png" id="5_ncvry"]
-[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Dash.wav" id="6_l1pay"]
+[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Hit.wav" id="6_l1pay"]
 [ext_resource type="AudioStream" uid="uid://f05ixxor3yyv" path="res://audios/Spit.wav" id="7_1tge3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ncvry"]
