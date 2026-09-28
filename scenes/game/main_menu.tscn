@@ -92,7 +92,7 @@ position = Vector2(960, 540)
 scale = Vector2(192, 108)
 texture = ExtResource("3_16onh")
 
-[node name="DeathLabel" type="Label" parent="." unique_id=1225528225]
+[node name="PauseLabel" type="Label" parent="." unique_id=1225528225]
 z_index = -2
 anchors_preset = 7
 anchor_left = 0.5
@@ -106,11 +106,13 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.756923, 0.73627245, 0.7029156, 0.39215687)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7176471)
-theme_override_font_sizes/font_size = 200
+theme_override_fonts/font = ExtResource("5_1f7y1")
+theme_override_font_sizes/font_size = 300
 text = "PAUSED"
 horizontal_alignment = 1
 
 [node name="BackgroundSprite" type="AnimatedSprite2D" parent="." unique_id=1680512357]
+visible = false
 z_index = -2
 texture_filter = 1
 position = Vector2(960, 540)
