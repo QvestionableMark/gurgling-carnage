@@ -39,7 +39,7 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 	var hit_something = false
 	if body is Player and not been_parried:
 		body.take_damage(hit_damage)
-		body.end_lag += 0.7
+		body.end_lag += 0.3
 		hit_something = true
 
 	if body.is_in_group("solid"):

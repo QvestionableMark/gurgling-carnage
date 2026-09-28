@@ -46,7 +46,7 @@ func _physics_process(delta):
 		effective_speed *= 2.5
 
 	if $ParryTimer.time_left + end_lag == 0 and Input.is_action_just_pressed("parry"):
-		$ParryTimer.start(0.6)
+		$ParryTimer.start()
 		is_parrying = true
 		is_jumping = false
 		is_dashing = false
@@ -55,7 +55,6 @@ func _physics_process(delta):
 			if not is_instance_valid(attack) or not attack.is_parryable or not $AnimatedSprite2D/ParryableArea.overlaps_body(attack):
 				continue
 			parried_anything = true
-			end_lag += 0.3
 			$ParryAudio.play()
 			var parry_particle_instance : CPUParticles2D = PARRY_PARTICLE.instantiate()
 			attack.handle_parry(self)
@@ -126,6 +125,7 @@ func resolve_animation():
 		set_animation("idle")
 
 func take_damage(damage):
+	damage /= 1000
 	if game.persistent_data.hardmode:
 		damage *= 2
 	game.persistent_data.health -= damage

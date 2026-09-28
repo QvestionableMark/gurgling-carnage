@@ -686,7 +686,7 @@ one_shot = true
 
 [node name="ParryTimer" type="Timer" parent="." unique_id=908417152]
 process_callback = 0
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 
 [node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1019954653]
