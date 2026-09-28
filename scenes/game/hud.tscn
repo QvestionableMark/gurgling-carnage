@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="3_xu0sl"]
 [ext_resource type="Texture2D" uid="uid://f0ynutvujoo2" path="res://spritesheets/player/Healthbaross.png" id="4_8m1vl"]
 [ext_resource type="Texture2D" uid="uid://cdsh1svl6ydwo" path="res://spritesheets/player/Portraitv2Sprite-0010.png" id="5_3k67c"]
-[ext_resource type="Texture2D" uid="uid://cftksjpbw1sdc" path="res://spritesheets/other/tutorial_box.png" id="6_pla3n"]
+[ext_resource type="Texture2D" uid="uid://beqtcak8gbh2w" path="res://spritesheets/other/tutorial_box_background_texture.png" id="6_ma2ai"]
+[ext_resource type="FontFile" uid="uid://cblq5peqqbfaw" path="res://misc/bytebounce/ByteBounce.ttf" id="7_ma2ai"]
 [ext_resource type="Texture2D" uid="uid://bkgbal08segec" path="res://spritesheets/other/arrow_right.png" id="7_pla3n"]
 [ext_resource type="Texture2D" uid="uid://b6jfbct1dfkdl" path="res://spritesheets/other/arrow_left.png" id="8_ma2ai"]
 
@@ -89,7 +90,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 grow_vertical = 2
 
-[node name="Keybinds" type="TextureRect" parent="KeybindMenu" unique_id=139553296]
+[node name="BackgroundTexture" type="TextureRect" parent="KeybindMenu" unique_id=139553296]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -99,7 +100,24 @@ offset_bottom = 200.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset_ratio = Vector2(1, 0.5)
-texture = ExtResource("6_pla3n")
+texture = ExtResource("6_ma2ai")
+
+[node name="KeybindLabel" type="RichTextLabel" parent="KeybindMenu/BackgroundTexture" unique_id=1281084951]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 45.0
+offset_right = 366.0
+offset_bottom = 381.0
+theme_override_constants/line_separation = 19
+theme_override_fonts/normal_font = ExtResource("7_ma2ai")
+bbcode_enabled = true
+text = "[font_size=40][outline_size=10][img=36]res://spritesheets/other/w_key.png[/img]/[img=90]res://spritesheets/other/space_key.png[/img]		Jump
+[img=36]res://spritesheets/other/a_key.png[/img]/[img=36]res://spritesheets/other/d_key.png[/img]		Left/Right
+[img=36]res://spritesheets/other/s_key.png[/img]		Fast Fall
+[img=36]res://spritesheets/other/i_key.png[/img]		Dash
+[img=36]res://spritesheets/other/o_key.png[/img]		Parry
+ Parry Indicator ([img=55]res://spritesheets/other/parry_indicator.png[/img])"
+scroll_active = false
 
 [node name="ToggleMenu" type="TextureButton" parent="KeybindMenu" unique_id=483275173]
 texture_filter = 1
@@ -130,6 +148,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.9411765, 0, 0, 0.39215687)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7176471)
+theme_override_fonts/font = ExtResource("7_ma2ai")
 theme_override_font_sizes/font_size = 200
 text = "PERISHED"
 

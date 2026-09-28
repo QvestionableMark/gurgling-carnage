@@ -46,7 +46,7 @@ func _physics_process(delta):
 		effective_speed *= 2.5
 
 	if $ParryTimer.time_left + end_lag == 0 and Input.is_action_just_pressed("parry"):
-		$ParryTimer.start(0.6)
+		$ParryTimer.start()
 		is_parrying = true
 		is_jumping = false
 		is_dashing = false
@@ -55,7 +55,6 @@ func _physics_process(delta):
 			if not is_instance_valid(attack) or not attack.is_parryable or not $AnimatedSprite2D/ParryableArea.overlaps_body(attack):
 				continue
 			parried_anything = true
-			end_lag += 0.3
 			$ParryAudio.play()
 			var parry_particle_instance : CPUParticles2D = PARRY_PARTICLE.instantiate()
 			attack.handle_parry(self)
@@ -63,6 +62,8 @@ func _physics_process(delta):
 			game.add_child(parry_particle_instance)
 		if not parried_anything:
 			$WhifParryAudio.play()
+		else:
+			game.create_slowmo(0.5,.3)
 		potential_parryable_attacks.clear()
 	
 	input_velocity.x = 0
@@ -89,7 +90,7 @@ func _physics_process(delta):
 			is_fast_falling = true
 			input_velocity += (gravity + fast_fall_gravity) * delta
 	else:
-		if end_lag == 0 and Input.is_action_just_pressed("jump"):
+		if end_lag == 0 and Input.is_action_pressed("jump"):
 			input_velocity.y = JUMP_VELOCITY
 			is_jumping = true
 			$JumpAudio.play()
