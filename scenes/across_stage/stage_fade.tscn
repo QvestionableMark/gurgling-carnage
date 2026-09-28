@@ -11,5 +11,5 @@ visible = false
 self_modulate = Color(0, 0, 0, 1)
 z_index = 99
 position = Vector2(960, 540)
-scale = Vector2(192, 108)
+scale = Vector2(576, 324)
 texture = ExtResource("1_71pbk")
