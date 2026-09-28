@@ -125,6 +125,8 @@ stage_number = 2
 player_start_position = Vector2(960, 540)
 is_free_fall = true
 boss_health = 20.0
+camera_x_restraints = Vector2(960, 960)
+camera_y_restraints = Vector2(540, 540)
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=750435354]
 texture_filter = 1

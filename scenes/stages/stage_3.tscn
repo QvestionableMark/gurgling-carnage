@@ -735,6 +735,8 @@ script = ExtResource("1_djy2v")
 stage_number = 3
 player_start_position = Vector2(990, 100)
 boss_health = 300.0
+camera_x_restraints = Vector2(960, 960)
+camera_y_restraints = Vector2(320, 540)
 
 [node name="Background" type="AnimatedSprite2D" parent="." unique_id=1401468236]
 texture_filter = 1
