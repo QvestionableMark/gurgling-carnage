@@ -6,6 +6,8 @@
 [node name="stage_4" type="Node2D" unique_id=1498283267]
 script = ExtResource("1_t8527")
 stage_number = 4
+camera_x_restraints = Vector2(960, 960)
+camera_y_restraints = Vector2(540, 540)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=840369868]
 

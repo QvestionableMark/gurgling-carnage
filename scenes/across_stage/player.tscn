@@ -655,6 +655,9 @@ tags = {
 scale = Vector2(1.25, 1.25)
 script = ExtResource("1_etwev")
 
+[node name="Camera" type="Camera2D" parent="." unique_id=1700338412]
+scale = Vector2(0.99999994, 0.99999994)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440044799]
 texture_filter = 1
 scale = Vector2(3.9999998, 3.9999998)
@@ -686,7 +689,7 @@ one_shot = true
 
 [node name="ParryTimer" type="Timer" parent="." unique_id=908417152]
 process_callback = 0
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 
 [node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1019954653]
