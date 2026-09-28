@@ -814,7 +814,7 @@ shape = SubResource("CapsuleShape2D_k7kex")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomMouth/BossBody" unique_id=23990662]
 shape = SubResource("CapsuleShape2D_sl44i")
 
-[node name="MouthAnimation" type="AnimationPlayer" parent="." unique_id=715718817]
+[node name="MouthColliderAnimation" type="AnimationPlayer" parent="." unique_id=715718817]
 libraries/ = SubResource("AnimationLibrary_8ykyq")
 
 [node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1735836067]
