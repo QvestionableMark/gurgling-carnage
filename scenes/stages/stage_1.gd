@@ -22,6 +22,7 @@ func take_damage(damage):
 	
 	if boss_current_health <= 0:
 		is_active = false
+		game.create_slowmo(0.75,3)
 		var fade = STAGE_FADE.instantiate() as StageFade
 		fade.fade_time = 5
 		add_child(fade)

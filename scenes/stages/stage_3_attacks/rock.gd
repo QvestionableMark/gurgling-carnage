@@ -7,7 +7,7 @@ var is_finished = false
 func _ready() -> void:
 	if not has_parry_indicator:
 		$parry_indicator_sprite.queue_free()
-	var target = Vector2((0.4 + randf() / 5)*1920, 1080/2.0)
+	var target = Vector2((0.4 + randf() / 5) * Game.GAME_VIEW_SIZE.x, Game.GAME_VIEW_SIZE.y * 0.5)
 	look_at(target)
 	direction = position.direction_to(target)
 	

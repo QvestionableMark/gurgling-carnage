@@ -7,7 +7,7 @@ var is_finished = false
 
 func _ready() -> void:
 	var rng = randf()
-	var target = Vector2(0,(-0.75 + rng * 1.5) * 1080)
+	var target = Vector2(0,(-0.75 + rng * 1.5) * Game.GAME_VIEW_SIZE.y)
 	look_at(target)
 	velocity = position.direction_to(target) * SPEED * (rng / 2 + 0.3)
 	visible = true

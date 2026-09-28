@@ -62,6 +62,8 @@ func _physics_process(delta):
 			game.add_child(parry_particle_instance)
 		if not parried_anything:
 			$WhifParryAudio.play()
+		else:
+			game.create_slowmo(0.5,.3)
 		potential_parryable_attacks.clear()
 	
 	input_velocity.x = 0
@@ -88,7 +90,7 @@ func _physics_process(delta):
 			is_fast_falling = true
 			input_velocity += (gravity + fast_fall_gravity) * delta
 	else:
-		if end_lag == 0 and Input.is_action_just_pressed("jump"):
+		if end_lag == 0 and Input.is_action_pressed("jump"):
 			input_velocity.y = JUMP_VELOCITY
 			is_jumping = true
 			$JumpAudio.play()
@@ -125,7 +127,6 @@ func resolve_animation():
 		set_animation("idle")
 
 func take_damage(damage):
-	damage /= 1000
 	if game.persistent_data.hardmode:
 		damage *= 2
 	game.persistent_data.health -= damage

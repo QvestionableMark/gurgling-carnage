@@ -5,11 +5,11 @@ var pre_fired = false
 func _ready() -> void:
 	var target
 	if randf() < 0.5:
-		position = Vector2(200,randf() * 1080)
-		target = Vector2(1920,randf() * 1080)
+		position = Vector2(Game.GAME_VIEW_SIZE.x * 0.1,randf() * Game.GAME_VIEW_SIZE.y)
+		target = Vector2(Game.GAME_VIEW_SIZE.x,randf() * Game.GAME_VIEW_SIZE.y)
 	else:
-		position = Vector2(1720,randf() * 1080)
-		target = Vector2(0,randf() * 1080)
+		position = Vector2(Game.GAME_VIEW_SIZE.x * 0.9,randf() * Game.GAME_VIEW_SIZE.y)
+		target = Vector2(0,randf() * Game.GAME_VIEW_SIZE.y)
 		
 	look_at(target)
 	visible = true
