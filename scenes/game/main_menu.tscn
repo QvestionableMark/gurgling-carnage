@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://byvi4g4y5sebm" path="res://scenes/game/main_menu.gd" id="1_sbiqi"]
 [ext_resource type="Texture2D" uid="uid://chrg43rfffe0b" path="res://spritesheets/other/TitleSprite-0011.png" id="2_ngy02"]
 [ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="3_16onh"]
+[ext_resource type="FontFile" uid="uid://cblq5peqqbfaw" path="res://misc/bytebounce/ByteBounce.ttf" id="5_1f7y1"]
 [ext_resource type="Texture2D" uid="uid://isl3fbfret0w" path="res://spritesheets/other/tutorial_tekst.png" id="5_bto60"]
 [ext_resource type="Texture2D" uid="uid://glwejyygwfnu" path="res://spritesheets/stages/stage_0/BackgroundSpritev3-0004-Sheet.png" id="5_gfgjs"]
 [ext_resource type="Texture2D" uid="uid://dtuxmjhff7u2i" path="res://spritesheets/other/hard_mode_tekst.png" id="6_16onh"]
+[ext_resource type="Texture2D" uid="uid://bqi15rf6xrow2" path="res://spritesheets/other/new_game_tekst.png" id="6_efcww"]
 [ext_resource type="Texture2D" uid="uid://txkbwvy2i1mq" path="res://spritesheets/other/trophy.png" id="7_16onh"]
 [ext_resource type="Texture2D" uid="uid://d23w42bbajjm8" path="res://spritesheets/other/speaker.png" id="8_16onh"]
 
@@ -51,12 +53,6 @@ animations = [{
 "name": &"default",
 "speed": 1.0
 }]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fpthd"]
-load_path = "res://.godot/imported/continue_tekst.png-85204242bccba02baf0a8572367222d1.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bto60"]
-load_path = "res://.godot/imported/new_game_tekst.png-5bb0c90089c71d045c14bceb2d1f5f01.ctex"
 
 [sub_resource type="DPITexture" id="DPITexture_bto60"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
@@ -156,7 +152,11 @@ custom_minimum_size = Vector2(360, 120)
 layout_mode = 2
 theme_override_colors/icon_pressed_color = Color(0.5689727, 0.56897277, 0.56897265, 1)
 theme_override_colors/icon_hover_color = Color(0.76943237, 0.7694324, 0.76943237, 1)
-icon = SubResource("CompressedTexture2D_fpthd")
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("5_1f7y1")
+theme_override_font_sizes/font_size = 75
+text = "Continue"
+icon = ExtResource("6_efcww")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -166,7 +166,11 @@ custom_minimum_size = Vector2(360, 120)
 layout_mode = 2
 theme_override_colors/icon_pressed_color = Color(0.5689727, 0.56897277, 0.56897265, 1)
 theme_override_colors/icon_hover_color = Color(0.76943237, 0.7694324, 0.76943237, 1)
-icon = SubResource("CompressedTexture2D_bto60")
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("5_1f7y1")
+theme_override_font_sizes/font_size = 75
+text = "New Game"
+icon = ExtResource("6_efcww")
 flat = true
 icon_alignment = 1
 expand_icon = true
