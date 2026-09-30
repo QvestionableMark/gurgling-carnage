@@ -42,8 +42,8 @@ func _physics_process(delta):
 		$RollingCollision.disabled = false
 		$NonRollingCollision.disabled = true
 		$DashAudio.play()
-	if $DashTimer.time_left > 0:
-		effective_speed *= 2.5
+	if is_dashing:
+		effective_speed *= 3
 
 	if $ParryTimer.time_left + end_lag == 0 and Input.is_action_just_pressed("parry"):
 		$ParryTimer.start()
@@ -63,7 +63,7 @@ func _physics_process(delta):
 		if not parried_anything:
 			$WhifParryAudio.play()
 		else:
-			game.create_slowmo(0.5,.3)
+			game.create_slowmo(0.5,.2)
 		potential_parryable_attacks.clear()
 	
 	input_velocity.x = 0
@@ -141,8 +141,6 @@ func take_damage(damage):
 		game.save_persistent_data()
 
 func _on_dash_timer_timeout() -> void:
-	end_lag += 0.2
-	input_velocity = Vector2.ZERO
 	$RollingCollision.disabled = true
 	$NonRollingCollision.disabled = false
 

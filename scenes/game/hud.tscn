@@ -10,6 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://bkgbal08segec" path="res://spritesheets/other/arrow_right.png" id="7_pla3n"]
 [ext_resource type="Texture2D" uid="uid://b6jfbct1dfkdl" path="res://spritesheets/other/arrow_left.png" id="8_ma2ai"]
 
+[sub_resource type="Gradient" id="Gradient_ma2ai"]
+offsets = PackedFloat32Array(0.48, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d7522"]
+gradient = SubResource("Gradient_ma2ai")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="game_hud" type="CanvasLayer" unique_id=640819470]
 script = ExtResource("1_snjka")
 
@@ -151,5 +160,14 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7176471)
 theme_override_fonts/font = ExtResource("7_ma2ai")
 theme_override_font_sizes/font_size = 200
 text = "PERISHED"
+
+[node name="VignetteTexture" type="TextureRect" parent="." unique_id=485157568]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_d7522")
+expand_mode = 1
 
 [connection signal="toggled" from="KeybindMenu/ToggleMenu" to="." method="_on_toggle_menu_toggled"]

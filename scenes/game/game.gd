@@ -22,6 +22,7 @@ const GAME_VIEW_SIZE := Vector2(1920,1080)
 @export var stages : Array[String]
 var current_stage : Stage
 var current_player : Player
+@onready var hud = $game_hud
 var is_paused : bool
 
 func _ready() -> void:
@@ -54,10 +55,11 @@ func continue_old_game():
 func handle_death():
 	if persistent_data.hardmode:
 		persistent_data.checkpoint = -1
-	create_slowmo(0.75,$DeathTimer.wait_time)
+	get_tree().paused = true
 	$DeathTimer.start()
 	player_died.emit($DeathTimer)
 	await $DeathTimer.timeout 
+	get_tree().paused = false
 	persistent_data.health = 100
 	load_stage(-1)
 	save_persistent_data()
@@ -74,6 +76,7 @@ func handle_win():
 
 func create_slowmo(slowmo_strength, slowmo_time):
 	Engine.time_scale = 1-slowmo_strength
+	hud.start_vignette(slowmo_strength, slowmo_time / slowmo_strength + slowmo_time)
 	await get_tree().create_timer(slowmo_time,true,false,true).timeout
 	Engine.time_scale = 1
 

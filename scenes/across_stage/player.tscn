@@ -684,7 +684,6 @@ shape = SubResource("RectangleShape2D_qxun1")
 
 [node name="DashTimer" type="Timer" parent="." unique_id=1335042099]
 process_callback = 0
-wait_time = 0.4
 one_shot = true
 
 [node name="ParryTimer" type="Timer" parent="." unique_id=908417152]

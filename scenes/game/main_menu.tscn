@@ -112,7 +112,6 @@ text = "PAUSED"
 horizontal_alignment = 1
 
 [node name="BackgroundSprite" type="AnimatedSprite2D" parent="." unique_id=1680512357]
-visible = false
 z_index = -2
 texture_filter = 1
 position = Vector2(960, 540)

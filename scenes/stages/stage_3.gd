@@ -28,7 +28,6 @@ func take_damage(damage):
 		is_active = false
 		$Background.pause()
 		$MouthColliderAnimation.pause()
-		game.create_slowmo(0.75,3)
 		var fade = STAGE_FADE.instantiate() as StageFade
 		fade.fade_time = 5
 		add_child(fade)
