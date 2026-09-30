@@ -9,10 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://co746yjyy5cp4" path="res://spritesheets/player/Boss_runmc-Sheet.png" id="5_wdca0"]
 [ext_resource type="Texture2D" uid="uid://lojs1svy2vyp" path="res://spritesheets/player/parrymc-Sheet.png" id="7_0j4an"]
 [ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Hit.wav" id="9_pdoji"]
-[ext_resource type="AudioStream" uid="uid://7p86jsl4q31v" path="res://audios/Death.wav" id="10_0j4an"]
+[ext_resource type="AudioStream" uid="uid://dsykvo36n2tjb" path="res://audios/loss.mp3" id="10_0j4an"]
 [ext_resource type="AudioStream" uid="uid://236cvvkw2ae5" path="res://audios/Grunt.mp3" id="11_0j4an"]
 [ext_resource type="AudioStream" uid="uid://cfrpyxty0tklh" path="res://audios/Footstep.wav" id="12_or45o"]
 [ext_resource type="AudioStream" uid="uid://lfvddl6874b5" path="res://audios/Parry.wav" id="14_0j4an"]
+[ext_resource type="AudioStream" uid="uid://cqy8ukv1mmpdw" path="res://audios/parry_whiff.wav" id="14_eh4nk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfay6"]
 atlas = ExtResource("5_h5tfo")
@@ -730,7 +731,7 @@ playback_type = 1
 
 [node name="WhifParryAudio" type="AudioStreamPlayer2D" parent="." unique_id=2018514077]
 process_mode = 3
-stream = ExtResource("11_0j4an")
+stream = ExtResource("14_eh4nk")
 volume_db = -10.0
 pitch_scale = 1.5
 playback_type = 1
