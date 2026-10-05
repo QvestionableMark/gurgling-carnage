@@ -38,7 +38,10 @@ func _on_stage_loaded(stage_number):
 	if stage_number == 0:
 		$KeybindMenu/ToggleMenu.button_pressed = game.persistent_data.tutorial
 	
-	$BossBarContainer.visible = game.current_stage.use_boss_health_bar
+	if (game.current_stage):
+		$BossBarContainer.visible = game.current_stage.use_boss_health_bar
+	else:
+		$BossBarContainer.visible = false
 
 func _on_toggle_menu_toggled(toggled_on: bool) -> void:
 	print(toggled_on)

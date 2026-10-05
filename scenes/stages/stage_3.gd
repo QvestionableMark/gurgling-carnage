@@ -7,6 +7,8 @@ const COLLISION_DAMAGE = 35
 var top_mouth_start_position
 var bottom_mouth_start_position
 
+var is_fading = false
+
 func _ready() -> void:
 	super()
 	if not game.persistent_data.hardmode:
@@ -25,14 +27,23 @@ func take_damage(damage):
 	$OnHitAudio.play()
 
 	if boss_current_health <= 0:
+		$Background.play("end_transition")
+		$MouthColliderAnimation.play("transition_position")
 		is_active = false
-		$Background.pause()
-		$MouthColliderAnimation.pause()
-		var fade = STAGE_FADE.instantiate() as StageFade
-		fade.fade_time = 5
-		add_child(fade)
-		await fade.fade_done
-		game.load_stage.call_deferred(stage_number + 1)
+		while $Background.frame < 10:
+			await $Background.frame_changed
+		$FloorBody.queue_free()
+		
+		
+	
+func _process(_delta: float) -> void:
+	if player.position.y > game.GAME_VIEW_SIZE.y and not is_fading:
+			is_fading = true
+			var fade = STAGE_FADE.instantiate() as StageFade
+			fade.fade_time = 0.5
+			add_child(fade)
+			await fade.fade_done
+			game.load_stage.call_deferred(stage_number + 1)
 
 func _on_attack_timer_timeout() -> void:
 	if not is_active:

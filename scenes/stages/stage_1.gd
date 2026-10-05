@@ -21,12 +21,23 @@ func take_damage(damage):
 	$OnHitAudio.play()
 	
 	if boss_current_health <= 0:
+		$Background.play("end_transition")
 		is_active = false
-		var fade = STAGE_FADE.instantiate() as StageFade
-		fade.fade_time = 5
-		add_child(fade)
-		await fade.fade_done
-		game.load_stage.call_deferred(stage_number + 1)
+		var bossCollider = $BossBody/CollisionShape2D
+		bossCollider.reparent.call_deferred($FloorBody)
+		$BossBody.queue_free()
+		while $Background.frame < 18:
+			await $Background.frame_changed
+		bossCollider.queue_free()
+		
+	
+func _process(_delta: float) -> void:
+	if player.position.y > game.GAME_VIEW_SIZE.y:
+			var fade = STAGE_FADE.instantiate() as StageFade
+			fade.fade_time = 0.5
+			add_child(fade)
+			await fade.fade_done
+			game.load_stage.call_deferred(stage_number + 1)
 
 func _on_attack_timer_timeout() -> void:
 	if not is_active:

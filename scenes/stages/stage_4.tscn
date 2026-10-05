@@ -92,7 +92,6 @@ polygon = PackedVector2Array(-35, -13, 86, -48, 259, -61, 376.6654, -17.396057, 
 polygon = PackedVector2Array(15765, 212, 15968, 236, 16144, 222, 16292, 227, 16375, 222, 16401, 242, 16397, 271, 16332, 282, 16142, 309, 16006, 314, 15918, 289, 15802, 295, 15757, 258)
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1946869902]
-visible = false
 
 [node name="Hand" type="CollisionPolygon2D" parent="DamageArea" unique_id=203354895 groups=["hand"]]
 polygon = PackedVector2Array(2541, 711, 2611, 691, 2669, 711, 2650, 768, 2547, 819, 2521, 740)
@@ -256,7 +255,7 @@ polygon = PackedVector2Array(10473, -334, 10606, -140, 10784, -246)
 
 [node name="Tooth13" type="CollisionPolygon2D" parent="DamageArea" unique_id=1090781585 groups=["tooth"]]
 position = Vector2(5, 7)
-polygon = PackedVector2Array(9705, 161, 9893, 56, 9703, 9)
+polygon = PackedVector2Array(9892, 68, 9716, 174, 9703, 9)
 
 [node name="Tooth14" type="CollisionPolygon2D" parent="DamageArea" unique_id=1407347428 groups=["tooth"]]
 position = Vector2(5, 7)

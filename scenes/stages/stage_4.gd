@@ -1,11 +1,23 @@
 extends Stage
 
 var is_player_in_acid = false
+var is_fading = false
+
+func _ready() -> void:
+	super()
+	var fade = STAGE_FADE.instantiate() as StageFade
+	fade.fade_into_black = false
+	add_child(fade)
 
 func _process(_delta: float) -> void:
 	# win condition:
-	if player.position.x > 1920*10 + 100:
-		game.load_stage(stage_number+1)
+	if player.position.x > 1920*10 + 100 and not is_fading:
+		is_fading = true
+		var fade = STAGE_FADE.instantiate() as StageFade
+		fade.fade_time = 1
+		add_child(fade)
+		await fade.fade_done
+		game.load_stage.call_deferred(stage_number + 1)
 
 func _on_damage_area_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body is Player:
@@ -26,6 +38,7 @@ func _on_damage_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_
 		if collider.is_in_group("tooth"):
 			body.take_damage(25)
 			body.end_lag += 0.5
+			body.input_velocity = Vector2.ZERO
 			body.external_velocity += -body.position.direction_to(collider.polygon[1] + collider.global_position) * 750
 		if collider.is_in_group("acid"):
 			is_player_in_acid = true

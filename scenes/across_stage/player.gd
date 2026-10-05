@@ -25,6 +25,8 @@ var is_dashing = false
 var is_parrying = false
 
 func _physics_process(delta):
+	if game.persistent_data.health <= 0:
+		return
 	end_lag = clamp(end_lag - delta, 0, 1)
 	modulate = Color(clamp(modulate.r + delta,0,1), clamp(modulate.g + delta,0,1), clamp(modulate.b + delta,0,1))
 	
@@ -127,6 +129,8 @@ func resolve_animation():
 		set_animation("idle")
 
 func take_damage(damage):
+	if game.persistent_data.health <= 0:
+		return
 	if game.persistent_data.hardmode:
 		damage *= 2
 	game.persistent_data.health -= damage
