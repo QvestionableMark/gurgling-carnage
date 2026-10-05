@@ -3,11 +3,13 @@ extends Stage
 @onready var TOOTH : PackedScene = preload("res://scenes/stages/stage_1_attacks/tooth.tscn")
 @onready var ACID : PackedScene = preload("res://scenes/stages/stage_1_attacks/acid.tscn")
 @onready var TENTACLE : PackedScene = preload("res://scenes/stages/stage_1_attacks/tentacles.tscn")
+@onready var LAZER : PackedScene = preload("res://scenes/stages/stage_1_attacks/lazer_buzz.tscn")
 
 const COLLISION_DAMAGE = 35
 
 var is_spitting = false
 var is_stabbing = false
+var is_lazering = false 
 
 func  _ready() -> void:
 	super()
@@ -69,6 +71,12 @@ func _on_attack_timer_timeout() -> void:
 			add_child(tentacle)
 			await tentacle.finished
 			is_stabbing = false
+		elif not is_lazering:
+			is_lazering = true
+			var lazer = LAZER.instantiate() as Attack
+			add_child(lazer)
+			is_lazering = false
+			
 
 func _on_knockback_area_body_entered(body: Node2D) -> void:
 	if body is Player and boss_current_health > 0:
