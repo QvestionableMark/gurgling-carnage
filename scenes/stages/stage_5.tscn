@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cfq38yxpfjhnu"]
+
+[ext_resource type="Script" uid="uid://bfaivsp67k3af" path="res://scenes/stages/stage_5.gd" id="1_dy653"]
+
+[node name="Stage5" type="Node2D" unique_id=1343093336]
+script = ExtResource("1_dy653")
+stage_number = 5
+use_boss_health_bar = true

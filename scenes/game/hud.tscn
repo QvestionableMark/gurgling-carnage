@@ -7,8 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cdsh1svl6ydwo" path="res://spritesheets/player/Portraitv2Sprite-0010.png" id="5_3k67c"]
 [ext_resource type="Texture2D" uid="uid://beqtcak8gbh2w" path="res://spritesheets/other/tutorial_box_background_texture.png" id="6_ma2ai"]
 [ext_resource type="FontFile" uid="uid://cblq5peqqbfaw" path="res://misc/bytebounce/ByteBounce.ttf" id="7_ma2ai"]
-[ext_resource type="Texture2D" uid="uid://bkgbal08segec" path="res://spritesheets/other/arrow_right.png" id="7_pla3n"]
-[ext_resource type="Texture2D" uid="uid://b6jfbct1dfkdl" path="res://spritesheets/other/arrow_left.png" id="8_ma2ai"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fecso"]
+load_path = "res://.godot/imported/arrow_right.png-95e0f93085460bca5adbedbdc97d92f7.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pla3n"]
+load_path = "res://.godot/imported/arrow_left.png-61896a5cfb3de11503a6484da098d36b.ctex"
 
 [sub_resource type="Gradient" id="Gradient_ma2ai"]
 offsets = PackedFloat32Array(0.48, 1)
@@ -137,8 +141,8 @@ grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 pivot_offset_ratio = Vector2(0, 0.5)
 toggle_mode = true
-texture_normal = ExtResource("7_pla3n")
-texture_pressed = ExtResource("8_ma2ai")
+texture_normal = SubResource("CompressedTexture2D_fecso")
+texture_pressed = SubResource("CompressedTexture2D_pla3n")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -167,6 +171,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_d7522")
 expand_mode = 1
 

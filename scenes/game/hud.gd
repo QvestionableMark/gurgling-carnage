@@ -37,11 +37,11 @@ func _on_stage_loaded(stage_number):
 		visible = true
 	if stage_number == 0:
 		$KeybindMenu/ToggleMenu.button_pressed = game.persistent_data.tutorial
-		$BossBarContainer.visible = false
-	else:
-		$BossBarContainer.visible = true
+	
+	$BossBarContainer.visible = game.current_stage.use_boss_health_bar
 
 func _on_toggle_menu_toggled(toggled_on: bool) -> void:
+	print(toggled_on)
 	if toggled_on:
 		$KeybindMenu.position += Vector2(400,0) #400 is "Keybinds" size
 	else:
