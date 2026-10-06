@@ -75,8 +75,8 @@ func _on_attack_timer_timeout() -> void:
 			is_lazering = true
 			var lazer = LAZER.instantiate() as Attack
 			add_child(lazer)
+			await lazer.finished 
 			is_lazering = false
-			
 
 func _on_knockback_area_body_entered(body: Node2D) -> void:
 	if body is Player and boss_current_health > 0:

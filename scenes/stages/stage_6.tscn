@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c6mca2hncub3a"]
+[gd_scene format=3 uid="uid://dx81nogxtp52s"]
 
 [ext_resource type="Script" uid="uid://c4vechp0pv5fa" path="res://scenes/stages/stage_6.gd" id="1_t8527"]
 [ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="2_t8527"]

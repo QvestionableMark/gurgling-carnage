@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7bti1mfxppsw"
-path="res://.godot/imported/Cavev22Sprite-0016-laser_attackv2-Sheet.png-93279eb9a5950a5dfc9004d4c3571685.ctex"
+path="res://.godot/imported/laser_attack-Sheet.png-9607a5ac29c1f5060632cc60e07dfff5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/stages/stage_1/Cavev22Sprite-0016-laser_attackv2-Sheet.png"
-dest_files=["res://.godot/imported/Cavev22Sprite-0016-laser_attackv2-Sheet.png-93279eb9a5950a5dfc9004d4c3571685.ctex"]
+source_file="res://spritesheets/stages/stage_1/laser_attack-Sheet.png"
+dest_files=["res://.godot/imported/laser_attack-Sheet.png-9607a5ac29c1f5060632cc60e07dfff5.ctex"]
 
 [params]
 
