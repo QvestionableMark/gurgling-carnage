@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bfaivsp67k3af" path="res://scenes/stages/stage_5.gd" id="1_dy653"]
 [ext_resource type="Texture2D" uid="uid://didvrcnwguqhs" path="res://spritesheets/stages/stage_5/Scene5baggrund.png" id="2_q4drp"]
-[ext_resource type="Texture2D" uid="uid://ckouqylj2arai" path="res://spritesheets/stages/stage_5/Scene5platformv3.png" id="3_df1c4"]
+[ext_resource type="Texture2D" uid="uid://cukqyepntax4l" path="res://spritesheets/stages/stage_5/Scene5platformsvv6.png" id="3_q4drp"]
 [ext_resource type="Texture2D" uid="uid://b5sciv6r5738" path="res://spritesheets/stages/stage_5/Scene5-boss.png" id="4_m1r7o"]
 [ext_resource type="Texture2D" uid="uid://ddx2phprtnbdk" path="res://spritesheets/stages/stage_5/Scene5forgrund.png" id="5_583hl"]
 
@@ -432,7 +432,7 @@ autoplay = "default"
 texture_filter = 1
 position = Vector2(1920, 0)
 scale = Vector2(6.4, 6.4)
-texture = ExtResource("3_df1c4")
+texture = ExtResource("3_q4drp")
 
 [node name="BossBody" type="StaticBody2D" parent="Scalar" unique_id=874824744]
 position = Vector2(3200, 0)
@@ -466,6 +466,7 @@ polygon = PackedVector2Array(-193, -344, -185, 1281, 4097, 1292, 4042, -1553, -2
 polygon = PackedVector2Array(1528, -327, 1418, -342, 1377, -415, 1671, -415, 1642, -345)
 
 [node name="Platform2" type="CollisionPolygon2D" parent="Scalar/SolidCollider" unique_id=1569552894]
+position = Vector2(-51.51515, 3.0303028)
 polygon = PackedVector2Array(2052, 49, 1942, 34, 1901, -39, 2195, -39, 2166, 31)
 
 [node name="Platform3" type="CollisionPolygon2D" parent="Scalar/SolidCollider" unique_id=743087857]
@@ -475,4 +476,12 @@ polygon = PackedVector2Array(1521, 447, 1411, 432, 1370, 359, 1664, 359, 1635, 4
 polygon = PackedVector2Array(2525, 447, 2415, 432, 2374, 359, 2668, 359, 2639, 429)
 
 [node name="Platform5" type="CollisionPolygon2D" parent="Scalar/SolidCollider" unique_id=218317416]
+polygon = PackedVector2Array(2493, -328, 2383, -343, 2342, -416, 2636, -416, 2607, -346)
+
+[node name="Platform6" type="CollisionPolygon2D" parent="Scalar/SolidCollider" unique_id=710211692]
+position = Vector2(-1453.0303, 384.84848)
+polygon = PackedVector2Array(2493, -328, 2383, -343, 2342, -416, 2636, -416, 2607, -346)
+
+[node name="Platform7" type="CollisionPolygon2D" parent="Scalar/SolidCollider" unique_id=196834761]
+position = Vector2(-456.06058, 1063.6364)
 polygon = PackedVector2Array(2493, -328, 2383, -343, 2342, -416, 2636, -416, 2607, -346)

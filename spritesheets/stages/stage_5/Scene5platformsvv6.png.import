@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckouqylj2arai"
-path="res://.godot/imported/Scene5platformv3.png-624918246a4636090c6a20dad2c56bb1.ctex"
+uid="uid://cukqyepntax4l"
+path="res://.godot/imported/Scene5platformsvv6.png-0531f2e9e09b4d699c729aecd927fe66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/stages/stage_5/Scene5platformv3.png"
-dest_files=["res://.godot/imported/Scene5platformv3.png-624918246a4636090c6a20dad2c56bb1.ctex"]
+source_file="res://spritesheets/stages/stage_5/Scene5platformsvv6.png"
+dest_files=["res://.godot/imported/Scene5platformsvv6.png-0531f2e9e09b4d699c729aecd927fe66.ctex"]
 
 [params]
 
