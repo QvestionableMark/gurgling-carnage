@@ -75,6 +75,7 @@ func _on_attack_timer_timeout() -> void:
 			is_lazering = true
 			var lazer = LAZER.instantiate() as Attack
 			add_child(lazer)
+			$BuzzAudio.play()
 			await lazer.finished 
 			is_lazering = false
 
