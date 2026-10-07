@@ -408,8 +408,8 @@ hit_damage = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1517858594]
 texture_filter = 1
-position = Vector2(960, 600)
-scale = Vector2(6.3966665, 5.3999996)
+position = Vector2(960, 550)
+scale = Vector2(7.5, 6.331)
 sprite_frames = SubResource("SpriteFrames_71ke2")
 frame = 35
 speed_scale = 2.0
