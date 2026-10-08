@@ -403,12 +403,13 @@ size = Vector2(45, 100)
 
 [node name="lazer_buzz" type="AnimatableBody2D" unique_id=1392738079]
 z_index = 6
+texture_filter = 1
 script = ExtResource("1_61drc")
 hit_damage = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1517858594]
 position = Vector2(960, 540)
-scale = Vector2(6.3966665, 5.3999996)
+scale = Vector2(6.4, 6.4)
 sprite_frames = SubResource("SpriteFrames_71ke2")
 frame = 1
 speed_scale = 2.0

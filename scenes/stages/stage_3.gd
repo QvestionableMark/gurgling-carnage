@@ -33,8 +33,6 @@ func take_damage(damage):
 		while $Background.frame < 10:
 			await $Background.frame_changed
 		$FloorBody.queue_free()
-		
-		
 	
 func _process(_delta: float) -> void:
 	if player.position.y > game.GAME_VIEW_SIZE.y and not is_fading:
