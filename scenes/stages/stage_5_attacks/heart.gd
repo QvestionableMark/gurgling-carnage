@@ -9,6 +9,8 @@ const HIT_KNOCKBACK: int = 1000
 @export var platform_sprite: Sprite2D
 
 var heartbeat_frames: Array[int] = [1, 7, 9, 10, 12, 13, 15, 16]
+var heartbeat_first_thump_frames: Array[int] = [1, 7, 9, 12, 15]
+var heartbeat_second_thump_frames: Array[int] = [2, 8, 11, 14, 17]
 var is_heartbeat_frame: bool = false
 
 func _process(delta: float) -> void:
@@ -22,7 +24,7 @@ func handle_parry(player: Player) -> void:
 	platform_body.collision_layer = 0
 	platform_sprite.self_modulate = Color.DIM_GRAY
 	$BossSprite.self_modulate = Color.RED
-	get_parent().get_parent().take_damage(hit_damage)
+	$"../..".take_damage(hit_damage)
 	await get_tree().create_timer(PARRY_RECOVERY_TIME).timeout
 	has_been_parried = false
 	platform_body.collision_layer = 1
@@ -35,6 +37,11 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 		body.external_velocity += global_position.direction_to(body.global_position) * HIT_KNOCKBACK
 
 func _on_boss_sprite_frame_changed() -> void:
+	if $BossSprite.frame in heartbeat_first_thump_frames:
+		$"../../FirstHeartAudio".play()
+	if $BossSprite.frame in heartbeat_second_thump_frames:
+		$"../../SecondHeartAudio".play()
+
 	is_heartbeat_frame = $BossSprite.frame in heartbeat_frames
 
 	if is_heartbeat_frame and not has_been_parried:
