@@ -408,10 +408,11 @@ script = ExtResource("1_61drc")
 hit_damage = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1517858594]
-position = Vector2(960, 540)
-scale = Vector2(6.4, 6.4)
+texture_filter = 1
+position = Vector2(960, 550)
+scale = Vector2(7.5, 6.331)
 sprite_frames = SubResource("SpriteFrames_71ke2")
-frame = 1
+frame = 35
 speed_scale = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=442884441]
@@ -420,7 +421,6 @@ libraries/ = SubResource("AnimationLibrary_nia8r")
 [node name="Area2D" type="Area2D" parent="." unique_id=1957470578]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=91111704]
-position = Vector2(481, 132)
 shape = SubResource("RectangleShape2D_qxun1")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_hit_area_body_entered"]
