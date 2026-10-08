@@ -7,17 +7,15 @@ const PARRY_SPEED_MULTIPLIER: float = 1.5
 const HIT_END_LAG: float = 0.3
 const UNPARRIED_DAMAGE_DIVISOR: int = 6
 
-var speed: float = 400.0
-var direction: Vector2
-
-var is_finished: bool = false
+func _init() -> void:
+	speed = 400.0
 
 func _ready() -> void:
 	if not has_parry_indicator:
 		$parry_indicator_sprite.queue_free()
-	var target: Vector2 = Vector2((TARGET_MIN_X + randf() / TARGET_RANDOM_DIVISOR) * Game.GAME_VIEW_SIZE.x, Game.GAME_VIEW_SIZE.y * TARGET_Y)
-	look_at(target)
-	direction = position.direction_to(target)
+	var target_position: Vector2 = Vector2((TARGET_MIN_X + randf() / TARGET_RANDOM_DIVISOR) * Game.GAME_VIEW_SIZE.x, Game.GAME_VIEW_SIZE.y * TARGET_Y)
+	look_at(target_position)
+	direction = position.direction_to(target_position)
 
 	rotation = direction.angle()
 
@@ -38,28 +36,28 @@ func handle_parry(player: Player) -> void:
 	speed *= PARRY_SPEED_MULTIPLIER
 	$RockSprite.speed_scale *= PARRY_SPEED_MULTIPLIER
 	sync_to_physics = true
-	been_parried = true
+	has_been_parried = true
 
 func _on_hit_area_body_entered(body: Node2D) -> void:
 	if is_finished:
 		return
 
-	var hit_something: bool = false
-	if body is Player and not been_parried:
+	var is_target_hit: bool = false
+	if body is Player and not has_been_parried:
 		body.take_damage(hit_damage)
 		body.end_lag += HIT_END_LAG
-		hit_something = true
+		is_target_hit = true
 
 	if body.is_in_group("solid"):
-		hit_something = true
+		is_target_hit = true
 
 	if body.is_in_group("boss"):
-		if not been_parried:
+		if not has_been_parried:
 			hit_damage /= UNPARRIED_DAMAGE_DIVISOR
 		body.get_parent().get_parent().take_damage(hit_damage)
-		hit_something = true
+		is_target_hit = true
 
-	if hit_something:
+	if is_target_hit:
 		is_finished = true
 		add_collision_exception_with(body)
 		$RockSprite.play("hit")

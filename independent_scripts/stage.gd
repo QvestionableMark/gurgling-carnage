@@ -1,6 +1,9 @@
 class_name Stage
 extends Node2D
 
+const COLLISION_END_LAG: float = 0.5
+const COLLISION_DAMAGE: int = 35
+
 const STAGE_FADE: PackedScene = preload("res://scenes/across_stage/stage_fade.tscn")
 
 @export var stage_number: int
@@ -17,6 +20,7 @@ var player: Player
 
 var boss_current_health: float
 var is_active: bool = false
+var is_exiting: bool = false
 
 var player_camera: Camera2D
 

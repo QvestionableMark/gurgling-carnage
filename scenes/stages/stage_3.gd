@@ -1,32 +1,31 @@
 extends Stage
 
+const STAGE_ENTRY_FADE_DURATION: float = 2.0
+const STAGE_EXIT_FADE_DURATION: float = 0.5
+
 const ROCK: PackedScene = preload("res://scenes/stages/stage_3_attacks/rock.tscn")
 
 const NORMAL_ATTACK_INTERVAL_MULTIPLIER: int = 2
 const END_TRANSITION_FRAME: int = 10
 const FATAL_COLLISION_FRAME: int = 80
 const FATAL_DAMAGE_MULTIPLIER: int = 999
-const STAGE_EXIT_FADE_TIME: float = 0.5
 const ROCK_SPAWN_MIN_X: float = 0.1
 const ROCK_SPAWN_MAX_X: float = 0.9
 const ROCK_SPAWN_Y: int = -1000
-const COLLISION_END_LAG: float = 0.5
 const COLLISION_KNOCKBACK_MULTIPLIER: float = 1.5
-const COLLISION_DAMAGE: int = 35
 
 var top_mouth_start_position: Vector2
 var bottom_mouth_start_position: Vector2
-
-var is_fading: bool = false
 
 func _ready() -> void:
 	super()
 	if not game.persistent_data.hardmode:
 		$AttackTimer.wait_time *= NORMAL_ATTACK_INTERVAL_MULTIPLIER
-	var fade: StageFade = STAGE_FADE.instantiate() as StageFade
-	fade.fade_into_black = false
-	add_child(fade)
-	await fade.fade_done
+	var entry_fade: StageFade = STAGE_FADE.instantiate() as StageFade
+	entry_fade.fade_duration = STAGE_ENTRY_FADE_DURATION
+	entry_fade.fade_into_black = false
+	add_child(entry_fade)
+	await entry_fade.fade_done
 	$BackgroundSprite.play("default")
 	$MouthColliderAnimation.play("mouth_movement")
 	is_active = true
@@ -45,12 +44,12 @@ func take_damage(damage: float) -> void:
 		$FloorBody.queue_free()
 
 func _process(_delta: float) -> void:
-	if player.position.y > Game.GAME_VIEW_SIZE.y and not is_fading:
-		is_fading = true
-		var fade: StageFade = STAGE_FADE.instantiate() as StageFade
-		fade.fade_time = STAGE_EXIT_FADE_TIME
-		add_child(fade)
-		await fade.fade_done
+	if player.position.y > Game.GAME_VIEW_SIZE.y and not is_exiting:
+		is_exiting = true
+		var exit_fade: StageFade = STAGE_FADE.instantiate() as StageFade
+		exit_fade.fade_duration = STAGE_EXIT_FADE_DURATION
+		add_child(exit_fade)
+		await exit_fade.fade_done
 		game.load_stage.call_deferred(stage_number + 1)
 
 func _on_attack_timer_timeout() -> void:
@@ -58,9 +57,9 @@ func _on_attack_timer_timeout() -> void:
 		return
 
 	var rock: Attack = ROCK.instantiate()
-	var random_x: float = randf_range(Game.GAME_VIEW_SIZE.x * ROCK_SPAWN_MIN_X, Game.GAME_VIEW_SIZE.x * ROCK_SPAWN_MAX_X)
+	var spawn_x: float = randf_range(Game.GAME_VIEW_SIZE.x * ROCK_SPAWN_MIN_X, Game.GAME_VIEW_SIZE.x * ROCK_SPAWN_MAX_X)
 	rock.has_parry_indicator = game.persistent_data.tutorial
-	rock.global_position = Vector2(random_x, ROCK_SPAWN_Y)
+	rock.global_position = Vector2(spawn_x, ROCK_SPAWN_Y)
 	add_child(rock)
 
 func _on_knockback_area_body_entered(body: Node2D) -> void:

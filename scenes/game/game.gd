@@ -4,8 +4,8 @@ extends Node2D
 signal persistent_data_loaded()
 signal stage_loaded(stage_number: int)
 signal hud_update()
-signal player_died(timer: Timer)
-signal game_paused(new_state: bool)
+signal player_died(death_timer: Timer)
+signal game_paused(should_pause: bool)
 
 const MAX_HEALTH: int = 100
 const HARDMODE_MULTIPLIER: int = 2
@@ -40,9 +40,9 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and current_stage:
 		pause_game(not get_tree().paused)
 
-func pause_game(new_state: bool) -> void:
-	get_tree().paused = new_state
-	game_paused.emit(new_state)
+func pause_game(should_pause: bool) -> void:
+	get_tree().paused = should_pause
+	game_paused.emit(should_pause)
 
 func start_new_game(with_tutorial: bool, with_hardmode: bool) -> void:
 	pause_game(false)
@@ -81,10 +81,10 @@ func handle_win() -> void:
 	load_stage(MENU_STAGE)
 	save_persistent_data()
 
-func create_slowmo(slowmo_strength: float, slowmo_time: float) -> void:
+func create_slowmo(slowmo_strength: float, slowmo_duration: float) -> void:
 	Engine.time_scale = 1 - slowmo_strength
-	hud.start_vignette(slowmo_strength, slowmo_time / slowmo_strength + slowmo_time)
-	await get_tree().create_timer(slowmo_time, true, false, true).timeout
+	hud.start_vignette(slowmo_strength, slowmo_duration / slowmo_strength + slowmo_duration)
+	await get_tree().create_timer(slowmo_duration, true, false, true).timeout
 	Engine.time_scale = 1
 
 func load_stage(stage_number_to_load: int) -> void:
@@ -106,13 +106,13 @@ func load_persistent_data() -> void:
 	if not FileAccess.file_exists(PERSISTENT_DATA_PATH):
 		persistent_data_loaded.emit()
 		return
-	var file: FileAccess = FileAccess.open(PERSISTENT_DATA_PATH, FileAccess.READ)
-	var loaded_persistent_data: Dictionary = JSON.parse_string(file.get_as_text())
+	var save_file: FileAccess = FileAccess.open(PERSISTENT_DATA_PATH, FileAccess.READ)
+	var loaded_persistent_data: Dictionary = JSON.parse_string(save_file.get_as_text())
 	loaded_persistent_data.merge(persistent_data)
 	persistent_data = loaded_persistent_data
 	persistent_data_loaded.emit()
 	#print(persistent_data)
 
 func save_persistent_data() -> void:
-	var file: FileAccess = FileAccess.open(PERSISTENT_DATA_PATH, FileAccess.WRITE)
-	file.store_string(JSON.stringify(persistent_data))
+	var save_file: FileAccess = FileAccess.open(PERSISTENT_DATA_PATH, FileAccess.WRITE)
+	save_file.store_string(JSON.stringify(persistent_data))

@@ -8,18 +8,18 @@ func _ready() -> void:
 	game.game_paused.connect(_on_game_paused)
 
 func _on_persistent_data_loaded() -> void:
-	initialization()
+	update_menu()
 
 func _on_stage_loaded(stage_number: int) -> void:
 	$BackgroundSprite.visible = true
-	initialization()
+	update_menu()
 	if stage_number == Game.MENU_STAGE:
 		visible = true
-		initialization()
+		update_menu()
 	else:
 		visible = false
 
-func initialization() -> void:
+func update_menu() -> void:
 	$ButtonContainer/ContinueButton.visible = game.persistent_data.checkpoint > Game.MENU_STAGE
 	$ButtonContainer/NewGameButton/NewGameOptionsContainer/TutorialToggleButton.button_pressed = game.persistent_data.tutorial
 	$ButtonContainer/NewGameButton/NewGameOptionsContainer/HardmodeToggleButton.button_pressed = game.persistent_data.hardmode
@@ -28,9 +28,9 @@ func initialization() -> void:
 	$TrophyContainer/BeatHardHitlessTrophyTexture.visible = game.persistent_data.beat_hard_hitless
 	$VolumeSlider.value = game.persistent_data.volume
 
-func _on_game_paused(new_state: bool) -> void:
-	$BackgroundSprite.visible = not new_state
-	visible = new_state
+func _on_game_paused(is_paused: bool) -> void:
+	$BackgroundSprite.visible = not is_paused
+	visible = is_paused
 
 func _on_continue_button_pressed() -> void:
 	if get_tree().paused:
@@ -44,7 +44,7 @@ func _on_new_game_button_pressed() -> void:
 	game.start_new_game($ButtonContainer/NewGameButton/NewGameOptionsContainer/TutorialToggleButton.button_pressed, $ButtonContainer/NewGameButton/NewGameOptionsContainer/HardmodeToggleButton.button_pressed)
 
 func _on_volume_slider_value_changed(value: float) -> void:
-	var bus_index: int = AudioServer.get_bus_index("Master")
-	AudioServer.set_bus_volume_linear(bus_index, value)
+	var master_bus_index: int = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_linear(master_bus_index, value)
 	game.persistent_data.volume = value
 	game.save_persistent_data()

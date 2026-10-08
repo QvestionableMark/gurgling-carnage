@@ -59,17 +59,17 @@ func _physics_process(delta: float) -> void:
 		is_parrying = true
 		is_jumping = false
 		is_dashing = false
-		var parried_anything: bool = false
+		var has_parried_attack: bool = false
 		for attack: Attack in potential_parryable_attacks:
 			if not is_instance_valid(attack) or not attack.is_parryable or not $PlayerSprite/ParryableArea.overlaps_body(attack):
 				continue
-			parried_anything = true
+			has_parried_attack = true
 			$ParryAudio.play()
 			var parry_particle_instance: CPUParticles2D = PARRY_PARTICLE.instantiate()
 			attack.handle_parry(self)
 			parry_particle_instance.position = $PlayerSprite/ParryableArea.global_position + (attack.global_position - global_position) / 2
 			game.add_child(parry_particle_instance)
-		if not parried_anything:
+		if not has_parried_attack:
 			$WhiffParryAudio.play()
 		else:
 			game.create_slowmo(PARRY_SLOWMO_STRENGTH, PARRY_SLOWMO_DURATION)
@@ -164,21 +164,21 @@ func _on_player_sprite_animation_finished() -> void:
 	resolve_animation()
 
 func _on_parryable_area_body_shape_entered(_body_rid: RID, body: Node2D, body_shape_index: int, _local_shape_index: int) -> void:
-	var body_shape_owner: int = body.shape_find_owner(body_shape_index)
-	var body_shape_node: Node = body.shape_owner_get_owner(body_shape_owner)
+	var body_shape_owner_id: int = body.shape_find_owner(body_shape_index)
+	var body_collision: Node = body.shape_owner_get_owner(body_shape_owner_id)
 
-	if body_shape_node.is_in_group("parryable") and not potential_parryable_attacks.has(body):
+	if body_collision.is_in_group("parryable") and not potential_parryable_attacks.has(body):
 		potential_parryable_attacks.append(body)
 
 func _on_parryable_area_body_shape_exited(_body_rid: RID, body: Node2D, body_shape_index: int, _local_shape_index: int) -> void:
 	if not is_instance_valid(body):
-		for index: int in range(potential_parryable_attacks.size() - 1, -1, -1):
-			if not is_instance_valid(potential_parryable_attacks[index]):
-				potential_parryable_attacks.remove_at(index)
+		for attack_index: int in range(potential_parryable_attacks.size() - 1, -1, -1):
+			if not is_instance_valid(potential_parryable_attacks[attack_index]):
+				potential_parryable_attacks.remove_at(attack_index)
 		return
 
-	var body_shape_owner: int = body.shape_find_owner(body_shape_index)
-	var body_shape_node: Node = body.shape_owner_get_owner(body_shape_owner)
+	var body_shape_owner_id: int = body.shape_find_owner(body_shape_index)
+	var body_collision: Node = body.shape_owner_get_owner(body_shape_owner_id)
 
-	if body_shape_node.is_in_group("parryable") and potential_parryable_attacks.has(body):
+	if body_collision.is_in_group("parryable") and potential_parryable_attacks.has(body):
 		potential_parryable_attacks.erase(body)

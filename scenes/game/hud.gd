@@ -16,19 +16,19 @@ func start_vignette(strength: float, duration: float) -> void:
 	if vignette_tween:
 		vignette_tween.kill()
 
-	var gradient: Gradient = $VignetteTexture.texture.gradient
+	var vignette_gradient: Gradient = $VignetteTexture.texture.gradient
 
 	vignette_tween = create_tween()
 	vignette_tween.set_ignore_time_scale(true)
 
 	vignette_tween.tween_method(
-		func(value: float) -> void: gradient.set_color(1, Color(0, 0, 0, value)),
-		gradient.get_color(1).a,
+		func(value: float) -> void: vignette_gradient.set_color(1, Color(0, 0, 0, value)),
+		vignette_gradient.get_color(1).a,
 		strength,
 		duration / 2.0
 	)
 	vignette_tween.tween_method(
-		func(value: float) -> void: gradient.set_color(1, Color(0, 0, 0, value)),
+		func(value: float) -> void: vignette_gradient.set_color(1, Color(0, 0, 0, value)),
 		strength,
 		0.0,
 		duration / 2.0
@@ -57,7 +57,7 @@ func _on_hud_update() -> void:
 	$HealthBarContainer/HealthBar.value = game.persistent_data.health
 	$BossBarContainer/BossHealthBar.value = float(game.current_stage.boss_current_health) / game.current_stage.boss_health
 
-func _on_player_died(timer: Timer) -> void:
+func _on_player_died(death_timer: Timer) -> void:
 	$DeathLabel.visible = true
-	await timer.timeout
+	await death_timer.timeout
 	$DeathLabel.visible = false

@@ -1,5 +1,8 @@
 extends Stage
 
+const STAGE_ENTRY_FADE_DURATION: float = 2.0
+const STAGE_EXIT_FADE_DURATION: float = 2.0
+
 const PIERCING: PackedScene = preload("res://scenes/stages/stage_2_attacks/piercing.tscn")
 
 const GRAVITY_MULTIPLIER: float = -0.2
@@ -10,10 +13,11 @@ func _ready() -> void:
 	super()
 	player.gravity *= GRAVITY_MULTIPLIER
 	player.fast_fall_gravity *= FAST_FALL_GRAVITY_MULTIPLIER
-	var fade: StageFade = STAGE_FADE.instantiate() as StageFade
-	fade.fade_into_black = false
-	add_child(fade)
-	await fade.fade_done
+	var entry_fade: StageFade = STAGE_FADE.instantiate() as StageFade
+	entry_fade.fade_duration = STAGE_ENTRY_FADE_DURATION
+	entry_fade.fade_into_black = false
+	add_child(entry_fade)
+	await entry_fade.fade_done
 	is_active = true
 
 func _on_attack_timer_timeout() -> void:
@@ -32,7 +36,8 @@ func _on_survival_timer_timeout() -> void:
 
 	if boss_current_health <= 0:
 		is_active = false
-		var fade: StageFade = STAGE_FADE.instantiate() as StageFade
-		add_child(fade)
-		await fade.fade_done
+		var exit_fade: StageFade = STAGE_FADE.instantiate() as StageFade
+		exit_fade.fade_duration = STAGE_EXIT_FADE_DURATION
+		add_child(exit_fade)
+		await exit_fade.fade_done
 		game.load_stage(3)

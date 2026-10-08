@@ -5,17 +5,17 @@ const TARGET_Y_RANGE: float = 1.5
 const SPEED_RANDOM_DIVISOR: int = 2
 const SPEED_MIN_MULTIPLIER: float = 0.3
 const HIT_END_LAG: float = 0.7
-const SPEED: int = 1500
 
 var velocity: Vector2
 
-var is_finished: bool = false
+func _init() -> void:
+	speed = 1500.0
 
 func _ready() -> void:
-	var rng: float = randf()
-	var target: Vector2 = Vector2(0, (TARGET_MIN_Y + rng * TARGET_Y_RANGE) * Game.GAME_VIEW_SIZE.y)
-	look_at(target)
-	velocity = position.direction_to(target) * SPEED * (rng / SPEED_RANDOM_DIVISOR + SPEED_MIN_MULTIPLIER)
+	var trajectory_roll: float = randf()
+	var target_position: Vector2 = Vector2(0, (TARGET_MIN_Y + trajectory_roll * TARGET_Y_RANGE) * Game.GAME_VIEW_SIZE.y)
+	look_at(target_position)
+	velocity = position.direction_to(target_position) * speed * (trajectory_roll / SPEED_RANDOM_DIVISOR + SPEED_MIN_MULTIPLIER)
 	visible = true
 
 func _physics_process(delta: float) -> void:
@@ -31,16 +31,16 @@ func on_hit(body: Node2D) -> void:
 	if is_finished:
 		return
 
-	var hit_something: bool = false
+	var is_target_hit: bool = false
 	if body is Player:
 		body.take_damage(hit_damage)
 		body.end_lag += HIT_END_LAG
-		hit_something = true
+		is_target_hit = true
 
 	if body.is_in_group("solid"):
-		hit_something = true
+		is_target_hit = true
 
-	if hit_something:
+	if is_target_hit:
 		is_finished = true
 		add_collision_exception_with(body)
 		$AcidSprite.play("hit")
