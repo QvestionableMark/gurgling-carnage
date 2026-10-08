@@ -68,7 +68,7 @@ func _on_attack_timer_timeout() -> void:
 		elif not is_stabbing and rng < 0.7:
 			is_stabbing = true
 			var tentacle = TENTACLE.instantiate() as Attack
-			add_child(tentacle)
+			$TentacleSpawner.add_child(tentacle)
 			await tentacle.finished
 			is_stabbing = false
 		elif not is_lazering:

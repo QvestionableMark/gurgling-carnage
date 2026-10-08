@@ -690,7 +690,7 @@ script = ExtResource("1_3847s")
 stage_number = 1
 player_start_position = Vector2(300, 700)
 use_boss_health_bar = true
-boss_health = 1.0
+boss_health = 75.0
 camera_x_restraints = Vector2(960, 960)
 camera_y_restraints = Vector2(540, 540)
 
@@ -768,6 +768,9 @@ playback_type = 1
 
 [node name="BuzzAudio" type="AudioStreamPlayer2D" parent="." unique_id=384496074]
 stream = ExtResource("9_bjuw2")
+
+[node name="TentacleSpawner" type="Node2D" parent="." unique_id=483064222]
+position = Vector2(1545, 343)
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="BossBody/KnockbackArea" to="." method="_on_knockback_area_body_entered"]

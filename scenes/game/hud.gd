@@ -44,7 +44,6 @@ func _on_stage_loaded(stage_number):
 		$BossBarContainer.visible = false
 
 func _on_toggle_menu_toggled(toggled_on: bool) -> void:
-	print(toggled_on)
 	if toggled_on:
 		$KeybindMenu.position += Vector2(400,0) #400 is "Keybinds" size
 	else:

@@ -30,7 +30,6 @@ func _on_damage_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_
 	if body is Player:
 		var shape_owner_id = $DamageArea.shape_find_owner(local_shape_index)
 		var collider = $DamageArea.shape_owner_get_owner(shape_owner_id)
-		print(collider.get_groups())
 		if collider.is_in_group("hand"):
 			body.take_damage(10)
 			body.end_lag += 0.5

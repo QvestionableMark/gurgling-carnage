@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bfaivsp67k3af" path="res://scenes/stages/stage_5.gd" id="1_dy653"]
 [ext_resource type="Texture2D" uid="uid://didvrcnwguqhs" path="res://spritesheets/stages/stage_5/Scene5baggrund.png" id="2_q4drp"]
 [ext_resource type="Texture2D" uid="uid://cukqyepntax4l" path="res://spritesheets/stages/stage_5/Scene5platformsvv6.png" id="3_q4drp"]
-[ext_resource type="Texture2D" uid="uid://ckouqylj2arai" path="res://spritesheets/stages/stage_5/Scene5platformv3.png" id="3_df1c4"]
 [ext_resource type="Script" uid="uid://da2u57lr8m4s0" path="res://scenes/stages/stage_5_attacks/heart.gd" id="4_df1c4"]
 [ext_resource type="Texture2D" uid="uid://b5sciv6r5738" path="res://spritesheets/stages/stage_5/Scene5-boss.png" id="4_m1r7o"]
 [ext_resource type="Texture2D" uid="uid://ddx2phprtnbdk" path="res://spritesheets/stages/stage_5/Scene5forgrund.png" id="5_583hl"]
@@ -435,7 +434,7 @@ script = ExtResource("1_dy653")
 stage_number = 5
 player_start_position = Vector2(60, 0)
 use_boss_health_bar = true
-boss_health = 100.0
+boss_health = 60.0
 camera_x_restraints = Vector2(960, 1550)
 camera_y_restraints = Vector2(-275, 275)
 
@@ -451,15 +450,16 @@ autoplay = "default"
 
 [node name="Platforms" type="Sprite2D" parent="Scalar" unique_id=932849234]
 texture_filter = 1
-position = Vector2(1920, 0)
+position = Vector2(1720, 0)
 scale = Vector2(6.4, 6.4)
 texture = ExtResource("3_q4drp")
 
-[node name="BossBody" type="AnimatableBody2D" parent="Scalar" unique_id=116356473 node_paths=PackedStringArray("platform_body")]
+[node name="BossBody" type="AnimatableBody2D" parent="Scalar" unique_id=116356473 node_paths=PackedStringArray("platform_body", "platform_sprite") groups=["parryable"]]
 position = Vector2(3200, 0)
 scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("4_df1c4")
 platform_body = NodePath("../PlatformBody")
+platform_sprite = NodePath("../Platforms")
 is_parryable = true
 hit_damage = 10
 
@@ -499,6 +499,7 @@ position = Vector2(-3.34, 225)
 shape = SubResource("CapsuleShape2D_m1r7o")
 
 [node name="Foreground" type="AnimatedSprite2D" parent="Scalar" unique_id=14254459]
+z_index = 2
 texture_filter = 1
 position = Vector2(1920, 0)
 scale = Vector2(6.4, 6.4)
@@ -511,13 +512,13 @@ autoplay = "default"
 polygon = PackedVector2Array(-193, -344, -185, 1281, 4097, 1292, 4042, -1553, -283, -1553, -194, -358, 312, -366, 731, -857, 3842, -869, 3849, 966, 552, 928, 254, 349, 4, 335, -7, -339)
 
 [node name="PlatformBody" type="StaticBody2D" parent="Scalar" unique_id=793670918]
+position = Vector2(-200, 0)
 
 [node name="Platform" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=1087027614 groups=["solid"]]
 polygon = PackedVector2Array(1528, -327, 1418, -342, 1377, -415, 1671, -415, 1642, -345)
 
-[node name="Platform2" type="CollisionPolygon2D" parent="Scalar/SolidCollider" unique_id=1569552894 groups=["solid"]]
-position = Vector2(-51.51515, 3.0303028)
-polygon = PackedVector2Array(2052, 49, 1942, 34, 1901, -39, 2195, -39, 2166, 31)
+[node name="Platform2" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=564313992 groups=["solid"]]
+polygon = PackedVector2Array(1041.6364, 56.33332, 931.63635, 41.333313, 890.63635, -31.66669, 1184.6364, -31.66669, 1155.6364, 38.333313)
 
 [node name="Platform3" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=2089346942 groups=["solid"]]
 polygon = PackedVector2Array(1521, 447, 1411, 432, 1370, 359, 1664, 359, 1635, 429)
@@ -528,13 +529,32 @@ polygon = PackedVector2Array(2525, 447, 2415, 432, 2374, 359, 2668, 359, 2639, 4
 [node name="Platform5" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=1877606430 groups=["solid"]]
 polygon = PackedVector2Array(2493, -328, 2383, -343, 2342, -416, 2636, -416, 2607, -346)
 
-[node name="Platform6" type="CollisionPolygon2D" parent="Scalar/SolidCollider" unique_id=710211692]
-position = Vector2(-1453.0303, 384.84848)
-polygon = PackedVector2Array(2493, -328, 2383, -343, 2342, -416, 2636, -416, 2607, -346)
+[node name="Platform6" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=1338317674 groups=["solid"]]
+polygon = PackedVector2Array(2002.0908, 50.78784, 1892.0908, 35.78784, 1851.0908, -37.21215, 2145.0913, -37.21215, 2116.0913, 32.78784)
 
-[node name="Platform7" type="CollisionPolygon2D" parent="Scalar/SolidCollider" unique_id=196834761]
-position = Vector2(-456.06058, 1063.6364)
-polygon = PackedVector2Array(2493, -328, 2383, -343, 2342, -416, 2636, -416, 2607, -346)
+[node name="Platform7" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=882673921 groups=["solid"]]
+polygon = PackedVector2Array(2039.9697, 735.63635, 1929.9696, 720.6363, 1888.9696, 647.6363, 2182.9697, 647.6363, 2153.9697, 717.6363)
+
+[node name="TentacleSpawners" type="Node2D" parent="Scalar" unique_id=1814912894]
+
+[node name="TentacleSpawner" type="Node2D" parent="Scalar/TentacleSpawners" unique_id=230413981]
+position = Vector2(901.51514, 956.0606)
+scale = Vector2(-2, -2)
+
+[node name="TentacleSpawner2" type="Node2D" parent="Scalar/TentacleSpawners" unique_id=1576163199]
+position = Vector2(2692.424, 963.63635)
+scale = Vector2(2, -2)
+
+[node name="TentacleSpawner3" type="Node2D" parent="Scalar/TentacleSpawners" unique_id=270611010]
+position = Vector2(2600, -857.57574)
+scale = Vector2(2, 2)
+
+[node name="TentacleSpawner4" type="Node2D" parent="Scalar/TentacleSpawners" unique_id=1144329903]
+position = Vector2(1057.5757, -857.57574)
+scale = Vector2(-2, 2)
+
+[node name="ToothSpawner" type="Node2D" parent="Scalar" unique_id=463313619]
+position = Vector2(392.4242, 821.21204)
 
 [node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1678198600]
 process_mode = 3
@@ -543,5 +563,10 @@ stream = ExtResource("8_583hl")
 volume_db = 6.0
 playback_type = 1
 
+[node name="AttackTimer" type="Timer" parent="." unique_id=404833174]
+wait_time = 0.66
+autostart = true
+
 [connection signal="frame_changed" from="Scalar/BossBody/Boss" to="Scalar/BossBody" method="_on_boss_frame_changed"]
 [connection signal="body_entered" from="Scalar/BossBody/HitArea" to="Scalar/BossBody" method="_on_hit_area_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

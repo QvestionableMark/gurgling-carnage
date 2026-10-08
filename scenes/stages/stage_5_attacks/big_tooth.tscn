@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://nk80xt615f1"]
+
+[ext_resource type="Script" uid="uid://dkdbymnm63bsb" path="res://scenes/stages/stage_5_attacks/big_tooth.gd" id="1_qnmbu"]
+[ext_resource type="Texture2D" uid="uid://2yydoegkwoi3" path="res://spritesheets/stages/stage_1/Tooth_projectile-Sheet.png" id="2_m81h1"]
+[ext_resource type="Texture2D" uid="uid://bidytugk3xjxs" path="res://spritesheets/stages/stage_1/Tooth_projectile_hit-Sheet.png" id="3_sipwg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yk5pe"]
+radius = 30.0
+height = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pb34x"]
+radius = 25.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwffg"]
+atlas = ExtResource("2_m81h1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1846"]
+atlas = ExtResource("2_m81h1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtkad"]
+atlas = ExtResource("2_m81h1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu6x4"]
+atlas = ExtResource("2_m81h1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0g1e"]
+atlas = ExtResource("2_m81h1")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyk7a"]
+atlas = ExtResource("2_m81h1")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ulo3"]
+atlas = ExtResource("2_m81h1")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d15ur"]
+atlas = ExtResource("2_m81h1")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1qpj"]
+atlas = ExtResource("3_sipwg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1g2h"]
+atlas = ExtResource("3_sipwg")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tow4"]
+atlas = ExtResource("3_sipwg")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj1hr"]
+atlas = ExtResource("3_sipwg")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pois"]
+atlas = ExtResource("3_sipwg")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7522"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwffg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1846")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtkad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu6x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0g1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyk7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ulo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d15ur")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1qpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1g2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tow4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj1hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pois")
+}],
+"loop": 0,
+"name": &"hit",
+"speed": 20.0
+}]
+
+[node name="big_tooth" type="AnimatableBody2D" unique_id=784705652]
+z_index = 1
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+sync_to_physics = false
+script = ExtResource("1_qnmbu")
+hit_damage = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_yk5pe")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=762369763]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1210065424]
+position = Vector2(40, 0)
+shape = SubResource("CircleShape2D_pb34x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035384083]
+texture_filter = 1
+scale = Vector2(-5, 5)
+sprite_frames = SubResource("SpriteFrames_d7522")
+autoplay = "default"
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

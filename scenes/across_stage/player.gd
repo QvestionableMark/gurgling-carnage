@@ -6,7 +6,7 @@ var game : Game
 var potential_parryable_attacks : Array[Node2D] = []
 
 const JUMP_VELOCITY = -750
-const BOUNCINESS = 0.75
+const BOUNCINESS = 0.5
 const SPEED = 400
 const ACCELARATION = 800
 
@@ -66,7 +66,6 @@ func _physics_process(delta):
 			$WhifParryAudio.play()
 		else:
 			game.create_slowmo(0.5,.2)
-		potential_parryable_attacks.clear()
 	
 	input_velocity.x = 0
 	if (is_on_ceiling() or is_on_floor()) and game.current_stage.is_free_fall:
@@ -144,16 +143,16 @@ func take_damage(damage):
 	else:
 		game.save_persistent_data()
 
-func _on_dash_timer_timeout() -> void:
-	$RollingCollision.disabled = true
-	$NonRollingCollision.disabled = false
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if $AnimatedSprite2D.animation == "jump":
 		is_jumping = false
 	elif $AnimatedSprite2D.animation == "dash":
 		is_dashing = false
+		$RollingCollision.disabled = true
+		$NonRollingCollision.disabled = false
 	elif $AnimatedSprite2D.animation == "parry":
+		$RollingCollision.disabled = true
+		$NonRollingCollision.disabled = false
 		is_parrying = false
 	resolve_animation()
 
@@ -162,5 +161,13 @@ func _on_parryable_area_body_shape_entered(_body_rid: RID, body: Node2D, body_sh
 	var body_shape_owner = body.shape_find_owner(body_shape_index)
 	var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
 
-	if body_shape_node.is_in_group("parryable"):
+	if body_shape_node.is_in_group("parryable") and not potential_parryable_attacks.has(body):
 		potential_parryable_attacks.append(body)
+
+
+func _on_parryable_area_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	var body_shape_owner = body.shape_find_owner(body_shape_index)
+	var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
+
+	if body_shape_node.is_in_group("parryable") and potential_parryable_attacks.has(body):
+		potential_parryable_attacks.erase(body)

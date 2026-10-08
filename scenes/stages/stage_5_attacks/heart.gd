@@ -1,6 +1,7 @@
 extends Attack
 
 @export var platform_body : StaticBody2D
+@export var platform_sprite : Sprite2D
 var heart_beat_frames = [1,7,9,10,12,13,15,16]
 var heart_just_beat = false
 
@@ -10,12 +11,12 @@ func handle_parry(player : Player):
 	player.external_velocity += global_position.direction_to(player.global_position) * 1500
 	been_parried = true
 	platform_body.collision_layer = 0
+	platform_sprite.self_modulate = Color.DIM_GRAY
 	get_parent().get_parent().take_damage(hit_damage)
 	await get_tree().create_timer(2.0).timeout
 	been_parried = false
 	platform_body.collision_layer = 1
-	
-	
+	platform_sprite.self_modulate = Color.WHITE
 
 func _on_hit_area_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -28,8 +29,8 @@ func _on_boss_frame_changed() -> void:
 	heart_just_beat = $Boss.frame in heart_beat_frames
 	
 	if heart_just_beat and not been_parried:
-		$HeartCollision.add_to_group("parryable")
+		is_parryable = true
 	else:
-		$HeartCollision.remove_from_group("parryable")
+		is_parryable = false
 	if has_parry_indicator:
 		$parry_indicator_sprite.visible = heart_just_beat and not been_parried
