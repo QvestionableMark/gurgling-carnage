@@ -11,6 +11,9 @@ const HIT_KNOCKBACK: int = 1000
 var heartbeat_frames: Array[int] = [1, 7, 9, 10, 12, 13, 15, 16]
 var is_heartbeat_frame: bool = false
 
+func _process(delta: float) -> void:
+	$BossSprite.self_modulate = $BossSprite.self_modulate.lerp(Color.WHITE, clampf(delta, 0.0, 1.0))
+
 func handle_parry(player: Player) -> void:
 	if has_been_parried:
 		return
@@ -18,6 +21,7 @@ func handle_parry(player: Player) -> void:
 	has_been_parried = true
 	platform_body.collision_layer = 0
 	platform_sprite.self_modulate = Color.DIM_GRAY
+	$BossSprite.self_modulate = Color.RED
 	get_parent().get_parent().take_damage(hit_damage)
 	await get_tree().create_timer(PARRY_RECOVERY_TIME).timeout
 	has_been_parried = false

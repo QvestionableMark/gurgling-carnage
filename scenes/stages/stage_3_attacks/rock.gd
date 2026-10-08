@@ -59,6 +59,8 @@ func _on_hit_area_body_entered(body: Node2D) -> void:
 
 	if is_target_hit:
 		is_finished = true
+		$RockCollision.set_deferred("disabled", true)
+		$HitArea.set_deferred("monitoring", false)
 		add_collision_exception_with(body)
 		$RockSprite.play("hit")
 		await $RockSprite.animation_finished

@@ -42,11 +42,14 @@ func _on_attack_timer_timeout() -> void:
 					tentacle_spawner.add_child(tentacle)
 
 func take_damage(damage: float) -> void:
+	if boss_current_health <= 0.0:
+		return
+
 	boss_current_health -= damage
 	game.hud_update.emit()
 	$OnHitAudio.play()
 
-	if boss_current_health <= 0:
+	if boss_current_health <= 0.0:
 		is_active = false
 		var exit_fade: StageFade = STAGE_FADE.instantiate() as StageFade
 		exit_fade.fade_duration = STAGE_EXIT_FADE_DURATION

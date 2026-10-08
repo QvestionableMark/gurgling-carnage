@@ -34,7 +34,7 @@ func _on_survival_timer_timeout() -> void:
 	boss_current_health -= 1
 	game.hud_update.emit()
 
-	if boss_current_health <= 0:
+	if boss_current_health <= 0.0:
 		is_active = false
 		var exit_fade: StageFade = STAGE_FADE.instantiate() as StageFade
 		exit_fade.fade_duration = STAGE_EXIT_FADE_DURATION

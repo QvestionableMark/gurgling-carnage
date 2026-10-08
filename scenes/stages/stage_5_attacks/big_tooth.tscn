@@ -118,7 +118,6 @@ animations = [{
 [node name="big_tooth" type="AnimatableBody2D" unique_id=784705652]
 z_index = 1
 scale = Vector2(1.5, 1.5)
-collision_layer = 2
 sync_to_physics = false
 script = ExtResource("1_qnmbu")
 hit_damage = 50

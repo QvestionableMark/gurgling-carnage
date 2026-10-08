@@ -31,11 +31,15 @@ func _ready() -> void:
 	is_active = true
 
 func take_damage(damage: float) -> void:
+	if boss_current_health <= 0.0:
+		return
+
 	boss_current_health -= damage
+	$BackgroundSprite.self_modulate = Color.RED
 	game.hud_update.emit()
 	$OnHitAudio.play()
 
-	if boss_current_health <= 0:
+	if boss_current_health <= 0.0:
 		$BackgroundSprite.play("end_transition")
 		$MouthColliderAnimation.play("transition_position")
 		is_active = false
@@ -43,7 +47,8 @@ func take_damage(damage: float) -> void:
 			await $BackgroundSprite.frame_changed
 		$FloorBody.queue_free()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	$BackgroundSprite.self_modulate = $BackgroundSprite.self_modulate.lerp(Color.WHITE, clampf(delta, 0.0, 1.0))
 	if player.position.y > Game.GAME_VIEW_SIZE.y and not is_exiting:
 		is_exiting = true
 		var exit_fade: StageFade = STAGE_FADE.instantiate() as StageFade

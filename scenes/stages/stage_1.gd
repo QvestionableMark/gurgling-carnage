@@ -25,11 +25,15 @@ func _ready() -> void:
 	is_active = true
 
 func take_damage(damage: float) -> void:
+	if boss_current_health <= 0.0:
+		return
+
 	boss_current_health -= damage
+	$BossBody/BossSprite.self_modulate = Color.RED
 	game.hud_update.emit()
 	$OnHitAudio.play()
 
-	if boss_current_health <= 0:
+	if boss_current_health <= 0.0:
 		$BackgroundSprite.play("end_transition")
 		is_active = false
 		var boss_collision: CollisionShape2D = $BossBody/BossCollision
@@ -39,7 +43,9 @@ func take_damage(damage: float) -> void:
 			await $BackgroundSprite.frame_changed
 		boss_collision.queue_free()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if has_node("BossBody/BossSprite"):
+		$BossBody/BossSprite.self_modulate = $BossBody/BossSprite.self_modulate.lerp(Color.WHITE, clampf(delta, 0.0, 1.0))
 	if player.position.y > Game.GAME_VIEW_SIZE.y:
 		var exit_fade: StageFade = STAGE_FADE.instantiate() as StageFade
 		exit_fade.fade_duration = STAGE_EXIT_FADE_DURATION

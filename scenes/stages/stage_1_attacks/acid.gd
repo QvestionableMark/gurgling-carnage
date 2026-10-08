@@ -42,6 +42,7 @@ func on_hit(body: Node2D) -> void:
 
 	if is_target_hit:
 		is_finished = true
+		$AcidCollision.set_deferred("disabled", true)
 		add_collision_exception_with(body)
 		$AcidSprite.play("hit")
 		await $AcidSprite.animation_finished

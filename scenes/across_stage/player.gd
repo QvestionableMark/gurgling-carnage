@@ -9,6 +9,7 @@ const PARRY_SLOWMO_DURATION: float = 0.2
 const DEFAULT_GRAVITY: Vector2 = Vector2(0, 980)
 const MAX_END_LAG: float = 1.0
 const JUMP_VELOCITY: int = -750
+const FAST_FALL_BOOST: float = 300.0
 const BOUNCINESS: float = 0.5
 const SPEED: int = 400
 const ACCELERATION: int = 800
@@ -35,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	if game.persistent_data.health <= 0:
 		return
 	end_lag = clampf(end_lag - delta, 0.0, MAX_END_LAG)
-	modulate = Color(clampf(modulate.r + delta, 0.0, 1.0), clampf(modulate.g + delta, 0.0, 1.0), clampf(modulate.b + delta, 0.0, 1.0))
+	modulate = modulate.lerp(Color.WHITE, clampf(delta, 0.0, 1.0))
 
 	var effective_speed: float = SPEED
 
@@ -95,6 +96,8 @@ func _physics_process(delta: float) -> void:
 		if not Input.is_action_pressed("fast_fall"):
 			input_velocity += gravity * delta
 		else:
+			if Input.is_action_just_pressed("fast_fall"):
+				input_velocity.y += FAST_FALL_BOOST
 			is_fast_falling = true
 			input_velocity += (gravity + fast_fall_gravity) * delta
 	else:
