@@ -509,7 +509,7 @@ autoplay = "default"
 [node name="SolidBody" type="StaticBody2D" parent="ScalarNode" unique_id=1746372540]
 
 [node name="GroundWallCollision" type="CollisionPolygon2D" parent="ScalarNode/SolidBody" unique_id=896338074 groups=["solid"]]
-polygon = PackedVector2Array(-193, -344, -185, 1281, 4097, 1292, 4042, -1553, -283, -1553, -194, -358, 312, -366, 731, -857, 3842, -869, 3849, 966, 552, 928, 254, 349, 4, 335, -7, -339)
+polygon = PackedVector2Array(-192.42422, -351.5151, -185, 1281, 4097, 1292, 4042, -1553, -283, -1553, -194, -358, 319.69693, -380.303, 575.7575, -716.6666, 719.6969, -853.0302, 3842, -869, 3849, 966, 621.21204, 945.45447, 554.5454, 909.0908, 334.84845, 451.5151, 254, 349, 183.33331, 334.84845, 0, 333.3333, 0, -359.09088)
 
 [node name="PlatformBody" type="StaticBody2D" parent="ScalarNode" unique_id=793670918]
 position = Vector2(-200, 0)
