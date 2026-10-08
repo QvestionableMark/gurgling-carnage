@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b0ksrqtnnskmo"]
 
 [ext_resource type="Script" uid="uid://bahq441digubs" path="res://scenes/stages/stage_1_attacks/tentacles.gd" id="1_sygtk"]
-[ext_resource type="Texture2D" uid="uid://dl65hq3paoxlw" path="res://spritesheets/stages/stage_1/tentacle_attack_high-Sheet.png" id="2_6ckg2"]
-[ext_resource type="Texture2D" uid="uid://dj8fu7pf37f1t" path="res://spritesheets/stages/stage_1/tentacle_attack_low-Sheet.png" id="3_e57nh"]
-[ext_resource type="Texture2D" uid="uid://dovg5oe54560a" path="res://spritesheets/stages/stage_1/tentacle_attack_middle-Sheet.png" id="4_jdrue"]
+[ext_resource type="Texture2D" uid="uid://dl65hq3paoxlw" path="res://spritesheets/stages/stage_1/tentacle_attack_high_sheet.png" id="2_6ckg2"]
+[ext_resource type="Texture2D" uid="uid://dj8fu7pf37f1t" path="res://spritesheets/stages/stage_1/tentacle_attack_low_sheet.png" id="3_e57nh"]
+[ext_resource type="Texture2D" uid="uid://dovg5oe54560a" path="res://spritesheets/stages/stage_1/tentacle_attack_middle_sheet.png" id="4_jdrue"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2k6p"]
 atlas = ExtResource("2_6ckg2")
@@ -375,12 +375,12 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7522"]
 radius = 112.0714
 
-[node name="tentacle" type="AnimatableBody2D" unique_id=2058276820]
+[node name="tentacles" type="AnimatableBody2D" unique_id=2058276820]
 sync_to_physics = false
 script = ExtResource("1_sygtk")
 hit_damage = 20
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2017520917]
+[node name="TentaclesSprite" type="AnimatedSprite2D" parent="." unique_id=2017520917]
 texture_filter = 1
 position = Vector2(-519.99994, 182.99998)
 scale = Vector2(6.4, 6.4)

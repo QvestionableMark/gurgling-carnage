@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ddhmy7166oen5"]
 
 [ext_resource type="Script" uid="uid://cv1y7l08ir1uy" path="res://scenes/stages/stage_4.gd" id="1_t8527"]
-[ext_resource type="Texture2D" uid="uid://0m1ocjad57ry" path="res://spritesheets/stages/stage_4/Scene4.png" id="2_t8527"]
+[ext_resource type="Texture2D" uid="uid://0m1ocjad57ry" path="res://spritesheets/stages/stage_4/scene4.png" id="2_t8527"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mm8m8"]
 atlas = ExtResource("2_t8527")
@@ -66,7 +66,7 @@ player_start_position = Vector2(842.5, -1400)
 camera_x_restraints = Vector2(960, 18240)
 camera_y_restraints = Vector2(-540, 540)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2100566736]
+[node name="Stage4Sprite" type="AnimatedSprite2D" parent="." unique_id=2100566736]
 texture_filter = 3
 position = Vector2(9600, 0)
 scale = Vector2(6.4, 6.4)
@@ -74,262 +74,262 @@ sprite_frames = SubResource("SpriteFrames_d7522")
 autoplay = "default"
 frame = 2
 
-[node name="SolidCollider" type="StaticBody2D" parent="." unique_id=321332402]
+[node name="SolidBody" type="StaticBody2D" parent="." unique_id=321332402]
 
-[node name="Top" type="CollisionPolygon2D" parent="SolidCollider" unique_id=1030694659]
+[node name="TopCollision" type="CollisionPolygon2D" parent="SolidBody" unique_id=1030694659]
 position = Vector2(6259.396, 930)
 polygon = PackedVector2Array(-5215.396, -3279, -5171.396, -799, -4072.396, -662, -2682.396, -728, -2083.396, -688, 393.604, -693, 921.604, -643, 1172.604, -737, 1528.604, -1097, 1843.604, -1571, 2090.604, -1818, 2372.604, -1960, 3770.604, -1911, 4008.604, -1824, 4199.604, -1291, 4429.604, -1180, 5894.604, -1202, 6298.604, -1145, 7323.604, -1149, 7425.604, -1189, 8021.604, -1078, 8809.604, -1087, 9807.604, -1004, 10585.604, -1038, 11301.604, -1000, 12150.604, -1060, 14656.604, -1085, 12936.604, -2239)
 
-[node name="Bottom" type="CollisionPolygon2D" parent="SolidCollider" unique_id=1079303923]
+[node name="BottomCollision" type="CollisionPolygon2D" parent="SolidBody" unique_id=1079303923]
 position = Vector2(6259.396, 930)
 polygon = PackedVector2Array(1252.604, -74, 1496.604, -111, 1842.604, -273, 1964.604, -488, 1982.604, -499, 2117.604, -749, 2139.604, -762, 2215.604, -897, 2359.604, -1048, 2483.604, -1124, 2689.604, -1189, 3360.604, -1189, 3444.604, -963, 3472.604, -512, 3732.604, -464, 5039.604, -490, 7091.604, -512, 7428.604, -314, 7831.604, -490, 13797.604, -431, 12905.604, 382, -6238.396, 373, -6248.396, -2227, -5591.396, -3263, -5581.396, -924, -5877.396, -569, -6033.396, -173, -5830.396, 96, -4864.396, 98, -4709.396, -62, -3151.396, -107, -2660.396, -42, -2263.396, -95, -1398.816, -88.89487, -1192.396, -77, -1016.396, -86, -478.396, -89, 67.604004, -91, 401.604, -78, 920.604, -101, 1046.604, -99)
 
-[node name="Rock" type="CollisionPolygon2D" parent="SolidCollider" unique_id=1802795532]
+[node name="RockCollision" type="CollisionPolygon2D" parent="SolidBody" unique_id=1802795532]
 position = Vector2(415, 888)
 polygon = PackedVector2Array(-35, -13, 86, -48, 259, -61, 376.6654, -17.396057, 670, -31, 836, -22, 916, 6, 913, 62, -25, 50)
 
-[node name="Platform" type="CollisionPolygon2D" parent="SolidCollider" unique_id=829202945]
+[node name="PlatformCollision" type="CollisionPolygon2D" parent="SolidBody" unique_id=829202945]
 polygon = PackedVector2Array(15765, 212, 15968, 236, 16144, 222, 16292, 227, 16375, 222, 16401, 242, 16397, 271, 16332, 282, 16142, 309, 16006, 314, 15918, 289, 15802, 295, 15757, 258)
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1946869902]
 
-[node name="Hand" type="CollisionPolygon2D" parent="DamageArea" unique_id=203354895 groups=["hand"]]
+[node name="HandCollision" type="CollisionPolygon2D" parent="DamageArea" unique_id=203354895 groups=["hand"]]
 polygon = PackedVector2Array(2541, 711, 2611, 691, 2669, 711, 2650, 768, 2547, 819, 2521, 740)
 
-[node name="Hand2" type="CollisionPolygon2D" parent="DamageArea" unique_id=192771812 groups=["hand"]]
+[node name="HandCollision2" type="CollisionPolygon2D" parent="DamageArea" unique_id=192771812 groups=["hand"]]
 polygon = PackedVector2Array(5799, 734, 5869, 714, 5927, 734, 5908, 791, 5805, 842, 5779, 763)
 
-[node name="Hand3" type="CollisionPolygon2D" parent="DamageArea" unique_id=1976609124 groups=["hand"]]
+[node name="HandCollision3" type="CollisionPolygon2D" parent="DamageArea" unique_id=1976609124 groups=["hand"]]
 polygon = PackedVector2Array(5971, 734, 6041, 714, 6099, 734, 6080, 791, 5977, 842, 5951, 763)
 
-[node name="Hand4" type="CollisionPolygon2D" parent="DamageArea" unique_id=447232484 groups=["hand"]]
+[node name="HandCollision4" type="CollisionPolygon2D" parent="DamageArea" unique_id=447232484 groups=["hand"]]
 polygon = PackedVector2Array(6143, 736, 6213, 716, 6271, 736, 6252, 793, 6149, 844, 6123, 765)
 
-[node name="Hand5" type="CollisionPolygon2D" parent="DamageArea" unique_id=530206576 groups=["hand"]]
+[node name="HandCollision5" type="CollisionPolygon2D" parent="DamageArea" unique_id=530206576 groups=["hand"]]
 polygon = PackedVector2Array(6339, 748, 6409, 728, 6467, 748, 6448, 805, 6345, 856, 6319, 777)
 
-[node name="Hand6" type="CollisionPolygon2D" parent="DamageArea" unique_id=1655930893 groups=["hand"]]
+[node name="HandCollision6" type="CollisionPolygon2D" parent="DamageArea" unique_id=1655930893 groups=["hand"]]
 rotation = -0.43633232
 polygon = PackedVector2Array(6648.6777, 3900.159, 6718.6777, 3880.159, 6776.6777, 3900.159, 6757.6777, 3957.1584, 6654.6777, 4008.1582, 6628.6777, 3929.1584)
 
-[node name="Hand7" type="CollisionPolygon2D" parent="DamageArea" unique_id=1294723148 groups=["hand"]]
+[node name="HandCollision7" type="CollisionPolygon2D" parent="DamageArea" unique_id=1294723148 groups=["hand"]]
 polygon = PackedVector2Array(11424.678, 315.15894, 11494.678, 295.15894, 11552.678, 315.15894, 11533.678, 372.15845, 11430.678, 423.1582, 11404.678, 344.15845)
 
-[node name="Hand8" type="CollisionPolygon2D" parent="DamageArea" unique_id=1055234622 groups=["hand"]]
+[node name="HandCollision8" type="CollisionPolygon2D" parent="DamageArea" unique_id=1055234622 groups=["hand"]]
 polygon = PackedVector2Array(12914.678, 313.15894, 12984.678, 293.15894, 13042.678, 313.15894, 13023.678, 370.15845, 12920.678, 421.1582, 12894.678, 342.15845)
 
-[node name="Hand9" type="CollisionPolygon2D" parent="DamageArea" unique_id=1747556141 groups=["hand"]]
+[node name="HandCollision9" type="CollisionPolygon2D" parent="DamageArea" unique_id=1747556141 groups=["hand"]]
 polygon = PackedVector2Array(14528.678, 340.15894, 14598.678, 320.15894, 14656.678, 340.15894, 14637.678, 397.15845, 14534.678, 448.1582, 14508.678, 369.15845)
 
-[node name="Hand10" type="CollisionPolygon2D" parent="DamageArea" unique_id=1112635104 groups=["hand"]]
+[node name="HandCollision10" type="CollisionPolygon2D" parent="DamageArea" unique_id=1112635104 groups=["hand"]]
 polygon = PackedVector2Array(14717.678, 353.15894, 14787.678, 333.15894, 14845.678, 353.15894, 14826.678, 410.15845, 14723.678, 461.1582, 14697.678, 382.15845)
 
-[node name="Hand11" type="CollisionPolygon2D" parent="DamageArea" unique_id=850189459 groups=["hand"]]
+[node name="HandCollision11" type="CollisionPolygon2D" parent="DamageArea" unique_id=850189459 groups=["hand"]]
 position = Vector2(2, 6)
 polygon = PackedVector2Array(14898.678, 348.15894, 14968.678, 328.15894, 15026.678, 348.15894, 15007.678, 405.15845, 14904.678, 456.1582, 14878.678, 377.15845)
 
-[node name="Hand12" type="CollisionPolygon2D" parent="DamageArea" unique_id=717732909 groups=["hand"]]
+[node name="HandCollision12" type="CollisionPolygon2D" parent="DamageArea" unique_id=717732909 groups=["hand"]]
 position = Vector2(2, 6)
 polygon = PackedVector2Array(17700.678, 346.15894, 17770.678, 326.15894, 17828.678, 346.15894, 17809.678, 403.15845, 17706.678, 454.1582, 17680.678, 375.15845)
 
-[node name="Hand13" type="CollisionPolygon2D" parent="DamageArea" unique_id=1711611046 groups=["hand"]]
+[node name="HandCollision13" type="CollisionPolygon2D" parent="DamageArea" unique_id=1711611046 groups=["hand"]]
 position = Vector2(2, 6)
 polygon = PackedVector2Array(18168.678, 349.15894, 18238.678, 329.15894, 18296.678, 349.15894, 18277.678, 406.15845, 18174.678, 457.1582, 18148.678, 378.15845)
 
-[node name="Hand14" type="CollisionPolygon2D" parent="DamageArea" unique_id=2118225768 groups=["hand"]]
+[node name="HandCollision14" type="CollisionPolygon2D" parent="DamageArea" unique_id=2118225768 groups=["hand"]]
 position = Vector2(2, 6)
 polygon = PackedVector2Array(18646.678, 377.15894, 18716.678, 357.15894, 18774.678, 377.15894, 18755.678, 434.15845, 18652.678, 485.1582, 18626.678, 406.15845)
 
-[node name="Hand15" type="CollisionPolygon2D" parent="DamageArea" unique_id=1942156718 groups=["hand"]]
+[node name="HandCollision15" type="CollisionPolygon2D" parent="DamageArea" unique_id=1942156718 groups=["hand"]]
 position = Vector2(-3, -1)
 rotation = 2.9670596
 polygon = PackedVector2Array(-2328.292, -773.4516, -2258.292, -793.4516, -2200.292, -773.4516, -2219.292, -716.452, -2322.292, -665.45245, -2348.292, -744.45197)
 
-[node name="Hand16" type="CollisionPolygon2D" parent="DamageArea" unique_id=285232466 groups=["hand"]]
+[node name="HandCollision16" type="CollisionPolygon2D" parent="DamageArea" unique_id=285232466 groups=["hand"]]
 position = Vector2(-3, -1)
 rotation = 3.1415927
 polygon = PackedVector2Array(-6088.292, -351.45126, -6018.292, -371.45123, -5960.292, -351.45126, -5979.292, -294.4517, -6082.292, -243.45212, -6108.292, -322.45163)
 
-[node name="Hand17" type="CollisionPolygon2D" parent="DamageArea" unique_id=600126940 groups=["hand"]]
+[node name="HandCollision17" type="CollisionPolygon2D" parent="DamageArea" unique_id=600126940 groups=["hand"]]
 position = Vector2(-3, -1)
 rotation = 3.1415927
 polygon = PackedVector2Array(-6344.292, -360.45123, -6274.292, -380.4512, -6216.292, -360.45123, -6235.292, -303.45166, -6338.292, -252.45209, -6364.292, -331.4516)
 
-[node name="Hand26" type="CollisionPolygon2D" parent="DamageArea" unique_id=1511124771 groups=["hand"]]
+[node name="HandCollision26" type="CollisionPolygon2D" parent="DamageArea" unique_id=1511124771 groups=["hand"]]
 position = Vector2(-18, 6)
 rotation = 2.7925267
 polygon = PackedVector2Array(-6937.4565, -2835.9707, -6867.4565, -2855.9707, -6809.4565, -2835.9707, -6828.4565, -2778.9714, -6931.4565, -2727.972, -6957.4565, -2806.9712)
 
-[node name="Hand27" type="CollisionPolygon2D" parent="DamageArea" unique_id=266990608 groups=["hand"]]
+[node name="HandCollision27" type="CollisionPolygon2D" parent="DamageArea" unique_id=266990608 groups=["hand"]]
 position = Vector2(-18, 6)
 rotation = 2.7925267
 polygon = PackedVector2Array(-8404.535, -2158.7068, -8335.844, -2160.3098, -8275.286, -2107.4072, -8271.537, -2070.925, -8320.512, -2003.6158, -8417.877, -2110.354)
 
-[node name="Hand28" type="CollisionPolygon2D" parent="DamageArea" unique_id=742173600 groups=["hand"]]
+[node name="HandCollision28" type="CollisionPolygon2D" parent="DamageArea" unique_id=742173600 groups=["hand"]]
 position = Vector2(-18, 6)
 rotation = 2.7925267
 polygon = PackedVector2Array(-7972.3867, -2205.7397, -7951.5166, -2286.4705, -7917.5015, -2327.2988, -7878.2134, -2283.2021, -7895.9365, -2155.5662, -7956.246, -2182.8384)
 
-[node name="Hand29" type="CollisionPolygon2D" parent="DamageArea" unique_id=1938974143 groups=["hand"]]
+[node name="HandCollision29" type="CollisionPolygon2D" parent="DamageArea" unique_id=1938974143 groups=["hand"]]
 position = Vector2(-18, 6)
 rotation = 2.7925267
 polygon = PackedVector2Array(-7756.112, -2329.2158, -7735.2417, -2409.9465, -7701.2266, -2450.775, -7661.9385, -2406.6782, -7679.6616, -2279.0422, -7739.971, -2306.3145)
 
-[node name="Hand18" type="CollisionPolygon2D" parent="DamageArea" unique_id=1652577909 groups=["hand"]]
+[node name="HandCollision18" type="CollisionPolygon2D" parent="DamageArea" unique_id=1652577909 groups=["hand"]]
 position = Vector2(-3, -1)
 rotation = 3.1415927
 polygon = PackedVector2Array(-11389.292, 148.54915, -11319.292, 128.54915, -11261.292, 148.54915, -11280.292, 205.54875, -11383.292, 256.54834, -11409.292, 177.54884)
 
-[node name="Hand19" type="CollisionPolygon2D" parent="DamageArea" unique_id=371830950 groups=["hand"]]
+[node name="HandCollision19" type="CollisionPolygon2D" parent="DamageArea" unique_id=371830950 groups=["hand"]]
 position = Vector2(-3, -1)
 rotation = 3.1415927
 polygon = PackedVector2Array(-11586.292, 148.54916, -11516.292, 128.54916, -11458.292, 148.54916, -11477.292, 205.54877, -11580.292, 256.54834, -11606.292, 177.54886)
 
-[node name="Hand21" type="CollisionPolygon2D" parent="DamageArea" unique_id=286289267 groups=["hand"]]
+[node name="HandCollision21" type="CollisionPolygon2D" parent="DamageArea" unique_id=286289267 groups=["hand"]]
 position = Vector2(1, 18)
 rotation = 3.1415927
 polygon = PackedVector2Array(-14653.292, 52.54943, -14583.292, 32.54943, -14525.292, 52.54943, -14544.292, 109.548996, -14647.292, 160.54851, -14673.292, 81.549126)
 
-[node name="Hand22" type="CollisionPolygon2D" parent="DamageArea" unique_id=1221973069 groups=["hand"]]
+[node name="HandCollision22" type="CollisionPolygon2D" parent="DamageArea" unique_id=1221973069 groups=["hand"]]
 position = Vector2(1, 18)
 rotation = 3.1415927
 polygon = PackedVector2Array(-14853.292, 57.549454, -14783.292, 37.549454, -14725.292, 57.549454, -14744.292, 114.54902, -14847.292, 165.54852, -14873.292, 86.54915)
 
-[node name="Hand23" type="CollisionPolygon2D" parent="DamageArea" unique_id=724951144 groups=["hand"]]
+[node name="HandCollision23" type="CollisionPolygon2D" parent="DamageArea" unique_id=724951144 groups=["hand"]]
 position = Vector2(1, 18)
 rotation = 3.1415927
 polygon = PackedVector2Array(-15030.292, 51.54947, -14960.292, 31.549469, -14902.292, 51.54947, -14921.292, 108.549034, -15024.292, 159.54852, -15050.292, 80.549164)
 
-[node name="Hand24" type="CollisionPolygon2D" parent="DamageArea" unique_id=376376744 groups=["hand"]]
+[node name="HandCollision24" type="CollisionPolygon2D" parent="DamageArea" unique_id=376376744 groups=["hand"]]
 position = Vector2(1, 18)
 rotation = 3.1415927
 polygon = PackedVector2Array(-18007.293, 5.5497055, -17937.293, -14.4502945, -17879.293, 5.5497055, -17898.293, 62.549316, -18001.293, 113.54877, -18027.293, 34.549423)
 
-[node name="Hand25" type="CollisionPolygon2D" parent="DamageArea" unique_id=1684467788 groups=["hand"]]
+[node name="HandCollision25" type="CollisionPolygon2D" parent="DamageArea" unique_id=1684467788 groups=["hand"]]
 position = Vector2(1, 18)
 rotation = 3.1415927
 polygon = PackedVector2Array(-18529.293, 27.549751, -18459.293, 7.5497513, -18401.293, 27.549751, -18420.293, 84.54933, -18523.293, 135.54878, -18549.293, 56.54947)
 
-[node name="Hand20" type="CollisionPolygon2D" parent="DamageArea" unique_id=302372203 groups=["hand"]]
+[node name="HandCollision20" type="CollisionPolygon2D" parent="DamageArea" unique_id=302372203 groups=["hand"]]
 position = Vector2(9, 37)
 rotation = 2.8797932
 polygon = PackedVector2Array(-12476.602, -3202.7659, -12406.602, -3222.7659, -12348.602, -3202.7659, -12367.602, -3145.766, -12470.602, -3094.7666, -12496.602, -3173.7659)
 
-[node name="Tooth" type="CollisionPolygon2D" parent="DamageArea" unique_id=2002462954 groups=["tooth"]]
+[node name="ToothCollision" type="CollisionPolygon2D" parent="DamageArea" unique_id=2002462954 groups=["tooth"]]
 polygon = PackedVector2Array(3375, 874, 3363, 713, 3509, 878)
 
-[node name="Tooth2" type="CollisionPolygon2D" parent="DamageArea" unique_id=1244037762 groups=["tooth"]]
+[node name="ToothCollision2" type="CollisionPolygon2D" parent="DamageArea" unique_id=1244037762 groups=["tooth"]]
 polygon = PackedVector2Array(3533, 872, 3572, 679, 3643, 865)
 
-[node name="Tooth3" type="CollisionPolygon2D" parent="DamageArea" unique_id=605004269 groups=["tooth"]]
+[node name="ToothCollision3" type="CollisionPolygon2D" parent="DamageArea" unique_id=605004269 groups=["tooth"]]
 polygon = PackedVector2Array(3659, 865, 3809, 666, 3844, 853)
 
-[node name="Tooth4" type="CollisionPolygon2D" parent="DamageArea" unique_id=433353823 groups=["tooth"]]
+[node name="ToothCollision4" type="CollisionPolygon2D" parent="DamageArea" unique_id=433353823 groups=["tooth"]]
 polygon = PackedVector2Array(4362, 828, 4415, 679, 4477, 832)
 
-[node name="Tooth5" type="CollisionPolygon2D" parent="DamageArea" unique_id=117842127 groups=["tooth"]]
+[node name="ToothCollision5" type="CollisionPolygon2D" parent="DamageArea" unique_id=117842127 groups=["tooth"]]
 polygon = PackedVector2Array(4303, 241, 4378, 453, 4464, 231)
 
-[node name="Tooth6" type="CollisionPolygon2D" parent="DamageArea" unique_id=1814514416 groups=["tooth"]]
+[node name="ToothCollision6" type="CollisionPolygon2D" parent="DamageArea" unique_id=1814514416 groups=["tooth"]]
 polygon = PackedVector2Array(4989, 246, 5050, 415, 5122, 250)
 
-[node name="Tooth7" type="CollisionPolygon2D" parent="DamageArea" unique_id=437342856 groups=["tooth"]]
+[node name="ToothCollision7" type="CollisionPolygon2D" parent="DamageArea" unique_id=437342856 groups=["tooth"]]
 polygon = PackedVector2Array(4987, 854, 5063, 676, 5149, 860)
 
-[node name="Tooth8" type="CollisionPolygon2D" parent="DamageArea" unique_id=1515760722 groups=["tooth"]]
+[node name="ToothCollision8" type="CollisionPolygon2D" parent="DamageArea" unique_id=1515760722 groups=["tooth"]]
 polygon = PackedVector2Array(9938, -978, 9976, -813, 10160, -930)
 
-[node name="Tooth9" type="CollisionPolygon2D" parent="DamageArea" unique_id=395192257 groups=["tooth"]]
+[node name="ToothCollision9" type="CollisionPolygon2D" parent="DamageArea" unique_id=395192257 groups=["tooth"]]
 polygon = PackedVector2Array(10308, -769, 10229, -643, 10360, -641)
 
-[node name="Tooth10" type="CollisionPolygon2D" parent="DamageArea" unique_id=2114328244 groups=["tooth"]]
+[node name="ToothCollision10" type="CollisionPolygon2D" parent="DamageArea" unique_id=2114328244 groups=["tooth"]]
 polygon = PackedVector2Array(10386, -553, 10257, -384, 10426, -410)
 
-[node name="Tooth11" type="CollisionPolygon2D" parent="DamageArea" unique_id=1970762911 groups=["tooth"]]
+[node name="ToothCollision11" type="CollisionPolygon2D" parent="DamageArea" unique_id=1970762911 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(10433, -386, 10248, -232, 10481, -304)
 
-[node name="Tooth12" type="CollisionPolygon2D" parent="DamageArea" unique_id=330744558 groups=["tooth"]]
+[node name="ToothCollision12" type="CollisionPolygon2D" parent="DamageArea" unique_id=330744558 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(10473, -334, 10606, -140, 10784, -246)
 
-[node name="Tooth13" type="CollisionPolygon2D" parent="DamageArea" unique_id=1090781585 groups=["tooth"]]
+[node name="ToothCollision13" type="CollisionPolygon2D" parent="DamageArea" unique_id=1090781585 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(9892, 68, 9716, 174, 9703, 9)
 
-[node name="Tooth14" type="CollisionPolygon2D" parent="DamageArea" unique_id=1407347428 groups=["tooth"]]
+[node name="ToothCollision14" type="CollisionPolygon2D" parent="DamageArea" unique_id=1407347428 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(9732, 385, 9853, 195, 9703, 159)
 
-[node name="Tooth15" type="CollisionPolygon2D" parent="DamageArea" unique_id=260277668 groups=["tooth"]]
+[node name="ToothCollision15" type="CollisionPolygon2D" parent="DamageArea" unique_id=260277668 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(9998, 446, 9895, 301, 9810, 423)
 
-[node name="Tooth16" type="CollisionPolygon2D" parent="DamageArea" unique_id=247560530 groups=["tooth"]]
+[node name="ToothCollision16" type="CollisionPolygon2D" parent="DamageArea" unique_id=247560530 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(10742, 439, 10643, 269, 10485, 435)
 
-[node name="Tooth17" type="CollisionPolygon2D" parent="DamageArea" unique_id=1413378121 groups=["tooth"]]
+[node name="ToothCollision17" type="CollisionPolygon2D" parent="DamageArea" unique_id=1413378121 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(12216, 422, 12136, 283, 12005, 417)
 
-[node name="Tooth18" type="CollisionPolygon2D" parent="DamageArea" unique_id=934138916 groups=["tooth"]]
+[node name="ToothCollision18" type="CollisionPolygon2D" parent="DamageArea" unique_id=934138916 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(15577, 475, 15520, 375, 15478, 474)
 
-[node name="Tooth19" type="CollisionPolygon2D" parent="DamageArea" unique_id=2047948992 groups=["tooth"]]
+[node name="ToothCollision19" type="CollisionPolygon2D" parent="DamageArea" unique_id=2047948992 groups=["tooth"]]
 position = Vector2(6, 17)
 polygon = PackedVector2Array(15674, 465, 15616, 398, 15566, 473)
 
-[node name="Tooth20" type="CollisionPolygon2D" parent="DamageArea" unique_id=1389340530 groups=["tooth"]]
+[node name="ToothCollision20" type="CollisionPolygon2D" parent="DamageArea" unique_id=1389340530 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(15762, 466, 15688, 383, 15675, 473)
 
-[node name="Tooth21" type="CollisionPolygon2D" parent="DamageArea" unique_id=1203454109 groups=["tooth"]]
+[node name="ToothCollision21" type="CollisionPolygon2D" parent="DamageArea" unique_id=1203454109 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(15838, 470, 15781, 387, 15731, 465)
 
-[node name="Tooth22" type="CollisionPolygon2D" parent="DamageArea" unique_id=46602256 groups=["tooth"]]
+[node name="ToothCollision22" type="CollisionPolygon2D" parent="DamageArea" unique_id=46602256 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(15933, 476, 15840, 396, 15820, 469)
 
-[node name="Tooth23" type="CollisionPolygon2D" parent="DamageArea" unique_id=1583183818 groups=["tooth"]]
+[node name="ToothCollision23" type="CollisionPolygon2D" parent="DamageArea" unique_id=1583183818 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(15955, 465, 15922, 383, 15908, 474)
 
-[node name="Tooth24" type="CollisionPolygon2D" parent="DamageArea" unique_id=874657119 groups=["tooth"]]
+[node name="ToothCollision24" type="CollisionPolygon2D" parent="DamageArea" unique_id=874657119 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(16073, 476, 16021, 378, 15934, 469)
 
-[node name="Tooth25" type="CollisionPolygon2D" parent="DamageArea" unique_id=669898514 groups=["tooth"]]
+[node name="ToothCollision25" type="CollisionPolygon2D" parent="DamageArea" unique_id=669898514 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(16174, 466, 16121, 359, 16059, 465)
 
-[node name="Tooth26" type="CollisionPolygon2D" parent="DamageArea" unique_id=1128386999 groups=["tooth"]]
+[node name="ToothCollision26" type="CollisionPolygon2D" parent="DamageArea" unique_id=1128386999 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(16264, 468, 16211, 361, 16161, 460)
 
-[node name="Tooth27" type="CollisionPolygon2D" parent="DamageArea" unique_id=1697875295 groups=["tooth"]]
+[node name="ToothCollision27" type="CollisionPolygon2D" parent="DamageArea" unique_id=1697875295 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(16335, 469, 16306, 365, 16249, 469)
 
-[node name="Tooth28" type="CollisionPolygon2D" parent="DamageArea" unique_id=1576268631 groups=["tooth"]]
+[node name="ToothCollision28" type="CollisionPolygon2D" parent="DamageArea" unique_id=1576268631 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(16439, 480, 16414, 371, 16327, 471)
 
-[node name="Tooth29" type="CollisionPolygon2D" parent="DamageArea" unique_id=1174493923 groups=["tooth"]]
+[node name="ToothCollision29" type="CollisionPolygon2D" parent="DamageArea" unique_id=1174493923 groups=["tooth"]]
 position = Vector2(5, 7)
 polygon = PackedVector2Array(16568, 466, 16500, 363, 16441, 463)
 
-[node name="acid" type="CollisionShape2D" parent="DamageArea" unique_id=26254784 groups=["acid"]]
+[node name="AcidCollision" type="CollisionShape2D" parent="DamageArea" unique_id=26254784 groups=["acid"]]
 position = Vector2(898, 979)
 shape = SubResource("RectangleShape2D_t8527")
 
-[node name="acid2" type="CollisionShape2D" parent="DamageArea" unique_id=162015734 groups=["acid"]]
+[node name="AcidCollision2" type="CollisionShape2D" parent="DamageArea" unique_id=162015734 groups=["acid"]]
 position = Vector2(13731, 524)
 shape = SubResource("RectangleShape2D_k4jyb")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1376389377]
+[node name="Stage4Node" type="Node2D" parent="." unique_id=1376389377]
 position = Vector2(842.5, -1400)
 
 [connection signal="body_shape_entered" from="DamageArea" to="." method="_on_damage_area_body_shape_entered"]

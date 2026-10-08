@@ -1,41 +1,48 @@
 class_name Player
 extends CharacterBody2D
 
-var game : Game
-@onready var PARRY_PARTICLE : PackedScene = preload("res://scenes/across_stage/parry_particle.tscn")
-var potential_parryable_attacks : Array[Node2D] = []
+const PARRY_PARTICLE: PackedScene = preload("res://scenes/across_stage/parry_particle.tscn")
 
-const JUMP_VELOCITY = -750
-const BOUNCINESS = 0.5
-const SPEED = 400
-const ACCELARATION = 800
+const DASH_SPEED_MULTIPLIER: int = 3
+const PARRY_SLOWMO_STRENGTH: float = 0.5
+const PARRY_SLOWMO_DURATION: float = 0.2
+const DEFAULT_GRAVITY: Vector2 = Vector2(0, 980)
+const MAX_END_LAG: float = 1.0
+const JUMP_VELOCITY: int = -750
+const BOUNCINESS: float = 0.5
+const SPEED: int = 400
+const ACCELERATION: int = 800
 
-var end_lag = 0
-var external_velocity = Vector2.ZERO
-var input_velocity = Vector2.ZERO
-var gravity = Vector2(0,980)
-var fast_fall_gravity = Vector2(0,980)
+var game: Game
 
+var potential_parryable_attacks: Array[Attack] = []
 
-var is_running = false
-var is_falling = false
-var is_fast_falling = false
-var is_jumping = false
-var is_dashing = false
-var is_parrying = false
+var end_lag: float = 0.0
 
-func _physics_process(delta):
+var external_velocity: Vector2 = Vector2.ZERO
+var input_velocity: Vector2 = Vector2.ZERO
+var gravity: Vector2 = DEFAULT_GRAVITY
+var fast_fall_gravity: Vector2 = DEFAULT_GRAVITY
+
+var is_running: bool = false
+var is_falling: bool = false
+var is_fast_falling: bool = false
+var is_jumping: bool = false
+var is_dashing: bool = false
+var is_parrying: bool = false
+
+func _physics_process(delta: float) -> void:
 	if game.persistent_data.health <= 0:
 		return
-	end_lag = clamp(end_lag - delta, 0, 1)
-	modulate = Color(clamp(modulate.r + delta,0,1), clamp(modulate.g + delta,0,1), clamp(modulate.b + delta,0,1))
-	
-	var effective_speed = SPEED
-	
+	end_lag = clampf(end_lag - delta, 0.0, MAX_END_LAG)
+	modulate = Color(clampf(modulate.r + delta, 0.0, 1.0), clampf(modulate.g + delta, 0.0, 1.0), clampf(modulate.b + delta, 0.0, 1.0))
+
+	var effective_speed: float = SPEED
+
 	is_running = false
 	is_falling = false
 	is_fast_falling = false
-	
+
 	if $DashTimer.time_left + end_lag == 0 and Input.is_action_just_pressed("dash"):
 		$DashTimer.start()
 		is_dashing = true
@@ -45,38 +52,38 @@ func _physics_process(delta):
 		$NonRollingCollision.disabled = true
 		$DashAudio.play()
 	if is_dashing:
-		effective_speed *= 3
+		effective_speed *= DASH_SPEED_MULTIPLIER
 
 	if $ParryTimer.time_left + end_lag == 0 and Input.is_action_just_pressed("parry"):
 		$ParryTimer.start()
 		is_parrying = true
 		is_jumping = false
 		is_dashing = false
-		var parried_anything = false
-		for attack in potential_parryable_attacks:
-			if not is_instance_valid(attack) or not attack.is_parryable or not $AnimatedSprite2D/ParryableArea.overlaps_body(attack):
+		var parried_anything: bool = false
+		for attack: Attack in potential_parryable_attacks:
+			if not is_instance_valid(attack) or not attack.is_parryable or not $PlayerSprite/ParryableArea.overlaps_body(attack):
 				continue
 			parried_anything = true
 			$ParryAudio.play()
-			var parry_particle_instance : CPUParticles2D = PARRY_PARTICLE.instantiate()
+			var parry_particle_instance: CPUParticles2D = PARRY_PARTICLE.instantiate()
 			attack.handle_parry(self)
-			parry_particle_instance.position = $AnimatedSprite2D/ParryableArea.global_position + (attack.global_position - global_position)/2
+			parry_particle_instance.position = $PlayerSprite/ParryableArea.global_position + (attack.global_position - global_position) / 2
 			game.add_child(parry_particle_instance)
 		if not parried_anything:
-			$WhifParryAudio.play()
+			$WhiffParryAudio.play()
 		else:
-			game.create_slowmo(0.5,.2)
-	
+			game.create_slowmo(PARRY_SLOWMO_STRENGTH, PARRY_SLOWMO_DURATION)
+
 	input_velocity.x = 0
 	if (is_on_ceiling() or is_on_floor()) and game.current_stage.is_free_fall:
 		input_velocity.y = 0
 	if end_lag == 0:
 		if Input.is_action_pressed("move_left"):
-			input_velocity.x -= effective_speed 
-			$AnimatedSprite2D.scale.x = -abs($AnimatedSprite2D.scale.x)
+			input_velocity.x -= effective_speed
+			$PlayerSprite.scale.x = -abs($PlayerSprite.scale.x)
 		if Input.is_action_pressed("move_right"):
 			input_velocity.x += effective_speed
-			$AnimatedSprite2D.scale.x = abs($AnimatedSprite2D.scale.x)
+			$PlayerSprite.scale.x = abs($PlayerSprite.scale.x)
 	if input_velocity.x != 0:
 		is_running = true
 	if not is_on_floor() or game.current_stage.is_free_fall:
@@ -99,19 +106,19 @@ func _physics_process(delta):
 			input_velocity.y = 0
 			if not $RunAudio.playing and input_velocity.x != 0:
 				$RunAudio.play()
-	
+
 	velocity = input_velocity + external_velocity
-	
+
 	move_and_slide()
 	resolve_animation()
-	
-	external_velocity = external_velocity.move_toward(Vector2.ZERO,ACCELARATION * delta)
-	
-func set_animation(animation: StringName):
-	if $AnimatedSprite2D.animation != animation:
-		$AnimatedSprite2D.play(animation)
 
-func resolve_animation():
+	external_velocity = external_velocity.move_toward(Vector2.ZERO, ACCELERATION * delta)
+
+func set_animation(animation: StringName) -> void:
+	if $PlayerSprite.animation != animation:
+		$PlayerSprite.play(animation)
+
+func resolve_animation() -> void:
 	if is_parrying:
 		set_animation("parry")
 	elif is_dashing:
@@ -127,11 +134,11 @@ func resolve_animation():
 	else:
 		set_animation("idle")
 
-func take_damage(damage):
+func take_damage(damage: float) -> void:
 	if game.persistent_data.health <= 0:
 		return
 	if game.persistent_data.hardmode:
-		damage *= 2
+		damage *= Game.HARDMODE_MULTIPLIER
 	game.persistent_data.health -= damage
 	game.hud_update.emit()
 	modulate = Color.RED
@@ -139,35 +146,39 @@ func take_damage(damage):
 	if game.persistent_data.health <= 0:
 		$DeathAudio.play()
 		game.handle_death()
-		
+
 	else:
 		game.save_persistent_data()
 
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if $AnimatedSprite2D.animation == "jump":
+func _on_player_sprite_animation_finished() -> void:
+	if $PlayerSprite.animation == "jump":
 		is_jumping = false
-	elif $AnimatedSprite2D.animation == "dash":
+	elif $PlayerSprite.animation == "dash":
 		is_dashing = false
 		$RollingCollision.disabled = true
 		$NonRollingCollision.disabled = false
-	elif $AnimatedSprite2D.animation == "parry":
+	elif $PlayerSprite.animation == "parry":
 		$RollingCollision.disabled = true
 		$NonRollingCollision.disabled = false
 		is_parrying = false
 	resolve_animation()
 
-
 func _on_parryable_area_body_shape_entered(_body_rid: RID, body: Node2D, body_shape_index: int, _local_shape_index: int) -> void:
-	var body_shape_owner = body.shape_find_owner(body_shape_index)
-	var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
+	var body_shape_owner: int = body.shape_find_owner(body_shape_index)
+	var body_shape_node: Node = body.shape_owner_get_owner(body_shape_owner)
 
 	if body_shape_node.is_in_group("parryable") and not potential_parryable_attacks.has(body):
 		potential_parryable_attacks.append(body)
 
+func _on_parryable_area_body_shape_exited(_body_rid: RID, body: Node2D, body_shape_index: int, _local_shape_index: int) -> void:
+	if not is_instance_valid(body):
+		for index: int in range(potential_parryable_attacks.size() - 1, -1, -1):
+			if not is_instance_valid(potential_parryable_attacks[index]):
+				potential_parryable_attacks.remove_at(index)
+		return
 
-func _on_parryable_area_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	var body_shape_owner = body.shape_find_owner(body_shape_index)
-	var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
+	var body_shape_owner: int = body.shape_find_owner(body_shape_index)
+	var body_shape_node: Node = body.shape_owner_get_owner(body_shape_owner)
 
 	if body_shape_node.is_in_group("parryable") and potential_parryable_attacks.has(body):
 		potential_parryable_attacks.erase(body)

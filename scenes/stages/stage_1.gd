@@ -1,86 +1,94 @@
 extends Stage
 
-@onready var TOOTH : PackedScene = preload("res://scenes/stages/stage_1_attacks/tooth.tscn")
-@onready var ACID : PackedScene = preload("res://scenes/stages/stage_1_attacks/acid.tscn")
-@onready var TENTACLE : PackedScene = preload("res://scenes/stages/stage_1_attacks/tentacles.tscn")
-@onready var LAZER : PackedScene = preload("res://scenes/stages/stage_1_attacks/lazer_buzz.tscn")
+const TOOTH: PackedScene = preload("res://scenes/stages/stage_1_attacks/tooth.tscn")
+const ACID: PackedScene = preload("res://scenes/stages/stage_1_attacks/acid.tscn")
+const TENTACLE: PackedScene = preload("res://scenes/stages/stage_1_attacks/tentacles.tscn")
+const LASER: PackedScene = preload("res://scenes/stages/stage_1_attacks/laser_buzz.tscn")
 
-const COLLISION_DAMAGE = 35
+const END_TRANSITION_FRAME: int = 18
+const SPIT_RELEASE_FRAME: int = 5
+const STAGE_EXIT_FADE_TIME: float = 0.5
+const ATTACK_CHANCE: float = 0.66
+const SPIT_CHANCE: float = 0.6
+const TOOTH_CHANCE: float = 0.3
+const TENTACLE_CHANCE: float = 0.7
+const COLLISION_END_LAG: float = 0.5
+const COLLISION_KNOCKBACK: int = 1500
+const COLLISION_DAMAGE: int = 35
 
-var is_spitting = false
-var is_stabbing = false
-var is_lazering = false 
+var is_spitting: bool = false
+var is_stabbing: bool = false
+var is_lasering: bool = false
 
-func  _ready() -> void:
+func _ready() -> void:
 	super()
-	await $Background.animation_finished
-	$Background.play("default")
+	await $BackgroundSprite.animation_finished
+	$BackgroundSprite.play("default")
 	is_active = true
 
-func take_damage(damage):
+func take_damage(damage: float) -> void:
 	boss_current_health -= damage
 	game.hud_update.emit()
 	$OnHitAudio.play()
-	
+
 	if boss_current_health <= 0:
-		$Background.play("end_transition")
+		$BackgroundSprite.play("end_transition")
 		is_active = false
-		var bossCollider = $BossBody/CollisionShape2D
-		bossCollider.reparent.call_deferred($FloorBody)
+		var boss_collider: CollisionShape2D = $BossBody/BossCollision
+		boss_collider.reparent.call_deferred($FloorBody)
 		$BossBody.queue_free()
-		while $Background.frame < 18:
-			await $Background.frame_changed
-		bossCollider.queue_free()
-		
-	
+		while $BackgroundSprite.frame < END_TRANSITION_FRAME:
+			await $BackgroundSprite.frame_changed
+		boss_collider.queue_free()
+
 func _process(_delta: float) -> void:
-	if player.position.y > game.GAME_VIEW_SIZE.y:
-			var fade = STAGE_FADE.instantiate() as StageFade
-			fade.fade_time = 0.5
-			add_child(fade)
-			await fade.fade_done
-			game.load_stage.call_deferred(stage_number + 1)
+	if player.position.y > Game.GAME_VIEW_SIZE.y:
+		var fade: StageFade = STAGE_FADE.instantiate() as StageFade
+		fade.fade_time = STAGE_EXIT_FADE_TIME
+		add_child(fade)
+		await fade.fade_done
+		game.load_stage.call_deferred(stage_number + 1)
 
 func _on_attack_timer_timeout() -> void:
 	if not is_active:
 		return
-	
-	if  randf() < 0.66:
-		var rng = randf()
-		if not is_spitting and rng < 0.6:
+
+	if randf() < ATTACK_CHANCE:
+		var rng: float = randf()
+		if not is_spitting and rng < SPIT_CHANCE:
 			is_spitting = true
-			$BossBody/AnimatedSprite2D.play("spit")
+			$BossBody/BossSprite.play("spit")
 			$SpitAudio.play()
-			while $BossBody/AnimatedSprite2D.frame != 5:
-				await $BossBody/AnimatedSprite2D.frame_changed
-			if rng < 0.3:
-				var tooth = TOOTH.instantiate() as Attack
-				tooth.global_position = $BossBody/MouthPosition.global_position
+			while $BossBody/BossSprite.frame != SPIT_RELEASE_FRAME:
+				await $BossBody/BossSprite.frame_changed
+			if rng < TOOTH_CHANCE:
+				var tooth: Attack = TOOTH.instantiate() as Attack
+				tooth.global_position = $BossBody/MouthPositionNode.global_position
 				tooth.has_parry_indicator = game.persistent_data.tutorial
 				add_child(tooth)
 			else:
-				var acid = ACID.instantiate() as Attack
-				acid.global_position = $BossBody/MouthPosition.global_position
+				var acid: Attack = ACID.instantiate() as Attack
+				acid.global_position = $BossBody/MouthPositionNode.global_position
 				add_child(acid)
-			await $BossBody/AnimatedSprite2D.animation_finished
-			$BossBody/AnimatedSprite2D.play("default")
+			await $BossBody/BossSprite.animation_finished
+			$BossBody/BossSprite.play("default")
 			is_spitting = false
-		elif not is_stabbing and rng < 0.7:
+		elif not is_stabbing and rng < TENTACLE_CHANCE:
 			is_stabbing = true
-			var tentacle = TENTACLE.instantiate() as Attack
-			$TentacleSpawner.add_child(tentacle)
+			var tentacle: Tentacles = TENTACLE.instantiate() as Tentacles
+			$TentacleSpawnerNode.add_child(tentacle)
 			await tentacle.finished
 			is_stabbing = false
-		elif not is_lazering:
-			is_lazering = true
-			var lazer = LAZER.instantiate() as Attack
-			add_child(lazer)
+		elif not is_lasering:
+			is_lasering = true
+			var laser: LaserBuzz = LASER.instantiate() as LaserBuzz
+			add_child(laser)
 			$BuzzAudio.play()
-			await lazer.finished 
-			is_lazering = false
+			await laser.finished
+			is_lasering = false
 
 func _on_knockback_area_body_entered(body: Node2D) -> void:
 	if body is Player and boss_current_health > 0:
 		body.take_damage(COLLISION_DAMAGE)
-		body.end_lag += 0.5
-		body.external_velocity += Vector2(-1,-1).normalized() * 1500
+		body.end_lag += COLLISION_END_LAG
+		body.external_velocity += Vector2(-1, -1).normalized() * COLLISION_KNOCKBACK

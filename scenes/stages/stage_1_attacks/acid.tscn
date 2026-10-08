@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cdn17pbiypnio"]
 
 [ext_resource type="Script" uid="uid://5q6aha1e0jki" path="res://scenes/stages/stage_1_attacks/acid.gd" id="1_yk5pe"]
-[ext_resource type="Texture2D" uid="uid://cea0rd540i3xd" path="res://spritesheets/stages/stage_1/acid_spit_hit-Sheet.png" id="2_aneax"]
-[ext_resource type="Texture2D" uid="uid://du78vwna6dcvc" path="res://spritesheets/stages/stage_1/acid_spit-Sheet.png" id="2_yk5pe"]
+[ext_resource type="Texture2D" uid="uid://cea0rd540i3xd" path="res://spritesheets/stages/stage_1/acid_spit_hit_sheet.png" id="2_aneax"]
+[ext_resource type="Texture2D" uid="uid://du78vwna6dcvc" path="res://spritesheets/stages/stage_1/acid_spit_sheet.png" id="2_yk5pe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d7522"]
 radius = 8.0
@@ -105,7 +105,7 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=784705652]
+[node name="acid" type="AnimatableBody2D" unique_id=784705652]
 z_index = 1
 scale = Vector2(2.25, 2.25)
 collision_layer = 2
@@ -113,11 +113,11 @@ sync_to_physics = false
 script = ExtResource("1_yk5pe")
 hit_damage = 30
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1210065424]
+[node name="AcidCollision" type="CollisionShape2D" parent="." unique_id=1210065424]
 position = Vector2(5, 0)
 shape = SubResource("CapsuleShape2D_d7522")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035384083]
+[node name="AcidSprite" type="AnimatedSprite2D" parent="." unique_id=2035384083]
 texture_filter = 1
 position = Vector2(5, 5)
 scale = Vector2(-2, 2)

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dx81nogxtp52s"]
 
 [ext_resource type="Script" uid="uid://c4vechp0pv5fa" path="res://scenes/stages/stage_6.gd" id="1_t8527"]
-[ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="2_t8527"]
-[ext_resource type="FontFile" uid="uid://cblq5peqqbfaw" path="res://misc/bytebounce/ByteBounce.ttf" id="3_mm8m8"]
+[ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/white_sprite_0009.png" id="2_t8527"]
+[ext_resource type="FontFile" uid="uid://cblq5peqqbfaw" path="res://misc/bytebounce/byte_bounce.ttf" id="3_mm8m8"]
 
 [node name="stage_6" type="Node2D" unique_id=1498283267]
 script = ExtResource("1_t8527")
@@ -10,15 +10,15 @@ stage_number = 6
 camera_x_restraints = Vector2(960, 960)
 camera_y_restraints = Vector2(540, 540)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=840369868]
+[node name="Stage6Layer" type="CanvasLayer" parent="." unique_id=840369868]
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=18510693]
+[node name="Stage6Sprite" type="Sprite2D" parent="Stage6Layer" unique_id=18510693]
 self_modulate = Color(0, 0, 0, 1)
 position = Vector2(960, 540)
 scale = Vector2(192, 108)
 texture = ExtResource("2_t8527")
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=1288117726]
+[node name="Stage6Label" type="Label" parent="Stage6Layer" unique_id=1288117726]
 process_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://nk80xt615f1"]
 
 [ext_resource type="Script" uid="uid://dkdbymnm63bsb" path="res://scenes/stages/stage_5_attacks/big_tooth.gd" id="1_qnmbu"]
-[ext_resource type="Texture2D" uid="uid://2yydoegkwoi3" path="res://spritesheets/stages/stage_1/Tooth_projectile-Sheet.png" id="2_m81h1"]
-[ext_resource type="Texture2D" uid="uid://bidytugk3xjxs" path="res://spritesheets/stages/stage_1/Tooth_projectile_hit-Sheet.png" id="3_sipwg"]
+[ext_resource type="Texture2D" uid="uid://2yydoegkwoi3" path="res://spritesheets/stages/stage_1/tooth_projectile_sheet.png" id="2_m81h1"]
+[ext_resource type="Texture2D" uid="uid://bidytugk3xjxs" path="res://spritesheets/stages/stage_1/tooth_projectile_hit_sheet.png" id="3_sipwg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yk5pe"]
 radius = 30.0
@@ -123,17 +123,17 @@ sync_to_physics = false
 script = ExtResource("1_qnmbu")
 hit_damage = 50
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358304488]
+[node name="BigToothCollision" type="CollisionShape2D" parent="." unique_id=358304488]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_yk5pe")
 
 [node name="HitArea" type="Area2D" parent="." unique_id=762369763]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1210065424]
+[node name="HitCollision" type="CollisionShape2D" parent="HitArea" unique_id=1210065424]
 position = Vector2(40, 0)
 shape = SubResource("CircleShape2D_pb34x")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2035384083]
+[node name="BigToothSprite" type="AnimatedSprite2D" parent="." unique_id=2035384083]
 texture_filter = 1
 scale = Vector2(-5, 5)
 sprite_frames = SubResource("SpriteFrames_d7522")

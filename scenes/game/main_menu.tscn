@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://daoojfeife58m"]
 
 [ext_resource type="Script" uid="uid://byvi4g4y5sebm" path="res://scenes/game/main_menu.gd" id="1_sbiqi"]
-[ext_resource type="Texture2D" uid="uid://chrg43rfffe0b" path="res://spritesheets/other/TitleSprite-0011.png" id="2_ngy02"]
-[ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/WhiteSprite-0009.png" id="3_16onh"]
-[ext_resource type="FontFile" uid="uid://cblq5peqqbfaw" path="res://misc/bytebounce/ByteBounce.ttf" id="5_1f7y1"]
-[ext_resource type="Texture2D" uid="uid://glwejyygwfnu" path="res://spritesheets/stages/stage_0/BackgroundSpritev3-0004-Sheet.png" id="5_gfgjs"]
+[ext_resource type="Texture2D" uid="uid://chrg43rfffe0b" path="res://spritesheets/other/title_sprite_0011.png" id="2_ngy02"]
+[ext_resource type="Texture2D" uid="uid://dqxye1up7ji80" path="res://spritesheets/other/white_sprite_0009.png" id="3_16onh"]
+[ext_resource type="FontFile" uid="uid://cblq5peqqbfaw" path="res://misc/bytebounce/byte_bounce.ttf" id="5_1f7y1"]
+[ext_resource type="Texture2D" uid="uid://glwejyygwfnu" path="res://spritesheets/stages/stage_0/background_spritev3_0004_sheet.png" id="5_gfgjs"]
 [ext_resource type="Texture2D" uid="uid://bqi15rf6xrow2" path="res://spritesheets/other/new_game_tekst.png" id="6_efcww"]
 [ext_resource type="Texture2D" uid="uid://txkbwvy2i1mq" path="res://spritesheets/other/trophy.png" id="7_16onh"]
 [ext_resource type="Texture2D" uid="uid://d23w42bbajjm8" path="res://spritesheets/other/speaker.png" id="8_16onh"]
@@ -119,7 +119,7 @@ scale = Vector2(6.4, 6.4)
 sprite_frames = SubResource("SpriteFrames_fpthd")
 autoplay = "default"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1265703687]
+[node name="MenuOverlayTexture" type="TextureRect" parent="." unique_id=1265703687]
 texture_filter = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -174,7 +174,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ButtonContainer/NewGameButton" unique_id=1154892843]
+[node name="NewGameOptionsContainer" type="HBoxContainer" parent="ButtonContainer/NewGameButton" unique_id=1154892843]
 propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = -1
@@ -187,7 +187,7 @@ focus_mode = 2
 mouse_filter = 0
 alignment = 1
 
-[node name="TutorialToggle" type="CheckButton" parent="ButtonContainer/NewGameButton/HBoxContainer" unique_id=288149497]
+[node name="TutorialToggleButton" type="CheckButton" parent="ButtonContainer/NewGameButton/NewGameOptionsContainer" unique_id=288149497]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 tooltip_text = "(Initial keybinds, parry indicators)"
@@ -198,7 +198,7 @@ text = "Tutorial"
 icon_alignment = 1
 expand_icon = true
 
-[node name="HardmodeToggle" type="CheckButton" parent="ButtonContainer/NewGameButton/HBoxContainer" unique_id=851566834]
+[node name="HardmodeToggleButton" type="CheckButton" parent="ButtonContainer/NewGameButton/NewGameOptionsContainer" unique_id=851566834]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 tooltip_text = "(no checkpoints, 2x Boss Damage, 2x Boss Health)"
@@ -261,7 +261,7 @@ step = 0.01
 value = 0.75
 scrollable = false
 
-[node name="TextureRect" type="TextureRect" parent="VolumeSlider" unique_id=2030319094]
+[node name="VolumeIconTexture" type="TextureRect" parent="VolumeSlider" unique_id=2030319094]
 texture_filter = 1
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 1

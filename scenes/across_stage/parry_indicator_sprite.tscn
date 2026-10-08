@@ -70,6 +70,6 @@ texture_filter = 1
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("1_ykj80")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=730561029]
+[node name="ParryIndicatorSpriteAnimation" type="AnimationPlayer" parent="." unique_id=730561029]
 libraries/ = SubResource("AnimationLibrary_g2hx0")
 autoplay = &"idle"

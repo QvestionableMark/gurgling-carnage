@@ -9,7 +9,7 @@ point_count = 3
 [sub_resource type="Gradient" id="Gradient_n686w"]
 colors = PackedColorArray(1, 1, 0.5568628, 1, 1, 1, 1, 1)
 
-[node name="GPUParticles2D" type="CPUParticles2D" unique_id=319682633]
+[node name="parry_particle" type="CPUParticles2D" unique_id=319682633]
 scale = Vector2(5, 5)
 emitting = false
 amount = 10

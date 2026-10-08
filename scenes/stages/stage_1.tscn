@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dfistqrg0846j"]
 
 [ext_resource type="Script" uid="uid://xoahsgqftmoj" path="res://scenes/stages/stage_1.gd" id="1_3847s"]
-[ext_resource type="Texture2D" uid="uid://bewr777ioklao" path="res://spritesheets/stages/stage_1/Caveidle.png" id="2_k45mu"]
-[ext_resource type="Texture2D" uid="uid://cdyd4y706mo70" path="res://spritesheets/stages/stage_1/Cavev22Sprite-0016-Sheet.png" id="3_ncvry"]
-[ext_resource type="Texture2D" uid="uid://bb1h7oka7qbt0" path="res://spritesheets/stages/stage_1/Cavev22Sprite-0016.scenechanget.png" id="3_relhn"]
-[ext_resource type="Texture2D" uid="uid://bg4jdvicwlcp7" path="res://spritesheets/stages/stage_1/Bossv2Sprite-0002-Sheet.png" id="4_k45mu"]
-[ext_resource type="Texture2D" uid="uid://ij46lr63ejw4" path="res://spritesheets/stages/stage_1/BossSpitSprite-0002-Sheet.png" id="5_ncvry"]
-[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Hit.wav" id="6_l1pay"]
-[ext_resource type="AudioStream" uid="uid://f05ixxor3yyv" path="res://audios/Spit.wav" id="7_1tge3"]
+[ext_resource type="Texture2D" uid="uid://bewr777ioklao" path="res://spritesheets/stages/stage_1/caveidle.png" id="2_k45mu"]
+[ext_resource type="Texture2D" uid="uid://cdyd4y706mo70" path="res://spritesheets/stages/stage_1/cavev22_sprite_0016_sheet.png" id="3_ncvry"]
+[ext_resource type="Texture2D" uid="uid://bb1h7oka7qbt0" path="res://spritesheets/stages/stage_1/cavev22_sprite_0016_scenechanget.png" id="3_relhn"]
+[ext_resource type="Texture2D" uid="uid://bg4jdvicwlcp7" path="res://spritesheets/stages/stage_1/bossv2_sprite_0002_sheet.png" id="4_k45mu"]
+[ext_resource type="Texture2D" uid="uid://ij46lr63ejw4" path="res://spritesheets/stages/stage_1/boss_spit_sprite_0002_sheet.png" id="5_ncvry"]
+[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/hit.wav" id="6_l1pay"]
+[ext_resource type="AudioStream" uid="uid://f05ixxor3yyv" path="res://audios/spit.wav" id="7_1tge3"]
 [ext_resource type="AudioStream" uid="uid://bytqkttopacjl" path="res://audios/buzz.wav" id="9_bjuw2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ncvry"]
@@ -694,7 +694,7 @@ boss_health = 75.0
 camera_x_restraints = Vector2(960, 960)
 camera_y_restraints = Vector2(540, 540)
 
-[node name="Background" type="AnimatedSprite2D" parent="." unique_id=1508836401]
+[node name="BackgroundSprite" type="AnimatedSprite2D" parent="." unique_id=1508836401]
 texture_filter = 1
 position = Vector2(960, 540)
 scale = Vector2(6.4, 6.4)
@@ -706,23 +706,23 @@ frame = 12
 [node name="FloorBody" type="StaticBody2D" parent="." unique_id=1078271585 groups=["solid"]]
 position = Vector2(960, 962)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody" unique_id=1813535161]
+[node name="FloorCollision" type="CollisionShape2D" parent="FloorBody" unique_id=1813535161]
 position = Vector2(-184.5, 120)
 shape = SubResource("RectangleShape2D_relhn")
 
 [node name="FloorBody3" type="StaticBody2D" parent="." unique_id=18644271 groups=["solid"]]
 position = Vector2(960, -100)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody3" unique_id=1035247347]
+[node name="FloorCollision" type="CollisionShape2D" parent="FloorBody3" unique_id=1035247347]
 shape = SubResource("RectangleShape2D_cuow7")
 
 [node name="FloorBody2" type="StaticBody2D" parent="." unique_id=90302401 groups=["solid"]]
 position = Vector2(100, 540)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody2" unique_id=233574660]
+[node name="FloorCollision" type="CollisionShape2D" parent="FloorBody2" unique_id=233574660]
 shape = SubResource("RectangleShape2D_7ts77")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="FloorBody2" unique_id=678321959]
+[node name="FloorCollision2" type="CollisionShape2D" parent="FloorBody2" unique_id=678321959]
 position = Vector2(1772, 133.5)
 shape = SubResource("RectangleShape2D_bjuw2")
 
@@ -733,7 +733,7 @@ autostart = true
 [node name="BossBody" type="StaticBody2D" parent="." unique_id=830070856 groups=["boss"]]
 position = Vector2(1741, 693.6)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BossBody" unique_id=1132349544]
+[node name="BossSprite" type="AnimatedSprite2D" parent="BossBody" unique_id=1132349544]
 z_index = 2
 texture_filter = 1
 scale = Vector2(6.4, 6.4)
@@ -742,15 +742,15 @@ animation = &"spit"
 autoplay = "default"
 frame = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBody" unique_id=1334562815]
+[node name="BossCollision" type="CollisionShape2D" parent="BossBody" unique_id=1334562815]
 shape = SubResource("CapsuleShape2D_ncvry")
 
-[node name="MouthPosition" type="Node2D" parent="BossBody" unique_id=763695377]
+[node name="MouthPositionNode" type="Node2D" parent="BossBody" unique_id=763695377]
 position = Vector2(-260, -14)
 
 [node name="KnockbackArea" type="Area2D" parent="BossBody" unique_id=1656634038]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBody/KnockbackArea" unique_id=954799767]
+[node name="KnockbackCollision" type="CollisionShape2D" parent="BossBody/KnockbackArea" unique_id=954799767]
 shape = SubResource("CapsuleShape2D_l1pay")
 
 [node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1366051043]
@@ -769,7 +769,7 @@ playback_type = 1
 [node name="BuzzAudio" type="AudioStreamPlayer2D" parent="." unique_id=384496074]
 stream = ExtResource("9_bjuw2")
 
-[node name="TentacleSpawner" type="Node2D" parent="." unique_id=483064222]
+[node name="TentacleSpawnerNode" type="Node2D" parent="." unique_id=483064222]
 position = Vector2(1545, 343)
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

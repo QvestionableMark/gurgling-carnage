@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://wjta0oq8pwtj"]
 
 [ext_resource type="Script" uid="uid://d1gfd5x3yd75a" path="res://scenes/stages/stage_3.gd" id="1_djy2v"]
-[ext_resource type="Texture2D" uid="uid://ca3eodrx2g3mi" path="res://spritesheets/stages/stage_3/Sprite-0014Scene3v3-Sheet.png" id="2_sl44i"]
-[ext_resource type="Texture2D" uid="uid://wbn4jjm8xxwn" path="res://spritesheets/stages/stage_3/Sprite-0014Scene3chaange-Sheet-Sheet.png" id="3_8ykyq"]
-[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Hit.wav" id="3_sl44i"]
+[ext_resource type="Texture2D" uid="uid://ca3eodrx2g3mi" path="res://spritesheets/stages/stage_3/sprite_0014_scene3v3_sheet.png" id="2_sl44i"]
+[ext_resource type="Texture2D" uid="uid://wbn4jjm8xxwn" path="res://spritesheets/stages/stage_3/sprite_0014_scene3change_sheet_sheet.png" id="3_8ykyq"]
+[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/hit.wav" id="3_sl44i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ykyq"]
 atlas = ExtResource("2_sl44i")
@@ -770,7 +770,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TopMouth:position")
+tracks/0/path = NodePath("TopMouthNode:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -782,7 +782,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomMouth:position")
+tracks/1/path = NodePath("BottomMouthNode:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -794,7 +794,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TopMouth:rotation")
+tracks/2/path = NodePath("TopMouthNode:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -806,7 +806,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BottomMouth:rotation")
+tracks/3/path = NodePath("BottomMouthNode:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -823,7 +823,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TopMouth:position")
+tracks/0/path = NodePath("TopMouthNode:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -835,7 +835,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomMouth:position")
+tracks/1/path = NodePath("BottomMouthNode:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -847,7 +847,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TopMouth:rotation")
+tracks/2/path = NodePath("TopMouthNode:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -859,7 +859,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BottomMouth:rotation")
+tracks/3/path = NodePath("BottomMouthNode:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -876,7 +876,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TopMouth:position")
+tracks/0/path = NodePath("TopMouthNode:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -888,7 +888,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BottomMouth:position")
+tracks/1/path = NodePath("BottomMouthNode:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -900,7 +900,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TopMouth:rotation")
+tracks/2/path = NodePath("TopMouthNode:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -912,7 +912,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BottomMouth:rotation")
+tracks/3/path = NodePath("BottomMouthNode:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -929,17 +929,17 @@ _data = {
 &"transition_position": SubResource("Animation_8ykyq")
 }
 
-[node name="Stage3" type="Node2D" unique_id=1498283267]
+[node name="stage_3" type="Node2D" unique_id=1498283267]
 process_mode = 1
 script = ExtResource("1_djy2v")
 stage_number = 3
 player_start_position = Vector2(990, 100)
 use_boss_health_bar = true
-boss_health = 1.0
+boss_health = 300.0
 camera_x_restraints = Vector2(960, 960)
 camera_y_restraints = Vector2(320, 540)
 
-[node name="Background" type="AnimatedSprite2D" parent="." unique_id=1401468236]
+[node name="BackgroundSprite" type="AnimatedSprite2D" parent="." unique_id=1401468236]
 texture_filter = 1
 position = Vector2(960, 225)
 scale = Vector2(6.4, 6.4)
@@ -948,73 +948,73 @@ sprite_frames = SubResource("SpriteFrames_e481a")
 [node name="FloorBody" type="StaticBody2D" parent="." unique_id=1903234587 groups=["solid"]]
 position = Vector2(990, 700)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody" unique_id=2127308480]
+[node name="FloorCollision" type="CollisionShape2D" parent="FloorBody" unique_id=2127308480]
 shape = SubResource("RectangleShape2D_71ke2")
 
 [node name="FloorBody2" type="StaticBody2D" parent="." unique_id=479483472]
 position = Vector2(960, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody2" unique_id=473203036]
+[node name="FloorCollision" type="CollisionShape2D" parent="FloorBody2" unique_id=473203036]
 shape = SubResource("RectangleShape2D_k7kex")
 
 [node name="FloorBody3" type="StaticBody2D" parent="." unique_id=1822615144]
 position = Vector2(0, 540)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody3" unique_id=332004679]
+[node name="FloorCollision" type="CollisionShape2D" parent="FloorBody3" unique_id=332004679]
 position = Vector2(132, 0)
 shape = SubResource("RectangleShape2D_sl44i")
 
 [node name="FloorBody4" type="StaticBody2D" parent="." unique_id=1509315865]
 position = Vector2(1920, 540)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBody4" unique_id=433524024]
+[node name="FloorCollision" type="CollisionShape2D" parent="FloorBody4" unique_id=433524024]
 position = Vector2(-116.5, 0)
 shape = SubResource("RectangleShape2D_8ykyq")
 
-[node name="RockCatcher" type="StaticBody2D" parent="." unique_id=1037853748]
+[node name="RockCatcherBody" type="StaticBody2D" parent="." unique_id=1037853748]
 position = Vector2(-500, 1040)
 rotation = -0.7853982
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RockCatcher" unique_id=452841180]
+[node name="RockCatcherCollision" type="CollisionShape2D" parent="RockCatcherBody" unique_id=452841180]
 shape = SubResource("RectangleShape2D_33m27")
 
-[node name="RockCatcher2" type="StaticBody2D" parent="." unique_id=1113753745]
+[node name="RockCatcherBody2" type="StaticBody2D" parent="." unique_id=1113753745]
 position = Vector2(2420, 1040)
 rotation = 0.7853982
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RockCatcher2" unique_id=1805942650]
+[node name="RockCatcher2Collision" type="CollisionShape2D" parent="RockCatcherBody2" unique_id=1805942650]
 shape = SubResource("RectangleShape2D_7ldjl")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=1893100602]
 wait_time = 0.5
 autostart = true
 
-[node name="TopMouth" type="Node2D" parent="." unique_id=1652452482]
+[node name="TopMouthNode" type="Node2D" parent="." unique_id=1652452482]
 position = Vector2(1625, 1075)
 rotation = 0.08726646
 
-[node name="KnockbackArea" type="Area2D" parent="TopMouth" unique_id=790420966]
+[node name="KnockbackArea" type="Area2D" parent="TopMouthNode" unique_id=790420966]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopMouth/KnockbackArea" unique_id=896583810]
+[node name="KnockbackCollision" type="CollisionShape2D" parent="TopMouthNode/KnockbackArea" unique_id=896583810]
 shape = SubResource("CapsuleShape2D_k7kex")
 
-[node name="BossBody" type="StaticBody2D" parent="TopMouth" unique_id=1014193105 groups=["boss"]]
+[node name="BossBody" type="StaticBody2D" parent="TopMouthNode" unique_id=1014193105 groups=["boss"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopMouth/BossBody" unique_id=328782443]
+[node name="BossCollision" type="CollisionShape2D" parent="TopMouthNode/BossBody" unique_id=328782443]
 shape = SubResource("CapsuleShape2D_sl44i")
 
-[node name="BottomMouth" type="Node2D" parent="." unique_id=318398606]
+[node name="BottomMouthNode" type="Node2D" parent="." unique_id=318398606]
 position = Vector2(410, 1055)
 rotation = -0.08726646
 
-[node name="KnockbackArea" type="Area2D" parent="BottomMouth" unique_id=1192710261]
+[node name="KnockbackArea" type="Area2D" parent="BottomMouthNode" unique_id=1192710261]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomMouth/KnockbackArea" unique_id=2126139696]
+[node name="KnockbackCollision" type="CollisionShape2D" parent="BottomMouthNode/KnockbackArea" unique_id=2126139696]
 shape = SubResource("CapsuleShape2D_k7kex")
 
-[node name="BossBody" type="StaticBody2D" parent="BottomMouth" unique_id=523326280 groups=["boss"]]
+[node name="BossBody" type="StaticBody2D" parent="BottomMouthNode" unique_id=523326280 groups=["boss"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomMouth/BossBody" unique_id=23990662]
+[node name="BossCollision" type="CollisionShape2D" parent="BottomMouthNode/BossBody" unique_id=23990662]
 shape = SubResource("CapsuleShape2D_sl44i")
 
 [node name="MouthColliderAnimation" type="AnimationPlayer" parent="." unique_id=715718817]
@@ -1028,5 +1028,5 @@ volume_db = 6.0
 playback_type = 1
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="body_entered" from="TopMouth/KnockbackArea" to="." method="_on_knockback_area_body_entered"]
-[connection signal="body_entered" from="BottomMouth/KnockbackArea" to="." method="_on_knockback_area_body_entered"]
+[connection signal="body_entered" from="TopMouthNode/KnockbackArea" to="." method="_on_knockback_area_body_entered"]
+[connection signal="body_entered" from="BottomMouthNode/KnockbackArea" to="." method="_on_knockback_area_body_entered"]

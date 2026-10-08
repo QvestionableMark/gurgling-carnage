@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cfq38yxpfjhnu"]
 
 [ext_resource type="Script" uid="uid://bfaivsp67k3af" path="res://scenes/stages/stage_5.gd" id="1_dy653"]
-[ext_resource type="Texture2D" uid="uid://didvrcnwguqhs" path="res://spritesheets/stages/stage_5/Scene5baggrund.png" id="2_q4drp"]
-[ext_resource type="Texture2D" uid="uid://cukqyepntax4l" path="res://spritesheets/stages/stage_5/Scene5platformsvv6.png" id="3_q4drp"]
+[ext_resource type="Texture2D" uid="uid://didvrcnwguqhs" path="res://spritesheets/stages/stage_5/scene5baggrund.png" id="2_q4drp"]
+[ext_resource type="Texture2D" uid="uid://cukqyepntax4l" path="res://spritesheets/stages/stage_5/scene5platformsvv6.png" id="3_q4drp"]
 [ext_resource type="Script" uid="uid://da2u57lr8m4s0" path="res://scenes/stages/stage_5_attacks/heart.gd" id="4_df1c4"]
-[ext_resource type="Texture2D" uid="uid://b5sciv6r5738" path="res://spritesheets/stages/stage_5/Scene5-boss.png" id="4_m1r7o"]
-[ext_resource type="Texture2D" uid="uid://ddx2phprtnbdk" path="res://spritesheets/stages/stage_5/Scene5forgrund.png" id="5_583hl"]
+[ext_resource type="Texture2D" uid="uid://b5sciv6r5738" path="res://spritesheets/stages/stage_5/scene5_boss.png" id="4_m1r7o"]
+[ext_resource type="Texture2D" uid="uid://ddx2phprtnbdk" path="res://spritesheets/stages/stage_5/scene5forgrund.png" id="5_583hl"]
 [ext_resource type="PackedScene" uid="uid://c4yhjl14srqd5" path="res://scenes/across_stage/parry_indicator_sprite.tscn" id="5_m1r7o"]
-[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/Hit.wav" id="8_583hl"]
+[ext_resource type="AudioStream" uid="uid://brfkat6wy3y72" path="res://audios/hit.wav" id="8_583hl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7y5j"]
 atlas = ExtResource("2_q4drp")
@@ -429,7 +429,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Stage5" type="Node2D" unique_id=1343093336]
+[node name="stage_5" type="Node2D" unique_id=1343093336]
 script = ExtResource("1_dy653")
 stage_number = 5
 player_start_position = Vector2(60, 0)
@@ -438,35 +438,35 @@ boss_health = 60.0
 camera_x_restraints = Vector2(960, 1550)
 camera_y_restraints = Vector2(-275, 275)
 
-[node name="Scalar" type="Node2D" parent="." unique_id=466353261]
+[node name="ScalarNode" type="Node2D" parent="." unique_id=466353261]
 scale = Vector2(0.66, 0.66)
 
-[node name="Background" type="AnimatedSprite2D" parent="Scalar" unique_id=23012301]
+[node name="BackgroundSprite" type="AnimatedSprite2D" parent="ScalarNode" unique_id=23012301]
 texture_filter = 1
 position = Vector2(1920, 0)
 scale = Vector2(6.4, 6.4)
 sprite_frames = SubResource("SpriteFrames_d7522")
 autoplay = "default"
 
-[node name="Platforms" type="Sprite2D" parent="Scalar" unique_id=932849234]
+[node name="PlatformsSprite" type="Sprite2D" parent="ScalarNode" unique_id=932849234]
 texture_filter = 1
 position = Vector2(1720, 0)
 scale = Vector2(6.4, 6.4)
 texture = ExtResource("3_q4drp")
 
-[node name="BossBody" type="AnimatableBody2D" parent="Scalar" unique_id=116356473 node_paths=PackedStringArray("platform_body", "platform_sprite") groups=["parryable"]]
+[node name="BossBody" type="AnimatableBody2D" parent="ScalarNode" unique_id=116356473 node_paths=PackedStringArray("platform_body", "platform_sprite") groups=["parryable"]]
 position = Vector2(3200, 0)
 scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("4_df1c4")
 platform_body = NodePath("../PlatformBody")
-platform_sprite = NodePath("../Platforms")
+platform_sprite = NodePath("../PlatformsSprite")
 is_parryable = true
 hit_damage = 10
 
-[node name="parry_indicator_sprite" parent="Scalar/BossBody" unique_id=454821429 instance=ExtResource("5_m1r7o")]
+[node name="parry_indicator_sprite" parent="ScalarNode/BossBody" unique_id=454821429 instance=ExtResource("5_m1r7o")]
 position = Vector2(-375, 38.134)
 
-[node name="Boss" type="AnimatedSprite2D" parent="Scalar/BossBody" unique_id=1276839496]
+[node name="BossSprite" type="AnimatedSprite2D" parent="ScalarNode/BossBody" unique_id=1276839496]
 texture_filter = 1
 position = Vector2(-1350, 0)
 scale = Vector2(6.400001, 6.400001)
@@ -474,31 +474,31 @@ sprite_frames = SubResource("SpriteFrames_evhq4")
 autoplay = "default"
 frame = 16
 
-[node name="HeartCollision" type="CollisionShape2D" parent="Scalar/BossBody" unique_id=1059535386 groups=["parryable"]]
+[node name="HeartCollision" type="CollisionShape2D" parent="ScalarNode/BossBody" unique_id=1059535386 groups=["parryable"]]
 position = Vector2(0, 150)
 shape = SubResource("CapsuleShape2D_d7522")
 
-[node name="TendonCollision" type="CollisionShape2D" parent="Scalar/BossBody" unique_id=438251580]
+[node name="TendonCollision" type="CollisionShape2D" parent="ScalarNode/BossBody" unique_id=438251580]
 position = Vector2(-110.6062, 812.12115)
 rotation = 0.5235988
 shape = SubResource("RectangleShape2D_d7522")
 
-[node name="TendonCollision2" type="CollisionShape2D" parent="Scalar/BossBody" unique_id=360542336]
+[node name="TendonCollision2" type="CollisionShape2D" parent="ScalarNode/BossBody" unique_id=360542336]
 position = Vector2(-282.57568, -591.66675)
 rotation = -0.5235988
 shape = SubResource("RectangleShape2D_df1c4")
 
-[node name="HitArea" type="Area2D" parent="Scalar/BossBody" unique_id=1751324980]
+[node name="HitArea" type="Area2D" parent="ScalarNode/BossBody" unique_id=1751324980]
 
-[node name="HeartCollision" type="CollisionShape2D" parent="Scalar/BossBody/HitArea" unique_id=704655607]
+[node name="HeartCollision" type="CollisionShape2D" parent="ScalarNode/BossBody/HitArea" unique_id=704655607]
 position = Vector2(-3.34, 0)
 shape = SubResource("CapsuleShape2D_k4jyb")
 
-[node name="HeartCollision2" type="CollisionShape2D" parent="Scalar/BossBody/HitArea" unique_id=1598009262]
+[node name="HeartCollision2" type="CollisionShape2D" parent="ScalarNode/BossBody/HitArea" unique_id=1598009262]
 position = Vector2(-3.34, 225)
 shape = SubResource("CapsuleShape2D_m1r7o")
 
-[node name="Foreground" type="AnimatedSprite2D" parent="Scalar" unique_id=14254459]
+[node name="ForegroundSprite" type="AnimatedSprite2D" parent="ScalarNode" unique_id=14254459]
 z_index = 2
 texture_filter = 1
 position = Vector2(1920, 0)
@@ -506,54 +506,54 @@ scale = Vector2(6.4, 6.4)
 sprite_frames = SubResource("SpriteFrames_k4jyb")
 autoplay = "default"
 
-[node name="SolidBody" type="StaticBody2D" parent="Scalar" unique_id=1746372540]
+[node name="SolidBody" type="StaticBody2D" parent="ScalarNode" unique_id=1746372540]
 
-[node name="GroundWall" type="CollisionPolygon2D" parent="Scalar/SolidBody" unique_id=896338074 groups=["solid"]]
+[node name="GroundWallCollision" type="CollisionPolygon2D" parent="ScalarNode/SolidBody" unique_id=896338074 groups=["solid"]]
 polygon = PackedVector2Array(-193, -344, -185, 1281, 4097, 1292, 4042, -1553, -283, -1553, -194, -358, 312, -366, 731, -857, 3842, -869, 3849, 966, 552, 928, 254, 349, 4, 335, -7, -339)
 
-[node name="PlatformBody" type="StaticBody2D" parent="Scalar" unique_id=793670918]
+[node name="PlatformBody" type="StaticBody2D" parent="ScalarNode" unique_id=793670918]
 position = Vector2(-200, 0)
 
-[node name="Platform" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=1087027614 groups=["solid"]]
+[node name="PlatformCollision" type="CollisionPolygon2D" parent="ScalarNode/PlatformBody" unique_id=1087027614 groups=["solid"]]
 polygon = PackedVector2Array(1528, -327, 1418, -342, 1377, -415, 1671, -415, 1642, -345)
 
-[node name="Platform2" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=564313992 groups=["solid"]]
+[node name="PlatformCollision2" type="CollisionPolygon2D" parent="ScalarNode/PlatformBody" unique_id=564313992 groups=["solid"]]
 polygon = PackedVector2Array(1041.6364, 56.33332, 931.63635, 41.333313, 890.63635, -31.66669, 1184.6364, -31.66669, 1155.6364, 38.333313)
 
-[node name="Platform3" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=2089346942 groups=["solid"]]
+[node name="PlatformCollision3" type="CollisionPolygon2D" parent="ScalarNode/PlatformBody" unique_id=2089346942 groups=["solid"]]
 polygon = PackedVector2Array(1521, 447, 1411, 432, 1370, 359, 1664, 359, 1635, 429)
 
-[node name="Platform4" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=456065375 groups=["solid"]]
+[node name="PlatformCollision4" type="CollisionPolygon2D" parent="ScalarNode/PlatformBody" unique_id=456065375 groups=["solid"]]
 polygon = PackedVector2Array(2525, 447, 2415, 432, 2374, 359, 2668, 359, 2639, 429)
 
-[node name="Platform5" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=1877606430 groups=["solid"]]
+[node name="PlatformCollision5" type="CollisionPolygon2D" parent="ScalarNode/PlatformBody" unique_id=1877606430 groups=["solid"]]
 polygon = PackedVector2Array(2493, -328, 2383, -343, 2342, -416, 2636, -416, 2607, -346)
 
-[node name="Platform6" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=1338317674 groups=["solid"]]
+[node name="PlatformCollision6" type="CollisionPolygon2D" parent="ScalarNode/PlatformBody" unique_id=1338317674 groups=["solid"]]
 polygon = PackedVector2Array(2002.0908, 50.78784, 1892.0908, 35.78784, 1851.0908, -37.21215, 2145.0913, -37.21215, 2116.0913, 32.78784)
 
-[node name="Platform7" type="CollisionPolygon2D" parent="Scalar/PlatformBody" unique_id=882673921 groups=["solid"]]
+[node name="PlatformCollision7" type="CollisionPolygon2D" parent="ScalarNode/PlatformBody" unique_id=882673921 groups=["solid"]]
 polygon = PackedVector2Array(2039.9697, 735.63635, 1929.9696, 720.6363, 1888.9696, 647.6363, 2182.9697, 647.6363, 2153.9697, 717.6363)
 
-[node name="TentacleSpawners" type="Node2D" parent="Scalar" unique_id=1814912894]
+[node name="TentacleSpawnersNode" type="Node2D" parent="ScalarNode" unique_id=1814912894]
 
-[node name="TentacleSpawner" type="Node2D" parent="Scalar/TentacleSpawners" unique_id=230413981]
+[node name="TentacleSpawnerNode" type="Node2D" parent="ScalarNode/TentacleSpawnersNode" unique_id=230413981]
 position = Vector2(901.51514, 956.0606)
 scale = Vector2(-2, -2)
 
-[node name="TentacleSpawner2" type="Node2D" parent="Scalar/TentacleSpawners" unique_id=1576163199]
+[node name="TentacleSpawnerNode2" type="Node2D" parent="ScalarNode/TentacleSpawnersNode" unique_id=1576163199]
 position = Vector2(2692.424, 963.63635)
 scale = Vector2(2, -2)
 
-[node name="TentacleSpawner3" type="Node2D" parent="Scalar/TentacleSpawners" unique_id=270611010]
+[node name="TentacleSpawnerNode3" type="Node2D" parent="ScalarNode/TentacleSpawnersNode" unique_id=270611010]
 position = Vector2(2600, -857.57574)
 scale = Vector2(2, 2)
 
-[node name="TentacleSpawner4" type="Node2D" parent="Scalar/TentacleSpawners" unique_id=1144329903]
+[node name="TentacleSpawnerNode4" type="Node2D" parent="ScalarNode/TentacleSpawnersNode" unique_id=1144329903]
 position = Vector2(1057.5757, -857.57574)
 scale = Vector2(-2, 2)
 
-[node name="ToothSpawner" type="Node2D" parent="Scalar" unique_id=463313619]
+[node name="ToothSpawnerNode" type="Node2D" parent="ScalarNode" unique_id=463313619]
 position = Vector2(392.4242, 821.21204)
 
 [node name="OnHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1678198600]
@@ -567,6 +567,6 @@ playback_type = 1
 wait_time = 0.66
 autostart = true
 
-[connection signal="frame_changed" from="Scalar/BossBody/Boss" to="Scalar/BossBody" method="_on_boss_frame_changed"]
-[connection signal="body_entered" from="Scalar/BossBody/HitArea" to="Scalar/BossBody" method="_on_hit_area_body_entered"]
+[connection signal="frame_changed" from="ScalarNode/BossBody/BossSprite" to="ScalarNode/BossBody" method="_on_boss_sprite_frame_changed"]
+[connection signal="body_entered" from="ScalarNode/BossBody/HitArea" to="ScalarNode/BossBody" method="_on_hit_area_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

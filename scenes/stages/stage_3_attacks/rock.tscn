@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cxy5vyxe83eqy"]
 
 [ext_resource type="Script" uid="uid://jk0uqqvftmg4" path="res://scenes/stages/stage_3_attacks/rock.gd" id="1_nr814"]
-[ext_resource type="Texture2D" uid="uid://hpl7mhpd6l1h" path="res://spritesheets/stages/stage_3/RockSprite-0015-Sheet.png" id="2_dx4ek"]
-[ext_resource type="Texture2D" uid="uid://cojtjlnakmc1q" path="res://spritesheets/stages/stage_3/Rock-Sheet.png" id="3_vpoik"]
+[ext_resource type="Texture2D" uid="uid://hpl7mhpd6l1h" path="res://spritesheets/stages/stage_3/rock_sprite_0015_sheet.png" id="2_dx4ek"]
+[ext_resource type="Texture2D" uid="uid://cojtjlnakmc1q" path="res://spritesheets/stages/stage_3/rock_sheet.png" id="3_vpoik"]
 [ext_resource type="PackedScene" uid="uid://c4yhjl14srqd5" path="res://scenes/across_stage/parry_indicator_sprite.tscn" id="3_yakqc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx4ek"]
@@ -135,17 +135,17 @@ script = ExtResource("1_nr814")
 is_parryable = true
 hit_damage = 30
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2047718603 groups=["parryable"]]
+[node name="RockCollision" type="CollisionShape2D" parent="." unique_id=2047718603 groups=["parryable"]]
 position = Vector2(4.65, 0)
 shape = SubResource("CircleShape2D_dx4ek")
 
 [node name="HitArea" type="Area2D" parent="." unique_id=399776764]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=789587286]
+[node name="HitCollision" type="CollisionShape2D" parent="HitArea" unique_id=789587286]
 position = Vector2(26.69, 0)
 shape = SubResource("CircleShape2D_yakqc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1208025794]
+[node name="RockSprite" type="AnimatedSprite2D" parent="." unique_id=1208025794]
 texture_filter = 1
 scale = Vector2(2.35, 2.35)
 sprite_frames = SubResource("SpriteFrames_d7522")
