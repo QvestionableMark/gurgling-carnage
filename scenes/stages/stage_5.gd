@@ -51,6 +51,7 @@ func take_damage(damage: float) -> void:
 
 	if boss_current_health <= 0.0:
 		is_active = false
+		$ScalarNode/TentacleSpawnersNode.queue_free()
 		var exit_fade: StageFade = STAGE_FADE.instantiate() as StageFade
 		exit_fade.fade_duration = STAGE_EXIT_FADE_DURATION
 		add_child(exit_fade)

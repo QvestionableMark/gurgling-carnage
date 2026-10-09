@@ -42,6 +42,7 @@ func take_damage(damage: float) -> void:
 		while $BackgroundSprite.frame < END_TRANSITION_FRAME:
 			await $BackgroundSprite.frame_changed
 		boss_collision.queue_free()
+		$TentacleSpawnerNode.queue_free()
 
 func _process(delta: float) -> void:
 	if has_node("BossBody/BossSprite"):

@@ -183,5 +183,5 @@ func _on_parryable_area_body_shape_exited(_body_rid: RID, body: Node2D, body_sha
 	var body_shape_owner_id: int = body.shape_find_owner(body_shape_index)
 	var body_collision: Node = body.shape_owner_get_owner(body_shape_owner_id)
 
-	if body_collision.is_in_group("parryable") and potential_parryable_attacks.has(body):
+	if is_instance_valid(body_collision) and body_collision.is_in_group("parryable") and potential_parryable_attacks.has(body):
 		potential_parryable_attacks.erase(body)
