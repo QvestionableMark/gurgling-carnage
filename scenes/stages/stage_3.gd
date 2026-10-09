@@ -40,6 +40,7 @@ func take_damage(damage: float) -> void:
 	$OnHitAudio.play()
 
 	if boss_current_health <= 0.0:
+		$FloorBody2.add_to_group("solid")
 		$BackgroundSprite.play("end_transition")
 		$MouthColliderAnimation.play("transition_position")
 		is_active = false
